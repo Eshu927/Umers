@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials | Paul Interior Imamsahib</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { 
+            --bg-body: #ffffff; 
+            --bg-surface: #f8fafc; 
+            --text-main: #0f172a; 
+            --text-muted: #64748b;
+            --accent-orange: #f97316; 
+            --border-color: #e2e8f0; 
+            --shadow-soft: 0 10px 25px -5px rgba(0,0,0,0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-body); color: var(--text-main); overflow-x: hidden; line-height: 1.6; padding-top: 75px; }
+        
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; background-color: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; border-bottom: 1px solid var(--border-color); }
+        
+        @keyframes multiColorTextAndBorder {
+            0% { color: #f97316; border-color: #f97316; }
+            12% { color: #3b82f6; border-color: #3b82f6; }
+            25% { color: #10b981; border-color: #10b981; }
+            37% { color: #8b5cf6; border-color: #8b5cf6; }
+            50% { color: #ec4899; border-color: #ec4899; }
+            62% { color: #eab308; border-color: #eab308; }
+            75% { color: #06b6d4; border-color: #06b6d4; }
+            87% { color: #ef4444; border-color: #ef4444; }
+            100% { color: #f97316; border-color: #f97316; }
+        }
+
+        .brand-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .brand-icon-box { width: 45px; height: 45px; background: linear-gradient(135deg, #fb923c, #f97316); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; box-shadow: 0 4px 10px rgba(249,115,22,0.3); }
+        .brand-text h2 { font-size: 18px; font-weight: 800; text-transform: uppercase; color: #0f172a; animation: multiColorTextAndBorder 10s infinite; }
+        .brand-line { width: 100%; height: 3px; background: linear-gradient(90deg, #b45309, #fbbf24, #d97706); margin: 3px 0; box-shadow: 0 0 8px rgba(251, 191, 36, 0.6); }
+        .brand-text span { font-size: 11px; font-weight: 700; color: var(--accent-orange); letter-spacing: 1.5px; animation: multiColorTextAndBorder 10s infinite; }
+
+        .header-actions { display: flex; align-items: center; gap: 12px; position: relative; }
+
+        @keyframes cardBorderGlow {
+            0% { border-color: #f97316; box-shadow: 0 0 10px rgba(249,115,22,0.3); }
+            33% { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59,130,246,0.4); }
+            66% { border-color: #10b981; box-shadow: 0 0 15px rgba(16,185,129,0.4); }
+            100% { border-color: #f97316; box-shadow: 0 0 10px rgba(249,115,22,0.3); }
+        }
+
+        .social-icons-box { display: flex; align-items: center; gap: 8px; }
+        .social-icon-btn { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: transform 0.3s ease; animation: cardBorderGlow 6s infinite; border: 2px solid #f97316; }
+        .social-icon-btn.ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+        .social-icon-btn.fb { background: #1877f2; }
+        .social-icon-btn.yt { background: #ff0000; }
+        .social-icon-btn.wa { background: #25d366; }
+        .social-icon-btn:hover { transform: scale(1.15); }
+
+        .menu-btn { font-size: 14px; cursor: pointer; color: var(--text-main); background: #f1f5f9; padding: 8px 16px; border-radius: 25px; border: 2px solid var(--border-color); font-weight: 600; display: flex; align-items: center; gap: 6px; animation: multiColorTextAndBorder 10s infinite; }
+        .menu-btn:hover { background: var(--accent-orange); color: #fff; border-color: var(--accent-orange); }
+
+        /* Upgraded Modern Glassmorphism Menu Dropdown */
+        @keyframes menuPopAnimation {
+            0% { opacity: 0; transform: translateY(-20px) scale(0.85); filter: blur(10px); }
+            70% { opacity: 1; transform: translateY(5px) scale(1.02); filter: blur(0px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); }
+        }
+
+        @keyframes menuGlowBorder {
+            0% { border-color: #f97316; box-shadow: 0 15px 40px rgba(249,115,22,0.3); }
+            50% { border-color: #3b82f6; box-shadow: 0 15px 40px rgba(59,130,246,0.3); }
+            100% { border-color: #f97316; box-shadow: 0 15px 40px rgba(249,115,22,0.3); }
+        }
+
+        nav#side-menu { 
+            display: none; 
+            flex-direction: column; 
+            position: absolute; 
+            top: 65px; 
+            right: 0; 
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95)); 
+            backdrop-filter: blur(20px); 
+            min-width: 270px; 
+            border-radius: 18px; 
+            padding: 15px 0; 
+            border: 2px solid #f97316; 
+            z-index: 2000; 
+            animation: menuPopAnimation 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, menuGlowBorder 8s infinite; 
+        }
+        
+        nav#side-menu.active { display: flex; }
+        
+        nav#side-menu a { 
+            color: #f8fafc; 
+            text-decoration: none; 
+            padding: 12px 24px; 
+            font-weight: 600; 
+            font-size: 14px; 
+            transition: all 0.3s ease; 
+            display: flex; 
+            align-items: center; 
+            gap: 14px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
+        }
+        
+        nav#side-menu a i { 
+            font-size: 16px; 
+            width: 22px; 
+            text-align: center; 
+            color: #fb923c; 
+            transition: transform 0.3s ease, color 0.3s ease; 
+        }
+        
+        nav#side-menu a:hover { 
+            background: linear-gradient(90deg, rgba(249, 115, 22, 0.25), transparent); 
+            color: #fef08a; 
+            padding-left: 32px; 
+            border-left: 4px solid var(--accent-orange); 
+        }
+        
+        nav#side-menu a:hover i { 
+            transform: scale(1.3) rotate(8deg); 
+            color: #fef08a; 
+        }
+
+        @keyframes champagneWave {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .hero-section { position: relative; padding: 70px 20px; text-align: center; background: linear-gradient(135deg, #78350f, #b45309, #d97706); background-size: 200% 200%; animation: champagneWave 10s ease infinite; color: #fff; border-bottom: 1px solid var(--border-color); }
+        .hero-section h1 { font-size: 32px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
+        .hero-section h1 span { color: #fef08a; }
+        .hero-section p { color: #fef3c7; max-width: 600px; margin: 0 auto; font-size: 15px; }
+
+        .container { max-width: 1300px; margin: 50px auto; padding: 0 20px; }
+        .section-heading { text-align: center; margin-bottom: 30px; }
+        .section-heading h2 { font-size: 26px; font-weight: 800; text-transform: uppercase; color: var(--text-main); }
+        .section-heading h2 span { color: var(--accent-orange); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-bottom: 50px; }
+        
+        .testimonial-card { background: var(--bg-surface); border: 2px solid #f97316; border-radius: 16px; padding: 25px; box-shadow: var(--shadow-soft); animation: cardBorderGlow 8s infinite; cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; position: relative; }
+        .testimonial-card:hover { transform: translateY(-5px) scale(1.02); }
+
+        .client-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .client-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-orange); }
+        .client-meta h4 { font-size: 15px; font-weight: 700; color: var(--text-main); }
+        .client-meta span { font-size: 11px; color: var(--accent-orange); font-weight: 700; text-transform: uppercase; display: block; }
+
+        .stars { color: #eab308; margin-bottom: 10px; font-size: 13px; }
+        .testimonial-card p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 5px; font-style: italic; line-height: 1.7; text-align: justify; }
+
+        @keyframes modalBackgroundGlow {
+            0% { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); }
+            50% { background: rgba(30, 41, 59, 0.9); backdrop-filter: blur(12px); }
+            100% { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); }
+        }
+
+        .zoom-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.4s ease; animation: modalBackgroundGlow 6s infinite; }
+        .zoom-overlay.active { opacity: 1; visibility: visible; }
+
+        .zoomed-modal-card { width: 90%; max-width: 600px; background: #ffffff; border-radius: 24px; padding: 35px; position: relative; box-shadow: 0 25px 60px rgba(0,0,0,0.4); text-align: center; border: 3px solid #f97316; animation: cardBorderGlow 6s infinite; transform: scale(0.5); opacity: 0; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); max-height: 90vh; overflow-y: auto; }
+        .zoom-overlay.active .zoomed-modal-card { transform: scale(1); opacity: 1; }
+
+        .close-modal-btn { position: absolute; top: 15px; right: 15px; color: var(--text-main); font-size: 20px; cursor: pointer; background: #f1f5f9; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color); transition: 0.3s; }
+        .close-modal-btn:hover { background: var(--accent-orange); color: #fff; transform: rotate(90deg); }
+
+        .zoomed-modal-card .client-header { justify-content: center; flex-direction: column; gap: 8px; margin-bottom: 15px; }
+        .zoomed-modal-card .client-avatar { width: 75px; height: 75px; }
+        .zoomed-modal-card .stars { font-size: 18px; margin-bottom: 10px; }
+        .zoomed-modal-card p { font-size: 15px; margin-bottom: 15px; color: var(--text-main); text-align: justify; }
+        .modal-divider { width: 100%; height: 1px; background: var(--border-color); margin: 15px 0; }
+
+        footer { background-color: #0f172a; color: #94a3b8; padding: 40px 20px; text-align: center; margin-top: 60px; border-top: 1px solid #1e293b; }
+        .footer-info-text { margin-bottom: 15px; font-size: 13px; }
+        .footer-copyright { font-size: 13px; color: #94a3b8; border-top: 1px solid #1e293b; padding-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .developer-signature { color: #f8fafc; font-weight: 700; text-decoration: none; transition: color 0.3s; }
+        .developer-signature:hover { color: var(--accent-orange); }
+        .footer-social-links { display: flex; align-items: center; gap: 18px; margin-top: 5px; }
+        .footer-social-links a { color: #cbd5e1; font-size: 15px; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.3s; }
+        .footer-social-links a:hover { color: var(--accent-orange); }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="brand-container">
+            <div class="brand-icon-box"><i class="fa-solid fa-house-chimney"></i></div>
+            <div class="brand-text">
+                <h2>Paul Interior</h2>
+                <div class="brand-line"></div>
+                <span>IMAMSAHIB</span>
+            </div>
+        </a>
+        <div class="header-actions">
+            <!-- Social Media Animated Icons -->
+            <div class="social-icons-box">
+                <a href="https://www.instagram.com/paul__interior621?stkn=MTh0OThka3N1YjcyZA==" target="_blank" class="social-icon-btn ig" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/" target="_blank" class="social-icon-btn fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.youtube.com/" target="_blank" class="social-icon-btn yt" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://wa.me/917889898026" target="_blank" class="social-icon-btn wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+
+            <div class="menu-btn" onclick="toggleMenu(event)"><i class="fa-solid fa-bars"></i> Menu</div>
+            
+            <!-- Upgraded Modern Glassmorphism Menu Dropdown -->
+            <nav id="side-menu">
+                <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="services.html"><i class="fa-solid fa-gears"></i> Services</a>
+                <a href="portfolio.html"><i class="fa-solid fa-images"></i> Portfolio</a>
+                <a href="rate-list.html"><i class="fa-solid fa-list-check"></i> Rate List</a>
+                <a href="products.html"><i class="fa-solid fa-box-open"></i> Products</a>
+                <a href="testimonials.html"><i class="fa-solid fa-star" style="color:#fb923c;"></i> Testimonials</a>
+                <a href="about.html"><i class="fa-solid fa-circle-info"></i> About Us</a>
+                <a href="contact.html"><i class="fa-solid fa-phone"></i> Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <h1>Client Reviews & <span>Detailed Testimonials (40 Reviews)</span></h1>
+        <p>Read what our valued customers from Imamsahib and Shopian say about our quality craftsmanship, structural durability, and dedicated service.</p>
+    </section>
+
+    <div class="container">
+        <div class="section-heading">
+            <h2>Customer Feedback <span>& Experiences</span></h2>
+        </div>
+        <div class="grid" id="testimonialGrid">
+            <script>
+                const romanUrduReviews = [
+                    "Paul Interior Imamsahib ka kaam waqai lajawab aur behtareen hai. Humne apne ghar ke liye aluminum sliding windows lagwai hain jo na sirf dikhne mein bohot khoobsurat hain balki unki sliding bhi behad smooth hai. Shop ke karigaron ne bade dhyan se saari measurements li aur waqt par kaam mukammal kiya. Exceptional craftsmanship and premium quality materials used by the team. Highly recommended for everyone in Shopian.",
+                    "Steel balcony railings aur main gate ka kaam karwaya hai aur hum inki finishing se poori tarah mutmaeen hain. Welding aur polishing itni saaf-suthri hai ke door se hi ghar ka look shandar lagta hai. Paul Interior ki shop par jo professionalism dekhne ko milti hai wo kabile tareef hai. Strongest steel fabrication with absolute attention to structural safety and rust-free durability.",
+                    "Commercial shopfront glazing aur aluminum office partitions ke liye Paul Interior sabse behtareen option hai. Unka rate list bilkul transparent hai aur kaam mein koi compromise nahi hota. Time par project handover karna aur cooperative staff hona inki sabse badi khasiyat hai. Prompt service, reasonable pricing, and professional execution.",
+                    "Drawing room mein designer false ceiling aur LED lighting ka kaam karwaya hai jisse poore room ka ambiance hi badal gaya hai. Karigaron ne bade saleeqe se geometric patterns banaye aur hidden lighting fit ki. Quality of materials is top-notch and the finishing is completely flawless. Agar aapko apne ghar ko luxurious look dena hai toh Paul Interior se behtareen koi nahi hai.",
+                    "Heavy-duty main entrance gate ki fitting karwai hai jo ke behad mazboot aur stylish hai. Laser-cut designs aur smooth locking mechanism ne hamari umeedon se badh kar kaam kiya hai. Shopian ke sard mausam aur barishon ke bawajood is par zang (rust) ka koi asar nahi hua. Outstanding durability and brilliant metal work executed with utmost perfection.",
+                    "Office cabins ke liye glass partitions lagwayi hain jisse space ka bohot behtareen use hua hai aur office ekdam corporate aur professional lagne laga hai. Sound insulation bhi bohot acchi hai. Great architectural partitioning work with sleek aluminium framing and toughened glass. Paul Interior team is extremely polite and efficient.",
+                    "Paul Interior Imamsahib ki shop par jakar jab humne samples dekhe tabhi samajh aa gaya tha ke kaam kitna uchaa hoga. Unke master craftsmen ki mehnat har ek weld aur joint mein saaf nazar aati hai. Structural safety par unka special focus rehta hai. Reliable, trustworthy, and expert fabrication works delivered right on time.",
+                    "Aluminum kitchen cabinets banwayi hain jo ke 100% waterproof aur termite-proof hain. Bright orange aur clean white combination ne kitchen ki ronak badha di hai. Cleaning karna bhi ab behad aasan ho gaya hai. Top-notch quality and brilliant modern modular kitchen execution by Paul Interior.",
+                    "Customer support aur dealing ka tarika itna shandar hai ke aapko kabhi kisi baat ki pareshani nahi hoti. Initial measurements se lekar final installation tak poori team ne desh-bhakti aur imandari ke sath kaam kiya. Very polite staff and prompt response on every call. Proud to support a premier local business.",
+                    "Duplex house ke liye spiral staircase banwayi hai jo ghar ke beechon-beech ek shandar architectural masterpiece lagti hai. Sturdy steel center post aur polished wooden steps ka combination behad khoobsurat hai. Ultimate structural stability combined with elegant design aesthetics.",
+                    "Commercial complex ke liye stainless steel corridor handrails install karwayein hain. Heavy foot traffic ke bawajood yeh bilkul solid aur shine kar rahe hain. Premium grade 304 steel ka istemal kiya gaya hai jo ke long-lasting durability ki guarantee deta hai. Excellent commercial fabrication services in Shopian.",
+                    "Shop front glazing aur glass display windows ki wajah se hamari retail shop par walk-in customers ki tadaad badh gayi hai. Etched floral glass designs aur strong aluminium frames ne shop ko ek high-end international look diya hai. Professional glazing experts who know their job inside out.",
+                    "Shopian ki bhari barfari aur sard mausam ko bardasht karne ke liye humein mazboot roofing sheds ki zaroorat thi. Paul Interior ne jo polycarbonate roofing aur aluminium framing ki hai, usne saare weather tests pass kar liye hain. Highly durable, weather-resistant, and robust construction work.",
+                    "Boundary wall ke liye custom laser-cut gates banwayein hain jo ghar ki security ko naye level par le gaye hain. Design itna unique hai ke aane-jaane wale sabhi log tareef karte hain. Perfect blend of security, heavy-duty strength, and artistic metal craftsmanship.",
+                    "Bi-fold doors ki measurement aur fitting mein zara si bhi galti nahi hui. Ekdam smooth gliding tracks aur premium hardware fittings ki wajah se doors bina kisi awaz ke operate hote hain. Flawless execution and accurate engineering standards maintained by Paul Interior."
+                ];
+
+                const englishReviews = [
+                    "Exceptional aluminum sliding window installation! Highly professional team with unmatched local expertise in Shopian.",
+                    "Strongest steel balcony railings in our area. Very clean welding work and long-lasting corrosion-resistant finish.",
+                    "Prompt service and transparent rate list for commercial fabrication projects. Highly recommended for businesses.",
+                    "Beautiful false ceiling design executed perfectly in my drawing room with incredible attention to lighting detail.",
+                    "Heavy-duty main gate installed with precision engineering, secure locking, and stunning architectural appeal.",
+                    "Great office glass partitions that gave our corporate workspace a modern, open, and professional aesthetic.",
+                    "Reliable master craftsmen with deep focus on structural safety, precision cutting, and flawless metal joints.",
+                    "Top-notch quality aluminum kitchen cabinets that are completely waterproof, termite-proof, and stylish.",
+                    "Very polite customer support, timely project completion, and hassle-free on-site measurement service.",
+                    "The spiral staircase installed in our duplex residence is exceptionally sturdy, elegant, and space-saving.",
+                    "Outstanding stainless steel corridor handrails built with premium 304 grade steel for maximum commercial strength.",
+                    "Professional shop front glazing work featuring custom etched glass that significantly boosted our store visibility.",
+                    "Durable polycarbonate roofing sheds engineered specifically to withstand heavy winter snowfall in Kashmir.",
+                    "Secure boundary wall gates featuring gorgeous custom laser-cut patterns for elite residential security.",
+                    "Accurate measurements and flawless fitting of premium bi-fold doors with ultra-smooth sliding mechanisms.",
+                    "Amazing metal pergola structure built for our rooftop garden lounge providing perfect shade and style.",
+                    "Top quality retail display shelving units delivered precisely on the committed timeline without any delay.",
+                    "Truly trustworthy interior decoration and custom fabrication business located right in the heart of Imamsahib.",
+                    "Excellent glass skylight framing that brings abundant natural daylight into our main hallway corridors.",
+                    "Impeccable custom metal art pieces crafted meticulously to match our specific interior design requirements.",
+                    "Fantastic PVC wall paneling work that completely transformed our bedroom interior with moisture resistance.",
+                    "The acoustic sound insulation provided by these custom sliding glass windows is truly remarkable.",
+                    "Very cooperative workers who patiently listened to all our custom design ideas and brought them to life.",
+                    "Immaculate finishing on staircase wooden handrails and toughened glass balustrades for a luxury look.",
+                    "Reliable emergency repair and maintenance service provided promptly for our shop entrance setup.",
+                    "Extremely sturdy boundary fence railings constructed using high-grade industrial steel profiles.",
+                    "Clean execution of false ceiling multi-level lighting coves and geometric drop panels.",
+                    "High transparency in quotation pricing with zero hidden costs or unexpected extra charges.",
+                    "The modular kitchen structural framework is exceptionally robust, functional, and visually appealing.",
+                    "Professional team that completed our large commercial building exterior facade precisely on schedule.",
+                    "Unmatched aluminum fabrication quality that stands out as the best across the entire Shopian region.",
+                    "Gorgeous decorative glass etching and frosting applied to our main entrance double doors.",
+                    "Solid construction of outdoor architectural glass roofing canopies for terrace weather protection.",
+                    "Great attention to anti-rust primer coating and fine polishing on all heavy-duty steel gates.",
+                    "Prompt on-site visits and polite technical consultations provided by the Paul Interior team.",
+                    "Pristine installation of private office executive cabins with acoustic glass and aluminium frames.",
+                    "Durable wardrobe sliding door tracks and smooth rollers that operate effortlessly every single day.",
+                    "Magnificent decorative metal wall paneling adding rich texture and high-end luxury to the main hall.",
+                    "Absolute perfection in metal welding alignment, structural balance, and long-term durability.",
+                    "Highly recommended custom fabrication and interior design experts across Jammu and Kashmir!"
+                ];
+
+                let allReviews = [];
+                let shuffledUrdu = [...romanUrduReviews].sort(() => 0.5 - Math.random());
+                for(let i=0; i<15; i++) {
+                    allReviews.push({ text: shuffledUrdu[i], type: "Urdu" });
+                }
+
+                let shuffledEng = [...englishReviews].sort(() => 0.5 - Math.random());
+                for(let i=0; i<25; i++) {
+                    allReviews.push({ text: shuffledEng[i], type: "English" });
+                }
+
+                allReviews.sort(() => 0.5 - Math.random());
+
+                allReviews.forEach((item, i) => {
+                    let num = (i+1) < 10 ? '0'+(i+1) : (i+1);
+                    let photoId = 150 + i;
+                    document.write(`
+                        <div class="testimonial-card" onclick="zoomCard(this)">
+                            <div class="project-number-badge" style="position:absolute; top:18px; right:18px; background:rgba(15, 23, 42, 0.85); color:#fff; padding:3px 8px; border-radius:15px; font-size:10px; font-weight:700; z-index:3; letter-spacing:1px; border:1px solid rgba(255,255,255,0.3);">#${num}</div>
+                            <div class="client-header">
+                                <img src="https://picsum.photos/id/${photoId}/100/100" alt="Client Photo" class="client-avatar">
+                                <div class="client-meta">
+                                    <h4>Valued Client #${num}</h4>
+                                    <span>Imamsahib, Shopian</span>
+                                </div>
+                            </div>
+                            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p>"${item.text}"</p>
+                        </div>
+                    `);
+                });
+            </script>
+        </div>
+
+        <div class="praise-note-box" style="background:var(--bg-surface); border:2px solid #f97316; border-radius:16px; padding:35px; text-align:center; box-shadow:var(--shadow-soft); max-width:900px; margin:0 auto;">
+            <h3 style="font-size:22px; font-weight:800; color:var(--text-main); margin-bottom:15px; text-transform:uppercase;">Our Craftsmanship & <span>Dedication</span></h3>
+            <p style="font-size:15px; color:var(--text-muted); line-height:1.8; margin-bottom:12px;"><strong>Paul Interior Imamsahib</strong> mein hamara maqsad sirf kaam karna nahi, balki har customer ka dil jeetna hai. Hum Shopian aur poore J&K mein behtareen quality ki aluminium fabrication, steel works aur modern interior designing provide karte hain.</p>
+            <p style="font-size:15px; color:var(--text-muted); line-height:1.8;">Our commitment to precision engineering, top-grade raw materials, and timely project delivery makes us the most trusted name for your dream homes and commercial spaces.</p>
+        </div>
+    </div>
+
+    <!-- Zoom Overlay Modal -->
+    <div class="zoom-overlay" id="zoomOverlay" onclick="closeZoomModal(event)">
+        <div class="zoomed-modal-card" id="zoomedModalCard">
+            <div class="close-modal-btn" onclick="closeZoomDirectly()">×</div>
+            <div id="modalContentArea"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-info-text">
+            <p>📍 Imamsahib, Shopian, Jammu & Kashmir | 📞 +91 78898 98026</p>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2026 Paul Interior Imamsahib. All Rights Reserved.</p>
+            <div>
+                Designed by <a href="https://www.instagram.com/jaani_927/" target="_blank" class="developer-signature">ISHTIYAQ GULZAR</a>
+            </div>
+            <div class="footer-social-links">
+                <a href="https://www.instagram.com/jaani_927/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.facebook.com/bhat.ishtiyaq.737" target="_blank" title="Facebook"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="https://wa.me/919149604818" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu(event) {
+            event.stopPropagation();
+            var menu = document.getElementById("side-menu");
+            menu.classList.toggle("active");
+        }
+
+        function zoomCard(cardElement) {
+            var overlay = document.getElementById("zoomOverlay");
+            var contentArea = document.getElementById("modalContentArea");
+            
+            var cardHtml = cardElement.innerHTML;
+            contentArea.innerHTML = cardHtml;
+
+            overlay.classList.add("active");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeZoomDirectly() {
+            var overlay = document.getElementById("zoomOverlay");
+            overlay.classList.remove("active");
+            document.body.style.overflow = "auto";
+        }
+
+        function closeZoomModal(event) {
+            if (event.target.id === "zoomOverlay") {
+                closeZoomDirectly();
+            }
+        }
+
+        document.addEventListener("click", function(event) {
+            var menu = document.getElementById("side-menu");
+            if (menu && !menu.contains(event.target) && !event.target.closest('.menu-btn')) {
+                menu.classList.remove("active");
+            }
+        });
+    </script>
+</body>
+</html>

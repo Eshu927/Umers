@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Paul Interior Imamsahib</title>
+    <!-- FontAwesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-body: #ffffff;
+            --bg-surface: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --accent-orange: #f97316;
+            --border-color: #e2e8f0;
+            --shadow-soft: 0 10px 25px -5px rgba(0,0,0,0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-body); color: var(--text-main); overflow-x: hidden; line-height: 1.6; padding-top: 75px; }
+        
+        /* Sticky Header */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; background-color: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; border-bottom: 1px solid var(--border-color); }
+        
+        @keyframes multiColorTextAndBorder {
+            0% { color: #f97316; border-color: #f97316; }
+            12% { color: #3b82f6; border-color: #3b82f6; }
+            25% { color: #10b981; border-color: #10b981; }
+            37% { color: #8b5cf6; border-color: #8b5cf6; }
+            50% { color: #ec4899; border-color: #ec4899; }
+            62% { color: #eab308; border-color: #eab308; }
+            75% { color: #06b6d4; border-color: #06b6d4; }
+            87% { color: #ef4444; border-color: #ef4444; }
+            100% { color: #f97316; border-color: #f97316; }
+        }
+
+        .brand-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .brand-icon-box { width: 45px; height: 45px; background: linear-gradient(135deg, #fb923c, #f97316); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; box-shadow: 0 4px 10px rgba(249,115,22,0.3); }
+        
+        .brand-text { display: flex; flex-direction: column; }
+        .brand-text h2 { font-size: 18px; font-weight: 800; text-transform: uppercase; line-height: 1.1; animation: multiColorTextAndBorder 10s infinite; }
+        
+        .brand-line { width: 100%; height: 3px; background: linear-gradient(90deg, #b45309, #fbbf24, #d97706); margin: 3px 0; box-shadow: 0 0 8px rgba(251, 191, 36, 0.6); }
+        
+        .brand-text span { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; animation: multiColorTextAndBorder 10s infinite; }
+
+        .header-actions { display: flex; align-items: center; gap: 12px; position: relative; }
+
+        @keyframes cardBorderGlow {
+            0% { border-color: #f97316; box-shadow: 0 0 10px rgba(249,115,22,0.3); }
+            33% { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59,130,246,0.4); }
+            66% { border-color: #10b981; box-shadow: 0 0 15px rgba(16,185,129,0.4); }
+            100% { border-color: #f97316; box-shadow: 0 0 10px rgba(249,115,22,0.3); }
+        }
+
+        .social-icons-box { display: flex; align-items: center; gap: 8px; }
+        .social-icon-btn { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: transform 0.3s ease; animation: cardBorderGlow 6s infinite; border: 2px solid #f97316; }
+        .social-icon-btn.ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+        .social-icon-btn.fb { background: #1877f2; }
+        .social-icon-btn.yt { background: #ff0000; }
+        .social-icon-btn.wa { background: #25d366; }
+        .social-icon-btn:hover { transform: scale(1.15); }
+
+        .menu-btn { font-size: 14px; cursor: pointer; color: var(--text-main); background: var(--bg-surface); padding: 8px 16px; border-radius: 25px; border: 2px solid var(--border-color); font-weight: 600; display: flex; align-items: center; gap: 6px; transition: all 0.3s; animation: multiColorTextAndBorder 10s infinite; }
+        .menu-btn:hover { background: var(--accent-orange); color: #fff; border-color: var(--accent-orange); }
+
+        /* Upgraded Modern Glassmorphism Menu Dropdown */
+        @keyframes menuSlideDown {
+            0% { opacity: 0; transform: translateY(-15px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        nav#side-menu { display: none; flex-direction: column; position: absolute; top: 65px; right: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(15px); min-width: 260px; border-radius: 16px; padding: 12px 0; box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2); border: 2px solid var(--accent-orange); z-index: 2000; animation: menuSlideDown 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        nav#side-menu.active { display: flex; }
+        nav#side-menu a { color: var(--text-main); text-decoration: none; padding: 12px 22px; font-weight: 600; font-size: 13.5px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f1f5f9; transition: all 0.3s ease; }
+        nav#side-menu a i { font-size: 15px; width: 20px; text-align: center; color: var(--accent-orange); transition: transform 0.3s ease; }
+        nav#side-menu a:hover { background: linear-gradient(135deg, #fff7ed, #ffedd5); color: var(--accent-orange); padding-left: 28px; }
+        nav#side-menu a:hover i { transform: scale(1.2); }
+
+        /* Hero Section */
+        @keyframes skyCloudMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        .hero-section { position: relative; padding: 60px 20px 50px; text-align: center; background: linear-gradient(135deg, #38bdf8, #0284c7, #0369a1); background-size: 1000px 1000px; overflow: hidden; border-bottom: 1px solid var(--border-color); }
+        .hero-section::before { content: ''; position: absolute; top: 0; left: 0; width: 200%; height: 100%; background-image: radial-gradient(rgba(255, 255, 255, 0.4) 2px, transparent 2px), radial-gradient(rgba(255, 255, 255, 0.25) 4px, transparent 4px); background-size: 150px 150px, 250px 250px; background-position: 0 0, 50px 50px; animation: skyCloudMove 25s linear infinite; pointer-events: none; opacity: 0.7; }
+        .hero-section > * { position: relative; z-index: 2; }
+        .hero-section h1 { font-size: 32px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; color: #ffffff; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        .hero-section h1 span { color: #fef08a; display: block; }
+        .hero-section p { font-size: 15px; color: #f0f9ff; max-width: 650px; margin: 0 auto; text-shadow: 0 1px 4px rgba(0,0,0,0.3); }
+
+        /* Detailed Services Info Section */
+        .detailed-services-container { max-width: 1300px; margin: 45px auto; padding: 0 20px; }
+        .detailed-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 30px; }
+
+        .service-info-card { background: var(--bg-surface); border: 2px solid #f97316; border-radius: 16px; padding: 25px; box-shadow: var(--shadow-soft); animation: cardBorderGlow 8s infinite; transition: transform 0.3s; }
+        .service-info-card:hover { transform: translateY(-5px); }
+        .service-info-card h3 { font-size: 18px; color: var(--text-main); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
+        .service-info-card h3 i { color: var(--accent-orange); }
+        .service-info-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.7; text-align: justify; }
+
+        /* Video Showcase Section */
+        .showcase-container { max-width: 1300px; margin: 50px auto; padding: 0 20px; }
+        .section-heading { text-align: center; margin-bottom: 35px; }
+        .section-heading h2 { font-size: 28px; font-weight: 800; text-transform: uppercase; color: var(--text-main); }
+        .section-heading h2 span { color: var(--accent-orange); }
+
+        .grid-cards-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        
+        .custom-card { background: var(--bg-surface); border-radius: 14px; overflow: hidden; border: 2px solid #f97316; box-shadow: var(--shadow-soft); cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; padding: 12px; position: relative; animation: cardBorderGlow 8s infinite; }
+        .custom-card:hover { transform: translateY(-5px) scale(1.02); }
+
+        .project-number-badge { position: absolute; top: 22px; left: 22px; background: rgba(15, 23, 42, 0.85); color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; z-index: 3; letter-spacing: 1px; border: 1px solid rgba(255,255,255,0.3); }
+
+        .media-box { width: 100%; height: 180px; border-radius: 10px; overflow: hidden; background: #000; position: relative; }
+        .custom-card video { width: 100%; height: 100%; object-fit: cover; }
+
+        .card-text-info { padding: 12px 10px 5px; text-align: center; }
+        .card-text-info h3 { font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
+        .card-text-info span { font-size: 11px; color: var(--accent-orange); font-weight: 700; text-transform: uppercase; }
+
+        /* Zoom Overlay Modal */
+        .zoom-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.4s ease; backdrop-filter: blur(5px); }
+        .zoom-overlay.active { opacity: 1; visibility: visible; }
+
+        .zoomed-modal-card { width: 90%; max-width: 550px; background: #ffffff; border: 2px solid var(--accent-orange); border-radius: 20px; padding: 30px; position: relative; transform: scale(0.7); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 25px 50px rgba(0,0,0,0.3); max-height: 90vh; overflow-y: auto; }
+        .zoom-overlay.active .zoomed-modal-card { transform: scale(1); }
+
+        .close-modal-btn { position: absolute; top: 15px; right: 15px; color: var(--text-main); font-size: 20px; cursor: pointer; background: var(--bg-surface); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color); }
+        .close-modal-btn:hover { background: var(--accent-orange); color: #fff; }
+
+        .zoomed-modal-card .media-box { width: 100%; height: auto; max-height: 45vh; border-radius: 10px; margin-bottom: 15px; }
+        .zoomed-modal-card video { width: 100%; height: auto; max-height: 45vh; object-fit: contain; border-radius: 10px; }
+        
+        .modal-divider { width: 100%; height: 1px; background: var(--border-color); margin: 15px 0; }
+        .zoomed-modal-card .media-desc { display: block; color: var(--text-muted); font-size: 13px; line-height: 1.6; text-align: center; }
+
+        /* Footer */
+        footer { background-color: #0f172a; color: #94a3b8; padding: 40px 20px; text-align: center; margin-top: 60px; border-top: 1px solid #1e293b; }
+        .footer-info-text { margin-bottom: 15px; font-size: 13px; }
+        .footer-copyright { font-size: 13px; color: #94a3b8; border-top: 1px solid #1e293b; padding-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .developer-signature { color: #f8fafc; font-weight: 700; text-decoration: none; transition: color 0.3s; }
+        .developer-signature:hover { color: var(--accent-orange); }
+        .footer-social-links { display: flex; align-items: center; gap: 18px; margin-top: 5px; }
+        .footer-social-links a { color: #cbd5e1; font-size: 15px; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.3s; }
+        .footer-social-links a:hover { color: var(--accent-orange); }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Header -->
+    <header>
+        <a href="index.html" class="brand-container">
+            <div class="brand-icon-box"><i class="fa-solid fa-house-chimney"></i></div>
+            <div class="brand-text">
+                <h2>Paul Interior</h2>
+                <div class="brand-line"></div>
+                <span>IMAMSAHIB</span>
+            </div>
+        </a>
+
+        <div class="header-actions">
+            <!-- Social Media Animated Icons -->
+            <div class="social-icons-box">
+                <a href="https://www.instagram.com/paul__interior621?stkn=MTh0OThka3N1YjcyZA==" target="_blank" class="social-icon-btn ig" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/" target="_blank" class="social-icon-btn fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.youtube.com/" target="_blank" class="social-icon-btn yt" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://wa.me/917889898026" target="_blank" class="social-icon-btn wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+
+            <div class="menu-btn" onclick="toggleMenu(event)"><i class="fa-solid fa-bars"></i> Menu</div>
+            
+            <!-- Upgraded Modern Glassmorphism Menu Dropdown -->
+            <nav id="side-menu">
+                <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="services.html"><i class="fa-solid fa-gears" style="color:var(--accent-orange);"></i> Services</a>
+                <a href="portfolio.html"><i class="fa-solid fa-images"></i> Portfolio</a>
+                <a href="rate-list.html"><i class="fa-solid fa-list-check"></i> Rate List</a>
+                <a href="products.html"><i class="fa-solid fa-box-open"></i> Products</a>
+                <a href="testimonials.html"><i class="fa-solid fa-star"></i> Testimonials</a>
+                <a href="about.html"><i class="fa-solid fa-circle-info"></i> About Us</a>
+                <a href="contact.html"><i class="fa-solid fa-phone"></i> Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1>Our Professional <span>Fabrication Services</span></h1>
+        <p>Explore our wide range of custom aluminium, steel, and PVC interior fabrication solutions crafted with extreme precision, premium materials, and unmatched durability right here in Imamsahib, Shopian.</p>
+    </section>
+
+    <!-- Detailed Services Info Section -->
+    <section class="detailed-services-container">
+        <div class="section-heading">
+            <h2>Detailed Service <span>Overview</span></h2>
+        </div>
+        <div class="detailed-grid">
+            
+            <!-- Service Card 1 -->
+            <div class="service-info-card">
+                <h3><i class="fa-solid fa-window-maximize"></i> Aluminium Fabrication</h3>
+                <p>At Paul Interior Imamsahib, our aluminium fabrication service stands as a benchmark of modern architectural excellence and superior engineering precision. We specialize in designing, crafting, and installing heavy-duty sliding windows, elegant office partitions, commercial shopfront glazing, and secure entrance doors that completely transform residential and business buildings. Utilizing top-tier aluminium profiles combined with toughened safety glass and smooth-gliding tracks, our installations guarantee exceptional resistance against harsh weather conditions, corrosion, and everyday wear. Every single project is meticulously measured and custom-built by experienced master craftsmen to ensure seamless alignment, airtight acoustic insulation, and magnificent aesthetic appeal. Whether you want to maximize natural daylight inside corporate workspaces or upgrade your home security with stylish sliding structures, our aluminium works deliver absolute structural stability, low maintenance, and long-lasting modern elegance that exceeds customer expectations every single time.</p>
+            </div>
+
+            <!-- Service Card 2 -->
+            <div class="service-info-card">
+                <h3><i class="fa-solid fa-shield-halved"></i> Steel & Metal Works</h3>
+                <p>Our steel and metal fabrication division is dedicated to delivering uncompromising security paired with breathtaking aesthetic grandeur for properties across Shopian and surrounding regions. We engineer robust main entrance security gates, ornamental balcony railings, modern staircases, and protective window grills using premium-grade stainless steel and high-tensile iron profiles. By incorporating cutting-edge laser-cut floral designs and precision welding technology, our metal structures provide ultimate physical protection without sacrificing visual sophistication. Each railing and gate undergoes rigorous anti-rust treatment and meticulous polishing to maintain its mirror shine and structural integrity through extreme seasonal shifts. Our skilled fabricators work closely with clients to bring unique custom design visions to life, ensuring every weld is secure and every finish reflects absolute perfection. Trust Paul Interior to secure your home perimeter and interior staircases with heavy-duty steel fabrication works built for a lifetime of dependable performance and elite modern style.</p>
+            </div>
+
+            <!-- Service Card 3 -->
+            <div class="service-info-card">
+                <h3><i class="fa-solid fa-house-chimney"></i> PVC Paneling & Interiors</h3>
+                <p>Revolutionize your living spaces with our premium PVC wall panelling and designer false ceiling installation services, tailored to bring warmth, texture, and luxury into contemporary homes. We offer an extensive variety of wood-finish louvers, multi-layered geometric false ceilings, integrated LED ambient lighting setups, and durable wardrobe storage compartments that optimize room organization and visual depth. PVC panelling provides an exceptional moisture-resistant, termite-proof, and effortless maintenance solution that keeps your walls looking immaculate for decades. Our interior design team expertly blends traditional wooden warmth with futuristic modern lighting techniques to craft cinematic TV entertainment feature walls, cozy bedroom setups, and stunning ceiling drops that elevate indoor room ambiance to a whole new level. Experience fast, clean, and flawless interior transformation work executed with supreme dedication by the expert craftsmen at Paul Interior Imamsahib, turning your dream home decor concepts into a breathtaking reality.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 15 Videos Showcase Section (Full Items Included) -->
+    <section class="showcase-container">
+        <div class="section-heading">
+            <h2>Project Demonstration <span>Videos (15 Items)</span></h2>
+        </div>
+        <div class="grid-cards-layout" id="galleryGrid">
+            
+            <div class="custom-card" onclick="zoomCard(this)">
+                <div class="project-number-badge">01</div>
+                <div class="media-box"><video src="Img1.mp4" muted loop playsinline autoplay></video></div>
+                <div class="card-text-info"><span>Aluminium</span><h3>Sliding Windows View</h3></div>
+                <p class="media-desc">High-grade aluminum sliding windows designed for smooth operation, sleek architectural aesthetics, and superior weather resistance.</p>
+            </div>
+
+            <div class="custom-card" onclick="zoomCard(this)">
+                <div class="project-number-badge">02</div>
+                <div class="media-box"><video src="Img2.mp4" muted loop playsinline autoplay></video></div>
+                <div class="card-text-info"><span>Steel Works</span><h3>Balcony Railings Showcase</h3></div>
+                <p class="media-desc">Custom-crafted stainless steel balconies offering modern elegance, rust-free endurance, and unmatched structural safety.</p>
+            </div>
+
+            <div class="custom-card" onclick="zoomCard(this)">
+                <div class="project-number-badge">03</div>
+                <div class="media-box"><video src="Img3.mp4" muted loop playsinline autoplay></video></div>
+                <div class="card-text-info"><span>Aluminium</span><h3>Security Doors Video</h3></div>
+                <p class="media-desc">Heavy-duty aluminum and steel doors engineered for secure commercial entrances and stylish homes.</p>
+            </div>
+
+            <div class="custom-card" onclick="zoomCard(this)">
+                <div class="project-number-badge">04</div>
+                <div class="media-box"><video src="Img4.mp4" muted loop playsinline autoplay></video></div>
+                <div class="card-text-info"><span>Interior</span><h3>False Ceilings Walkthrough</h3></div>
+                <p class="media-desc">Modern false ceiling installations featuring integrated lighting profiles for executive rooms and homes.</p>
+            </div>
+
+            <div class="custom-card" onclick="zoomCard(this)">
+                <div class="project-number-badge">05</div>
+                <div class="media-box"><video src="Img5.mp4" muted loop playsinline autoplay></video></div>
+                <div class="card-text-info"><span>Steel Works</span><h3>Main Entrance Gates Demo</h3></div>
+                <p class="media-desc">Robust security gates built with thick steel pipes and custom artistic laser-cut designs.</p>
+            </div>
+
+            <div class="custom-card" onclick="zoomCard(this)">
+                <div class="project-number-badge">06</div>
+                <div class="media-box"><video src="Img6.mp4" muted loop playsinline autoplay></video></div>
+                <div class="card-text-info"><span>Aluminium</span><h3>Office Partitions Walkthrough</h3></div>
+                <p class="media-desc">Sleek aluminum framed glass partitions designed to maximize office space utilization and modern look.</p>
+            </div>
+
+            <div class="custom-card" onclick="zoomCard(this)">
+                <div class="project-number-badge">07</div>
+                <div class="media-box"><video src="Img7.mp4" muted loop playsinline autoplay></video></div>
+                <div class="card-text-info"><span>PVC Interiors</span><h3>Wall Paneling Video</h3></div>
+                <p class="media-desc">Sophisticated vertical wooden strip wall paneling created to enhance room depth and provide elegant texture.</p>
+            </div>
+
+            <div class="custom-card" onclick="zoomCard(this)">
+                <div class="project-number-badge">08</div>
+                <div class="media-box"><video src="Img8.mp4" muted loop playsinline autoplay></video></div>
+                <div class="card-text-info"><span>Staircase Work</span><h3>Glass Staircase Walkthrough</h3></div>
+                <p class="media-desc">An architectural masterpiece featuring toughened frosted glass balustrades combined with a polished natural wooden handrail.</p>
+            </div>
+
+            <div class="custom-card" onclick="zoomCard(this)">
+                <div class="project-number-badge">09</div>
+                <div class="media-box"><video src="Img9.mp4" muted loop playsinline autoplay></video></div>
+                <div class="card-text-info"><span>Kitchen Design</span><h3>Modular Kitchen Video</h3></div>
+                <p class="media-desc">A vibrant custom built modular kitchen featuring bright orange and clean white cabinet shutters framed in sturdy aluminum.</p>
+            </div>
+
+            <div class="custom-card" onclick="zoomCard(this)">
+                <div class="project-number-badge">10</div>
+                <div class="media-box"><video src="Img10.mp4" muted loop playsinline autoplay></video></div>
+                <div class="card-text-info"><span>Bedroom Storage</span><h3>Wardrobe Unit Video</h3></div>
+                <p class="media-desc">A spacious multi door wooden wardrobe equipped with integrated lower storage drawers and sleek metallic handles.</p>
+            </div>
+
+            <div class="custom-card" onclick="zoomCard(this)">
+                <div class="project-number-badge">11</div>
+                <div class="media-box"><video src="Img11.mp4" muted loop playsinline autoplay></video></div>
+                <div class="card-text-info"><span>Commercial Glazing</span><h3>Storefront Glazing Video</h3></div>
+                <p class="media-desc">Large scale commercial window glazing and shopfront facade installation featuring intricate floral etched glass.</p>
+            </div>
+
+            <div class="custom-card" onclick="zoomCard(this)">
+                <div class="project-number-badge">12</div>
+                <div class="media-box"><video src="Img12.mp4" muted loop playsinline autoplay></video></div>
+                <div class="card-text-info"><span>Lighting & Stairs</span><h3>LED Stair Railing Video</h3></div>
+                <p class="media-desc">An ultra modern staircase railing featuring glowing blue LED acrylic bubble balusters that cast mesmerizing ambient light.</p>
+            </div>
+
+            <div class="custom-card" onclick="zoomCard(this)">
+                <div class="project-number-badge">13</div>
+                <div class="media-box"><video src="Img13.mp4" muted loop playsinline autoplay></video></div>
+                <div class="card-text-info"><span>Entertainment Wall</span><h3>TV Unit Paneling Video</h3></div>
+                <p class="media-desc">A stylish television entertainment wall setup built with dark wood grain PVC panels backlit decorative niches.</p>
+            </div>
+
+            <div class="custom-card" onclick="zoomCard(this)">
+                <div class="project-number-badge">14</div>
+                <div class="media-box"><video src="Img14.mp4" muted loop playsinline autoplay></video></div>
+                <div class="card-text-info"><span>Outdoor Canopy</span><h3>Glass Roof Canopy Video</h3></div>
+                <p class="media-desc">A striking outdoor architectural glass canopy and roofing structure featuring multi colored geometric glass panes.</p>
+            </div>
+
+            <div class="custom-card" onclick="zoomCard(this)">
+                <div class="project-number-badge">15</div>
+                <div class="media-box"><video src="Img15.mp4" muted loop playsinline autoplay></video></div>
+                <div class="card-text-info"><span>Paul Interior</span><h3>Master Craftsmanship Video</h3></div>
+                <p class="media-desc">A premier showcase of master craftsmanship by Paul Interior featuring top tier aluminum fabrication and steel work.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Zoom Overlay Modal -->
+    <div class="zoom-overlay" id="zoomOverlay" onclick="closeZoomModal(event)">
+        <div class="zoomed-modal-card" id="zoomedModalCard">
+            <div class="close-modal-btn" onclick="closeZoomDirectly()">×</div>
+            <div id="modalContentArea"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-info-text">
+            <p>📍 Imamsahib, Shopian, Jammu & Kashmir | 📞 +91 78898 98026</p>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2026 Paul Interior Imamsahib. All Rights Reserved.</p>
+            <div>
+                Designed by <a href="https://www.instagram.com/jaani_927/" target="_blank" class="developer-signature">ISHTIYAQ GULZAR</a>
+            </div>
+            <div class="footer-social-links">
+                <a href="https://www.instagram.com/jaani_927/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.facebook.com/bhat.ishtiyaq.737" target="_blank" title="Facebook"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="https://wa.me/919149604818" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu(event) {
+            event.stopPropagation();
+            var menu = document.getElementById("side-menu");
+            menu.classList.toggle("active");
+        }
+
+        function zoomCard(cardElement) {
+            var overlay = document.getElementById("zoomOverlay");
+            var contentArea = document.getElementById("modalContentArea");
+            
+            var cardHtml = cardElement.innerHTML;
+            cardHtml = cardHtml.replace('<p class="media-desc">', '<div class="modal-divider"></div><p class="media-desc">');
+            cardHtml = cardHtml.replace('autoplay muted loop playsinline', 'controls autoplay');
+            contentArea.innerHTML = cardHtml;
+
+            overlay.classList.add("active");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeZoomDirectly() {
+            var overlay = document.getElementById("zoomOverlay");
+            overlay.classList.remove("active");
+            document.body.style.overflow = "auto";
+        }
+
+        function closeZoomModal(event) {
+            if (event.target.id === "zoomOverlay") {
+                closeZoomDirectly();
+            }
+        }
+
+        document.addEventListener("click", function(event) {
+            var menu = document.getElementById("side-menu");
+            if (menu && !menu.contains(event.target) && !event.target.closest('.menu-btn')) {
+                menu.classList.remove("active");
+            }
+        });
+    </script>
+</body>
+</html>

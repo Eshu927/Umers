@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate List | Paul Interior Imamsahib</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { 
+            --bg-body: #f8fafc; 
+            --bg-surface: #ffffff; 
+            --text-main: #0f172a; 
+            --text-muted: #64748b;
+            --accent-orange: #f97316; 
+            --border-color: #e2e8f0; 
+            --shadow-soft: 0 10px 25px -5px rgba(0,0,0,0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-body); color: var(--text-main); overflow-x: hidden; line-height: 1.6; padding-top: 75px; }
+        
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; background-color: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; border-bottom: 1px solid var(--border-color); }
+        
+        @keyframes multiColorTextAndBorder {
+            0% { color: #f97316; border-color: #f97316; }
+            12% { color: #3b82f6; border-color: #3b82f6; }
+            25% { color: #10b981; border-color: #10b981; }
+            37% { color: #8b5cf6; border-color: #8b5cf6; }
+            50% { color: #ec4899; border-color: #ec4899; }
+            62% { color: #eab308; border-color: #eab308; }
+            75% { color: #06b6d4; border-color: #06b6d4; }
+            87% { color: #ef4444; border-color: #ef4444; }
+            100% { color: #f97316; border-color: #f97316; }
+        }
+
+        .brand-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .brand-icon-box { width: 45px; height: 45px; background: linear-gradient(135deg, #fb923c, #f97316); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; box-shadow: 0 4px 10px rgba(249,115,22,0.3); }
+        .brand-text h2 { font-size: 18px; font-weight: 800; text-transform: uppercase; color: #0f172a; animation: multiColorTextAndBorder 10s infinite; }
+        .brand-line { width: 100%; height: 3px; background: linear-gradient(90deg, #b45309, #fbbf24, #d97706); margin: 3px 0; box-shadow: 0 0 8px rgba(251, 191, 36, 0.6); }
+        .brand-text span { font-size: 11px; font-weight: 700; color: var(--accent-orange); letter-spacing: 1.5px; animation: multiColorTextAndBorder 10s infinite; }
+
+        .header-actions { display: flex; align-items: center; gap: 12px; position: relative; }
+
+        @keyframes cardBorderGlow {
+            0% { border-color: #f97316; box-shadow: 0 0 10px rgba(249,115,22,0.3); }
+            33% { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59,130,246,0.4); }
+            66% { border-color: #10b981; box-shadow: 0 0 15px rgba(16,185,129,0.4); }
+            100% { border-color: #f97316; box-shadow: 0 0 10px rgba(249,115,22,0.3); }
+        }
+
+        .social-icons-box { display: flex; align-items: center; gap: 8px; }
+        .social-icon-btn { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: transform 0.3s ease; animation: cardBorderGlow 6s infinite; border: 2px solid #f97316; }
+        .social-icon-btn.ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+        .social-icon-btn.fb { background: #1877f2; }
+        .social-icon-btn.yt { background: #ff0000; }
+        .social-icon-btn.wa { background: #25d366; }
+        .social-icon-btn:hover { transform: scale(1.15); }
+
+        .menu-btn { font-size: 14px; cursor: pointer; color: var(--text-main); background: #f1f5f9; padding: 8px 16px; border-radius: 25px; border: 2px solid var(--border-color); font-weight: 600; display: flex; align-items: center; gap: 6px; animation: multiColorTextAndBorder 10s infinite; }
+        .menu-btn:hover { background: var(--accent-orange); color: #fff; border-color: var(--accent-orange); }
+
+        /* Upgraded Modern Glassmorphism Menu Dropdown */
+        @keyframes menuPopAnimation {
+            0% { opacity: 0; transform: translateY(-20px) scale(0.85); filter: blur(10px); }
+            70% { opacity: 1; transform: translateY(5px) scale(1.02); filter: blur(0px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); }
+        }
+
+        @keyframes menuGlowBorder {
+            0% { border-color: #f97316; box-shadow: 0 15px 40px rgba(249,115,22,0.3); }
+            50% { border-color: #3b82f6; box-shadow: 0 15px 40px rgba(59,130,246,0.3); }
+            100% { border-color: #f97316; box-shadow: 0 15px 40px rgba(249,115,22,0.3); }
+        }
+
+        nav#side-menu { 
+            display: none; 
+            flex-direction: column; 
+            position: absolute; 
+            top: 65px; 
+            right: 0; 
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95)); 
+            backdrop-filter: blur(20px); 
+            min-width: 270px; 
+            border-radius: 18px; 
+            padding: 15px 0; 
+            border: 2px solid #f97316; 
+            z-index: 2000; 
+            animation: menuPopAnimation 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, menuGlowBorder 8s infinite; 
+        }
+        
+        nav#side-menu.active { display: flex; }
+        
+        nav#side-menu a { 
+            color: #f8fafc; 
+            text-decoration: none; 
+            padding: 12px 24px; 
+            font-weight: 600; 
+            font-size: 14px; 
+            transition: all 0.3s ease; 
+            display: flex; 
+            align-items: center; 
+            gap: 14px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
+        }
+        
+        nav#side-menu a i { 
+            font-size: 16px; 
+            width: 22px; 
+            text-align: center; 
+            color: #fb923c; 
+            transition: transform 0.3s ease, color 0.3s ease; 
+        }
+        
+        nav#side-menu a:hover { 
+            background: linear-gradient(90deg, rgba(249, 115, 22, 0.25), transparent); 
+            color: #fef08a; 
+            padding-left: 32px; 
+            border-left: 4px solid var(--accent-orange); 
+        }
+        
+        nav#side-menu a:hover i { 
+            transform: scale(1.3) rotate(8deg); 
+            color: #fef08a; 
+        }
+
+        @keyframes techMeshShimmer {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        .hero-section { position: relative; padding: 70px 20px; text-align: center; background: linear-gradient(120deg, #1e3a8a, #0284c7, #0f766e); background-size: 200% 200%; animation: techMeshShimmer 10s ease infinite; color: #fff; border-bottom: 1px solid var(--border-color); }
+        .hero-section h1 { font-size: 32px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
+        .hero-section h1 span { color: #fef08a; }
+        .hero-section p { color: #e0f2fe; max-width: 600px; margin: 0 auto; font-size: 15px; }
+
+        .table-container { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
+        .table-wrapper { background: var(--bg-surface); border: 2px solid #f97316; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-soft); animation: cardBorderGlow 8s infinite; }
+        .rate-table { width: 100%; border-collapse: collapse; }
+        .rate-table th, .rate-table td { padding: 15px 20px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+        .rate-table th { background: #0f172a; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .rate-table tbody tr { cursor: pointer; transition: background 0.2s; }
+        .rate-table tbody tr:hover { background: #fff7ed; }
+
+        @keyframes modalBackgroundGlow {
+            0% { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); }
+            50% { background: rgba(30, 41, 59, 0.9); backdrop-filter: blur(12px); }
+            100% { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); }
+        }
+
+        .zoom-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.4s ease; animation: modalBackgroundGlow 6s infinite; }
+        .zoom-overlay.active { opacity: 1; visibility: visible; }
+
+        .zoomed-modal-card { width: 90%; max-width: 520px; background: #ffffff; border-radius: 24px; padding: 40px; position: relative; box-shadow: 0 25px 60px rgba(0,0,0,0.4); text-align: center; border: 3px solid #f97316; animation: cardBorderGlow 6s infinite; transform: scale(0.5); opacity: 0; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .zoom-overlay.active .zoomed-modal-card { transform: scale(1); opacity: 1; }
+
+        .close-modal-btn { position: absolute; top: 15px; right: 15px; color: var(--text-main); font-size: 20px; cursor: pointer; background: #f1f5f9; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color); transition: 0.3s; }
+        .close-modal-btn:hover { background: var(--accent-orange); color: #fff; transform: rotate(90deg); }
+
+        .zoomed-modal-card h3 { font-size: 22px; color: #0f172a; margin-bottom: 12px; font-weight: 800; text-transform: uppercase; }
+        .zoomed-modal-card .modal-badge { display: inline-block; background: #fff7ed; color: var(--accent-orange); padding: 6px 16px; border-radius: 20px; font-size: 12.5px; font-weight: 700; border: 1px solid #fed7aa; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        @keyframes pricePulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(249,115,22,0.4); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 12px rgba(249,115,22,0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(249,115,22,0); }
+        }
+
+        .zoomed-modal-card .modal-price { font-size: 28px; font-weight: 800; color: #ea580c; background: linear-gradient(135deg, #fff7ed, #ffedd5); padding: 20px; border-radius: 14px; border: 2px dashed #fb923c; margin-top: 15px; animation: pricePulse 2s infinite; }
+
+        footer { background-color: #0f172a; color: #94a3b8; padding: 40px 20px; text-align: center; margin-top: 60px; border-top: 1px solid #1e293b; }
+        .footer-info-text { margin-bottom: 15px; font-size: 13px; }
+        .footer-copyright { font-size: 13px; color: #94a3b8; border-top: 1px solid #1e293b; padding-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .developer-signature { color: #f8fafc; font-weight: 700; text-decoration: none; transition: color 0.3s; }
+        .developer-signature:hover { color: var(--accent-orange); }
+        .footer-social-links { display: flex; align-items: center; gap: 18px; margin-top: 5px; }
+        .footer-social-links a { color: #cbd5e1; font-size: 15px; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.3s; }
+        .footer-social-links a:hover { color: var(--accent-orange); }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="brand-container">
+            <div class="brand-icon-box"><i class="fa-solid fa-house-chimney"></i></div>
+            <div class="brand-text">
+                <h2>Paul Interior</h2>
+                <div class="brand-line"></div>
+                <span>IMAMSAHIB</span>
+            </div>
+        </a>
+        <div class="header-actions">
+            <!-- Social Media Animated Icons -->
+            <div class="social-icons-box">
+                <a href="https://www.instagram.com/paul__interior621?stkn=MTh0OThka3N1YjcyZA==" target="_blank" class="social-icon-btn ig" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/" target="_blank" class="social-icon-btn fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.youtube.com/" target="_blank" class="social-icon-btn yt" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://wa.me/917889898026" target="_blank" class="social-icon-btn wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+
+            <div class="menu-btn" onclick="toggleMenu(event)"><i class="fa-solid fa-bars"></i> Menu</div>
+            
+            <!-- Upgraded Modern Glassmorphism Menu Dropdown -->
+            <nav id="side-menu">
+                <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="services.html"><i class="fa-solid fa-gears"></i> Services</a>
+                <a href="portfolio.html"><i class="fa-solid fa-images"></i> Portfolio</a>
+                <a href="rate-list.html"><i class="fa-solid fa-list-check" style="color:#fb923c;"></i> Rate List</a>
+                <a href="products.html"><i class="fa-solid fa-box-open"></i> Products</a>
+                <a href="testimonials.html"><i class="fa-solid fa-star"></i> Testimonials</a>
+                <a href="about.html"><i class="fa-solid fa-circle-info"></i> About Us</a>
+                <a href="contact.html"><i class="fa-solid fa-phone"></i> Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <h1>Official Fabrication <span>Rate List (30 Items)</span></h1>
+        <p>Click on any product row below to instantly view its detailed pricing, measurement unit, and grade specifications with smooth animations.</p>
+    </section>
+
+    <div class="table-container">
+        <div class="table-wrapper">
+            <table class="rate-table">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Fabrication Material / Service Item</th>
+                        <th>Specification & Grade</th>
+                        <th>Measurement Unit</th>
+                        <th>Approximate Rate (INR)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <script>
+                        const itemsData = [
+                            { name: "Aluminium Sliding Window", unit: "Square Feet (Sq.Ft)", price: "₹350 - ₹650 / sq.ft" },
+                            { name: "Stainless Steel Balcony Railing", unit: "Running Feet (Running Ft)", price: "₹450 - ₹950 / running ft" },
+                            { name: "Heavy Duty Security Door", unit: "Square Feet (Sq.Ft)", price: "₹400 - ₹800 / sq.ft" },
+                            { name: "False Ceiling Installation", unit: "Square Feet (Sq.Ft)", price: "₹65 - ₹150 / sq.ft" },
+                            { name: "Main Entrance Steel Gate", unit: "Square Feet (Sq.Ft)", price: "₹380 - ₹750 / sq.ft" },
+                            { name: "Aluminium Office Partition", unit: "Square Feet (Sq.Ft)", price: "₹280 - ₹550 / sq.ft" },
+                            { name: "Steel Spiral Staircase", unit: "Running Height / Step", price: "₹2,500 - ₹5,000 / step" },
+                            { name: "Aluminum Louvers & Vents", unit: "Square Feet (Sq.Ft)", price: "₹220 - ₹400 / sq.ft" },
+                            { name: "Window Safety Grills", unit: "Square Feet (Sq.Ft)", price: "₹180 - ₹350 / sq.ft" },
+                            { name: "Modular Kitchen Aluminium Frame", unit: "Square Feet (Sq.Ft)", price: "₹500 - ₹1,100 / sq.ft" },
+                            { name: "Wardrobe Sliding Tracks", unit: "Running Feet (Running Ft)", price: "₹300 - ₹700 / running ft" },
+                            { name: "Shop Front Glass Glazing", unit: "Square Feet (Sq.Ft)", price: "₹320 - ₹600 / sq.ft" },
+                            { name: "Corridor Handrail Pipe", unit: "Running Feet (Running Ft)", price: "₹250 - ₹500 / running ft" },
+                            { name: "Bi-Fold Aluminium Doors", unit: "Square Feet (Sq.Ft)", price: "₹550 - ₹1,200 / sq.ft" },
+                            { name: "Steel Roofing Shed Structure", unit: "Square Feet (Sq.Ft)", price: "₹180 - ₹380 / sq.ft" },
+                            { name: "Boundary Wall Gate Double Leaf", unit: "Per Gate Unit / Lump Sum", price: "₹15,000 - ₹45,000 / gate" },
+                            { name: "Glass Skylight Aluminium Frame", unit: "Square Feet (Sq.Ft)", price: "₹450 - ₹900 / sq.ft" },
+                            { name: "Metal Garden Pergola", unit: "Square Feet (Sq.Ft)", price: "₹350 - ₹700 / sq.ft" },
+                            { name: "Retail Display Showrack", unit: "Running Feet (Running Ft)", price: "₹400 - ₹850 / running ft" },
+                            { name: "Custom Decorative Metal Art", unit: "Square Feet (Sq.Ft)", price: "₹500 - ₹1,200 / sq.ft" },
+                            { name: "Aluminium Casement Window", unit: "Square Feet (Sq.Ft)", price: "₹400 - ₹750 / sq.ft" },
+                            { name: "SS Staircase Handrail Pipe", unit: "Running Feet (Running Ft)", price: "₹350 - ₹700 / running ft" },
+                            { name: "PVC Wall Paneling Strip", unit: "Square Feet (Sq.Ft)", price: "₹55 - ₹120 / sq.ft" },
+                            { name: "Laser Cut MS Boundary Grills", unit: "Square Feet (Sq.Ft)", price: "₹250 - ₹500 / sq.ft" },
+                            { name: "Acoustic Glass Office Cabin", unit: "Square Feet (Sq.Ft)", price: "₹450 - ₹850 / sq.ft" },
+                            { name: "Polycarbonate Roof Shed", unit: "Square Feet (Sq.Ft)", price: "₹200 - ₹420 / sq.ft" },
+                            { name: "Sliding Wardrobe Wooden Shutters", unit: "Square Feet (Sq.Ft)", price: "₹450 - ₹900 / sq.ft" },
+                            { name: "Commercial Shop Rolling Shutter", unit: "Square Feet (Sq.Ft)", price: "₹180 - ₹350 / sq.ft" },
+                            { name: "Balcony Safety Wire Mesh Grill", unit: "Running Feet (Running Ft)", price: "₹150 - ₹300 / running ft" },
+                            { name: "Decorative Mirror Glass Fitting", unit: "Square Feet (Sq.Ft)", price: "₹300 - ₹650 / sq.ft" }
+                        ];
+
+                        itemsData.forEach((item, index) => {
+                            let num = (index + 1) < 10 ? '0' + (index + 1) : (index + 1);
+                            document.write(`
+                                <tr onclick="showRateModal('${item.name}', '${item.unit}', '${item.price}')">
+                                    <td><b>${num}</b></td>
+                                    <td><b>${item.name}</b></td>
+                                    <td>Standard Premium Grade</td>
+                                    <td><span style="background:#f1f5f9; padding:4px 8px; border-radius:6px; font-size:12px; font-weight:600; color:var(--text-muted); border:1px solid var(--border-color);">${item.unit}</span></td>
+                                    <td style="color:var(--accent-orange); font-weight:700;">${item.price}</td>
+                                </tr>
+                            `);
+                        });
+                    </script>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Animated Zoom Overlay Modal for Rates -->
+    <div class="zoom-overlay" id="zoomOverlay" onclick="closeZoomModal(event)">
+        <div class="zoomed-modal-card" id="zoomedModalCard">
+            <div class="close-modal-btn" onclick="closeZoomDirectly()">×</div>
+            <h3 id="modalTitle">Product Name</h3>
+            <div class="modal-badge" id="modalUnit">Measurement Unit</div>
+            <p style="font-size: 13.5px; color: var(--text-muted);">Paul Interior Imamsahib Official Rate Quote</p>
+            <div class="modal-price" id="modalPrice">₹000</div>
+        </div>
+    </div>
+
+    <!-- Footer with Developer Social Links -->
+    <footer>
+        <div class="footer-info-text">
+            <p>📍 Imamsahib, Shopian, Jammu & Kashmir | 📞 +91 78898 98026</p>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2026 Paul Interior Imamsahib. All Rights Reserved.</p>
+            <div>
+                Designed by <a href="https://www.instagram.com/jaani_927/" target="_blank" class="developer-signature">ISHTIYAQ GULZAR</a>
+            </div>
+            <div class="footer-social-links">
+                <a href="https://www.instagram.com/jaani_927/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.facebook.com/bhat.ishtiyaq.737" target="_blank" title="Facebook"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="https://wa.me/919149604818" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu(event) {
+            event.stopPropagation();
+            var menu = document.getElementById("side-menu");
+            menu.classList.toggle("active");
+        }
+
+        function showRateModal(name, unit, price) {
+            document.getElementById("modalTitle").innerText = name;
+            document.getElementById("modalUnit").innerText = unit;
+            document.getElementById("modalPrice").innerText = price;
+
+            var overlay = document.getElementById("zoomOverlay");
+            overlay.classList.add("active");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeZoomDirectly() {
+            var overlay = document.getElementById("zoomOverlay");
+            overlay.classList.remove("active");
+            document.body.style.overflow = "auto";
+        }
+
+        function closeZoomModal(event) {
+            if (event.target.id === "zoomOverlay") {
+                closeZoomDirectly();
+            }
+        }
+
+        document.addEventListener("click", function(event) {
+            var menu = document.getElementById("side-menu");
+            if (menu && !menu.contains(event.target) && !event.target.closest('.menu-btn')) {
+                menu.classList.remove("active");
+            }
+        });
+    </script>
+</body>
+</html>
