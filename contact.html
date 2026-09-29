@@ -59,7 +59,6 @@
         .menu-btn { font-size: 14px; cursor: pointer; color: var(--text-main); background: #f1f5f9; padding: 8px 16px; border-radius: 25px; border: 2px solid var(--border-color); font-weight: 600; display: flex; align-items: center; gap: 6px; animation: multiColorTextAndBorder 10s infinite; }
         .menu-btn:hover { background: var(--accent-orange); color: #fff; border-color: var(--accent-orange); }
 
-        /* Upgraded Modern Glassmorphism Menu Dropdown */
         @keyframes menuPopAnimation {
             0% { opacity: 0; transform: translateY(-20px) scale(0.85); filter: blur(10px); }
             70% { opacity: 1; transform: translateY(5px) scale(1.02); filter: blur(0px); }
@@ -138,16 +137,46 @@
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 40px; }
         @media(max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
 
-        .contact-box { background: var(--bg-surface); border: 2px solid #f97316; border-radius: 16px; padding: 25px; box-shadow: var(--shadow-soft); animation: cardBorderGlow 8s infinite; }
+        .contact-box { background: var(--bg-surface); border: 2px solid #f97316; border-radius: 16px; padding: 25px; box-shadow: var(--shadow-soft); animation: cardBorderGlow 8s infinite; position: relative; overflow: hidden; }
         .contact-box h3 { font-size: 20px; color: #0f172a; margin-bottom: 18px; text-transform: uppercase; font-weight: 700; display: flex; align-items: center; gap: 10px; }
         .contact-box h3 i { color: var(--accent-orange); }
         
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 5px; color: var(--text-main); }
-        .form-group input, .form-group textarea { width: 100%; padding: 10px 15px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; outline: none; background: #ffffff; }
+        .form-group input, .form-group textarea { width: 100%; padding: 10px 15px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; outline: none; background: #ffffff; transition: border-color 0.3s; }
         .form-group input:focus, .form-group textarea:focus { border-color: var(--accent-orange); }
+        
+        /* Captcha Box Styling */
+        .captcha-box-container { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+        .captcha-display { background: linear-gradient(135deg, #0f172a, #334155); color: #fef08a; font-size: 18px; font-weight: 800; letter-spacing: 4px; padding: 10px 20px; border-radius: 8px; user-select: none; text-align: center; flex: 1; border: 1px dashed #f97316; font-family: monospace; }
+        .captcha-refresh-btn { background: #f1f5f9; border: 1px solid var(--border-color); width: 42px; height: 42px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-main); transition: 0.3s; }
+        .captcha-refresh-btn:hover { background: var(--accent-orange); color: #fff; border-color: var(--accent-orange); }
+
         .submit-btn { background: var(--accent-orange); color: #fff; border: none; padding: 12px 25px; border-radius: 25px; font-weight: 700; width: 100%; cursor: pointer; transition: 0.3s; }
         .submit-btn:hover { background: #ea580c; }
+
+        /* Shake Animation for Invalid Inputs */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+        .shake { animation: shake 0.4s ease-in-out; border-color: #ef4444 !important; background-color: #fef2f2 !important; }
+
+        /* Error / Warning Popup Box */
+        .error-popup-box { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; opacity: 0; visibility: hidden; transition: all 0.4s ease; z-index: 15; }
+        .error-popup-box.active { opacity: 1; visibility: visible; }
+        .error-icon { width: 65px; height: 65px; background: #ef4444; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; margin-bottom: 15px; box-shadow: 0 10px 20px rgba(239,68,68,0.3); }
+        .error-popup-box h2 { font-size: 20px; color: #0f172a; margin-bottom: 6px; font-weight: 800; }
+        .error-popup-box p { font-size: 13.5px; color: var(--text-muted); padding: 0 20px; margin-bottom: 15px; }
+        .error-close-btn { background: #0f172a; color: #fff; border: none; padding: 8px 20px; border-radius: 20px; font-weight: 700; cursor: pointer; font-size: 12px; }
+
+        /* Success State Box Overlay */
+        .success-overlay-box { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; opacity: 0; visibility: hidden; transition: all 0.4s ease; z-index: 10; }
+        .success-overlay-box.active { opacity: 1; visibility: visible; }
+        .success-checkmark { width: 65px; height: 65px; background: #10b981; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; margin-bottom: 15px; box-shadow: 0 10px 20px rgba(16,185,129,0.3); }
+        .success-overlay-box h2 { font-size: 20px; color: #0f172a; margin-bottom: 6px; font-weight: 800; }
+        .success-overlay-box p { font-size: 13.5px; color: var(--text-muted); padding: 0 20px; }
 
         .map-card { background: var(--bg-surface); border: 2px solid #f97316; border-radius: 16px; padding: 15px; box-shadow: var(--shadow-soft); animation: cardBorderGlow 8s infinite; margin-bottom: 40px; }
         .map-card h3 { font-size: 20px; color: #0f172a; margin-bottom: 15px; padding-left: 5px; text-transform: uppercase; font-weight: 700; }
@@ -171,7 +200,7 @@
         .footer-social-links a:hover { color: var(--accent-orange); }
     </style>
 </head>
-<body>
+<body onload="generateCaptcha()">
     <header>
         <a href="index.html" class="brand-container">
             <div class="brand-icon-box"><i class="fa-solid fa-house-chimney"></i></div>
@@ -233,23 +262,47 @@
                 </div>
             </div>
 
-            <div class="contact-box">
+            <div class="contact-box" id="inquiryBox">
+                <!-- Error / Warning Popup Box -->
+                <div class="error-popup-box" id="errorPopup">
+                    <div class="error-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <h2>Attention Required!</h2>
+                    <p id="errorMessageText">Please check your details.</p>
+                    <button class="error-close-btn" onclick="closeErrorPopup()">OK, Got It</button>
+                </div>
+
+                <!-- Success Message Overlay Container -->
+                <div class="success-overlay-box" id="successOverlay">
+                    <div class="success-checkmark"><i class="fa-solid fa-check"></i></div>
+                    <h2>Thank You!</h2>
+                    <p>Inquiry Received Successfully! We will contact you soon.</p>
+                </div>
+
                 <h3><i class="fa-solid fa-paper-plane"></i> Send an Inquiry</h3>
-                <form action="https://formsubmit.co/paulinterior@gmail.com" method="POST">
-                    <input type="hidden" name="_captcha" value="false">
-                    
+                <form id="inquiryForm" action="https://formspree.io/f/mwlpanew" method="POST" onsubmit="handleInquirySubmit(event)">
                     <div class="form-group">
                         <label>Your Full Name</label>
-                        <input type="text" name="Name" placeholder="Enter your name" required>
+                        <input type="text" id="fieldName" name="Name" placeholder="Enter your name">
                     </div>
                     <div class="form-group">
-                        <label>Phone Number (Numbers Only)</label>
-                        <input type="tel" name="Phone" placeholder="Enter mobile number (Digits only)" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                        <label>Phone Number (Min 10 Digits with Country Code)</label>
+                        <input type="tel" id="fieldPhone" name="Phone" placeholder="Enter mobile number (e.g. +917889898026)" oninput="this.value = this.value.replace(/[^0-9+]/g, '')">
                     </div>
                     <div class="form-group">
                         <label>Service / Project Requirement</label>
-                        <textarea name="Message" rows="3" placeholder="Describe your aluminum or steel fabrication needs..." required></textarea>
+                        <textarea id="fieldMessage" name="Message" rows="3" placeholder="Describe your aluminum or steel fabrication needs..."></textarea>
                     </div>
+
+                    <!-- Captcha Verification Field -->
+                    <div class="form-group">
+                        <label>Security Captcha Verification</label>
+                        <div class="captcha-box-container">
+                            <div class="captcha-display" id="captchaText">1234</div>
+                            <button type="button" class="captcha-refresh-btn" onclick="generateCaptcha()" title="Refresh Captcha"><i class="fa-solid fa-rotate"></i></button>
+                        </div>
+                        <input type="text" id="fieldCaptchaInput" placeholder="Enter the code shown above" autocomplete="off">
+                    </div>
+
                     <button type="submit" class="submit-btn">Submit Inquiry</button>
                 </form>
             </div>
@@ -293,10 +346,112 @@
     </footer>
 
     <script>
+        let currentCaptchaCode = "";
+
         function toggleMenu(event) {
             event.stopPropagation();
             var menu = document.getElementById("side-menu");
             menu.classList.toggle("active");
+        }
+
+        // Random 4-digit/character Captcha Generator
+        function generateCaptcha() {
+            const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            let captcha = "";
+            for (let i = 0; i < 4; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            currentCaptchaCode = captcha;
+            document.getElementById("captchaText").innerText = currentCaptchaCode;
+            document.getElementById("fieldCaptchaInput").value = "";
+        }
+
+        function triggerVibration() {
+            if ("vibrate" in navigator) {
+                navigator.vibrate([100, 50, 100]); // Short vibration pattern
+            }
+        }
+
+        function handleInquirySubmit(event) {
+            event.preventDefault();
+            
+            var nameField = document.getElementById("fieldName");
+            var phoneField = document.getElementById("fieldPhone");
+            var messageField = document.getElementById("fieldMessage");
+            var captchaInputField = document.getElementById("fieldCaptchaInput");
+            var form = document.getElementById("inquiryForm");
+            
+            var phoneDigits = phoneField.value.replace(/\D/g, '');
+            var errorMsgText = document.getElementById("errorMessageText");
+            var activeBox = document.getElementById("inquiryBox");
+
+            // 1. Check if Name is empty
+            if (nameField.value.trim() === "") {
+                triggerVibration();
+                activeBox.classList.add("shake");
+                nameField.classList.add("shake");
+                errorMsgText.innerText = "Please enter your Full Name!";
+                document.getElementById("errorPopup").classList.add("active");
+                setTimeout(() => { activeBox.classList.remove("shake"); nameField.classList.remove("shake"); }, 400);
+                return;
+            }
+
+            // 2. Check if Phone number is invalid or less than 10 digits
+            if (phoneDigits.length < 10) {
+                triggerVibration();
+                activeBox.classList.add("shake");
+                phoneField.classList.add("shake");
+                errorMsgText.innerText = "Please enter a valid Phone Number with at least 10 digits!";
+                document.getElementById("errorPopup").classList.add("active");
+                setTimeout(() => { activeBox.classList.remove("shake"); phoneField.classList.remove("shake"); }, 400);
+                return;
+            }
+
+            // 3. Check if Message/Requirement is empty
+            if (messageField.value.trim() === "") {
+                triggerVibration();
+                activeBox.classList.add("shake");
+                messageField.classList.add("shake");
+                errorMsgText.innerText = "Please describe your Service or Project Requirement!";
+                document.getElementById("errorPopup").classList.add("active");
+                setTimeout(() => { activeBox.classList.remove("shake"); messageField.classList.remove("shake"); }, 400);
+                return;
+            }
+
+            // 4. Check if Captcha code is incorrect or empty
+            if (captchaInputField.value.trim() !== currentCaptchaCode) {
+                triggerVibration();
+                activeBox.classList.add("shake");
+                captchaInputField.classList.add("shake");
+                errorMsgText.innerText = "Incorrect Captcha Code! Please check and enter the correct code.";
+                document.getElementById("errorPopup").classList.add("active");
+                setTimeout(() => { activeBox.classList.remove("shake"); captchaInputField.classList.remove("shake"); }, 400);
+                generateCaptcha(); // Refresh captcha on failure
+                return;
+            }
+
+            // Agar sabhi cheezein bilkul sahi hain toh success overlay show karo
+            var successOverlay = document.getElementById("successOverlay");
+            successOverlay.classList.add("active");
+
+            // Form data bhejo aur page automatically refresh karo
+            setTimeout(function() {
+                var formData = new FormData(form);
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                }).then(response => {
+                    window.location.reload();
+                }).catch(error => {
+                    window.location.reload();
+                });
+            }, 2500);
+        }
+
+        function closeErrorPopup() {
+            var errorPopup = document.getElementById("errorPopup");
+            errorPopup.classList.remove("active");
         }
 
         document.addEventListener("click", function(event) {
