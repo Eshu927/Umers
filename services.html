@@ -36,7 +36,8 @@
         }
 
         .brand-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .brand-icon-box { width: 45px; height: 45px; background: linear-gradient(135deg, #fb923c, #f97316); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; box-shadow: 0 4px 10px rgba(249,115,22,0.3); }
+        .brand-icon-box { width: 45px; height: 45px; background: linear-gradient(135deg, #fb923c, #f97316); border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(249,115,22,0.3); border: 2px solid #f97316; }
+        .brand-icon-box img { width: 100%; height: 100%; object-fit: cover; }
         
         .brand-text { display: flex; flex-direction: column; }
         .brand-text h2 { font-size: 18px; font-weight: 800; text-transform: uppercase; line-height: 1.1; animation: multiColorTextAndBorder 10s infinite; }
@@ -114,17 +115,22 @@
         .project-number-badge { position: absolute; top: 22px; left: 22px; background: rgba(15, 23, 42, 0.85); color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; z-index: 3; letter-spacing: 1px; border: 1px solid rgba(255,255,255,0.3); }
 
         .media-box { width: 100%; height: 180px; border-radius: 10px; overflow: hidden; background: #000; position: relative; }
-        .custom-card video { width: 100%; height: 100%; object-fit: cover; }
+        .custom-card video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 
-        .card-text-info { padding: 12px 10px 5px; text-align: center; }
+        .card-text-info { padding: 12px 10px 8px; text-align: center; }
         .card-text-info h3 { font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
         .card-text-info span { font-size: 11px; color: var(--accent-orange); font-weight: 700; text-transform: uppercase; }
+
+        /* Animated Glowing Line Underneath Text */
+        .card-animated-line { width: 100%; height: 3px; background: linear-gradient(90deg, #f97316, #3b82f6, #10b981, #ec4899, #f97316); background-size: 300% 300%; animation: multiColorTextAndBorder 6s linear infinite; margin-bottom: 10px; border-radius: 2px; box-shadow: 0 0 8px rgba(249,115,22,0.5); }
+
+        .media-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; text-align: justify; padding: 0 5px 5px; }
 
         /* Zoom Overlay Modal */
         .zoom-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.4s ease; backdrop-filter: blur(5px); }
         .zoom-overlay.active { opacity: 1; visibility: visible; }
 
-        .zoomed-modal-card { width: 90%; max-width: 550px; background: #ffffff; border: 2px solid var(--accent-orange); border-radius: 20px; padding: 30px; position: relative; transform: scale(0.7); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 25px 50px rgba(0,0,0,0.3); max-height: 90vh; overflow-y: auto; }
+        .zoomed-modal-card { width: 90%; max-width: 550px; background: #ffffff; border: 2px solid var(--accent-orange); border-radius: 20px; padding: 30px; position: relative; transform: scale(0.7); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 25px 50px rgba(0,0,0,0.3); max-height: 90vh; overflow-y: auto; animation: cardBorderGlow 8s infinite; }
         .zoom-overlay.active .zoomed-modal-card { transform: scale(1); }
 
         .close-modal-btn { position: absolute; top: 15px; right: 15px; color: var(--text-main); font-size: 20px; cursor: pointer; background: var(--bg-surface); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color); }
@@ -152,7 +158,9 @@
     <!-- Sticky Header -->
     <header>
         <a href="index.html" class="brand-container">
-            <div class="brand-icon-box"><i class="fa-solid fa-house-chimney"></i></div>
+            <div class="brand-icon-box">
+                <img src="ishu.jpg" alt="Paul Interior Logo">
+            </div>
             <div class="brand-text">
                 <h2>Paul Interior</h2>
                 <div class="brand-line"></div>
@@ -219,116 +227,88 @@
         </div>
     </section>
 
-    <!-- 15 Videos Showcase Section (Full Items Included) -->
+    <!-- 7 Project Videos Showcase Section with Logo Header & Uniform Quality Bios -->
     <section class="showcase-container">
         <div class="section-heading">
-            <h2>Project Demonstration <span>Videos (15 Items)</span></h2>
+            <h2>Project Demonstration <span>Videos (7 Items)</span></h2>
         </div>
         <div class="grid-cards-layout" id="galleryGrid">
             
             <div class="custom-card" onclick="zoomCard(this)">
                 <div class="project-number-badge">01</div>
-                <div class="media-box"><video src="Video1.mp4" muted loop playsinline autoplay></video></div>
-                <div class="card-text-info"><span>Aluminium</span><h3>Sliding Windows View</h3></div>
-                <p class="media-desc">High-grade aluminum sliding windows designed for smooth operation, sleek architectural aesthetics, and superior weather resistance.</p>
+                <div class="media-box"><video src="Video1.mp4" poster="ishu.jpg" preload="metadata" playsinline></video></div>
+                <div class="card-text-info">
+                    <span>Glass Art</span>
+                    <h3>Custom Glass Showcase Installation</h3>
+                </div>
+                <div class="card-animated-line"></div>
+                <p class="media-desc">At Paul Interior Imamsahib, we take immense pride in delivering top-tier fabrication work backed by unmatched quality and complete customer trust. Every project is crafted using premium materials, heavy-duty structural profiles, and precise architectural measurements. Our experienced master craftsmen ensure flawless installation, superior weather resistance, and long-lasting durability. We combine modern aesthetic elegance with robust security to transform your residential and commercial spaces into absolute perfection. Trust our proven expertise for reliable, low-maintenance, and elite interior solutions built for a lifetime.</p>
             </div>
 
             <div class="custom-card" onclick="zoomCard(this)">
                 <div class="project-number-badge">02</div>
-                <div class="media-box"><video src="Video2.mp4" muted loop playsinline autoplay></video></div>
-                <div class="card-text-info"><span>Steel Works</span><h3>Balcony Railings Showcase</h3></div>
-                <p class="media-desc">Custom-crafted stainless steel balconies offering modern elegance, rust-free endurance, and unmatched structural safety.</p>
+                <div class="media-box"><video src="Video2.mp4" poster="ishu.jpg" preload="metadata" playsinline></video></div>
+                <div class="card-text-info">
+                    <span>Metal Work</span>
+                    <h3>Stainless Steel & Wooden Railings</h3>
+                </div>
+                <div class="card-animated-line"></div>
+                <p class="media-desc">At Paul Interior Imamsahib, we take immense pride in delivering top-tier fabrication work backed by unmatched quality and complete customer trust. Every project is crafted using premium materials, heavy-duty structural profiles, and precise architectural measurements. Our experienced master craftsmen ensure flawless installation, superior weather resistance, and long-lasting durability. We combine modern aesthetic elegance with robust security to transform your residential and commercial spaces into absolute perfection. Trust our proven expertise for reliable, low-maintenance, and elite interior solutions built for a lifetime.</p>
             </div>
 
             <div class="custom-card" onclick="zoomCard(this)">
                 <div class="project-number-badge">03</div>
-                <div class="media-box"><video src="Video3.mp4" muted loop playsinline autoplay></video></div>
-                <div class="card-text-info"><span>Aluminium</span><h3>Security Doors Video</h3></div>
-                <p class="media-desc">Heavy-duty aluminum and steel doors engineered for secure commercial entrances and stylish homes.</p>
+                <div class="media-box"><video src="Video3.mp4" poster="ishu.jpg" preload="metadata" playsinline></video></div>
+                <div class="card-text-info">
+                    <span>Aluminium</span>
+                    <h3>Precision Window & Glass Fitting</h3>
+                </div>
+                <div class="card-animated-line"></div>
+                <p class="media-desc">At Paul Interior Imamsahib, we take immense pride in delivering top-tier fabrication work backed by unmatched quality and complete customer trust. Every project is crafted using premium materials, heavy-duty structural profiles, and precise architectural measurements. Our experienced master craftsmen ensure flawless installation, superior weather resistance, and long-lasting durability. We combine modern aesthetic elegance with robust security to transform your residential and commercial spaces into absolute perfection. Trust our proven expertise for reliable, low-maintenance, and elite interior solutions built for a lifetime.</p>
             </div>
 
             <div class="custom-card" onclick="zoomCard(this)">
                 <div class="project-number-badge">04</div>
-                <div class="media-box"><video src="Video4.mp4" muted loop playsinline autoplay></video></div>
-                <div class="card-text-info"><span>Interior</span><h3>False Ceilings Walkthrough</h3></div>
-                <p class="media-desc">Modern false ceiling installations featuring integrated lighting profiles for executive rooms and homes.</p>
+                <div class="media-box"><video src="Video4.mp4" poster="ishu.jpg" preload="metadata" playsinline></video></div>
+                <div class="card-text-info">
+                    <span>Framework</span>
+                    <h3>Commercial Glass Partitioning</h3>
+                </div>
+                <div class="card-animated-line"></div>
+                <p class="media-desc">At Paul Interior Imamsahib, we take immense pride in delivering top-tier fabrication work backed by unmatched quality and complete customer trust. Every project is crafted using premium materials, heavy-duty structural profiles, and precise architectural measurements. Our experienced master craftsmen ensure flawless installation, superior weather resistance, and long-lasting durability. We combine modern aesthetic elegance with robust security to transform your residential and commercial spaces into absolute perfection. Trust our proven expertise for reliable, low-maintenance, and elite interior solutions built for a lifetime.</p>
             </div>
 
             <div class="custom-card" onclick="zoomCard(this)">
                 <div class="project-number-badge">05</div>
-                <div class="media-box"><video src="Video5.mp4" muted loop playsinline autoplay></video></div>
-                <div class="card-text-info"><span>Steel Works</span><h3>Main Entrance Gates Demo</h3></div>
-                <p class="media-desc">Robust security gates built with thick steel pipes and custom artistic laser-cut designs.</p>
+                <div class="media-box"><video src="Video5.mp4" poster="ishu.jpg" preload="metadata" playsinline></video></div>
+                <div class="card-text-info">
+                    <span>Makeover</span>
+                    <h3>Designer Glass Door Transformation</h3>
+                </div>
+                <div class="card-animated-line"></div>
+                <p class="media-desc">At Paul Interior Imamsahib, we take immense pride in delivering top-tier fabrication work backed by unmatched quality and complete customer trust. Every project is crafted using premium materials, heavy-duty structural profiles, and precise architectural measurements. Our experienced master craftsmen ensure flawless installation, superior weather resistance, and long-lasting durability. We combine modern aesthetic elegance with robust security to transform your residential and commercial spaces into absolute perfection. Trust our proven expertise for reliable, low-maintenance, and elite interior solutions built for a lifetime.</p>
             </div>
 
             <div class="custom-card" onclick="zoomCard(this)">
                 <div class="project-number-badge">06</div>
-                <div class="media-box"><video src="Video6.mp4" muted loop playsinline autoplay></video></div>
-                <div class="card-text-info"><span>Aluminium</span><h3>Office Partitions Walkthrough</h3></div>
-                <p class="media-desc">Sleek aluminum framed glass partitions designed to maximize office space utilization and modern look.</p>
+                <div class="media-box"><video src="Video6.mp4" poster="ishu.jpg" preload="metadata" playsinline></video></div>
+                <div class="card-text-info">
+                    <span>Architecture</span>
+                    <h3>Raw Structure to Modern Glass Building</h3>
+                </div>
+                <div class="card-animated-line"></div>
+                <p class="media-desc">At Paul Interior Imamsahib, we take immense pride in delivering top-tier fabrication work backed by unmatched quality and complete customer trust. Every project is crafted using premium materials, heavy-duty structural profiles, and precise architectural measurements. Our experienced master craftsmen ensure flawless installation, superior weather resistance, and long-lasting durability. We combine modern aesthetic elegance with robust security to transform your residential and commercial spaces into absolute perfection. Trust our proven expertise for reliable, low-maintenance, and elite interior solutions built for a lifetime.</p>
             </div>
 
             <div class="custom-card" onclick="zoomCard(this)">
                 <div class="project-number-badge">07</div>
-                <div class="media-box"><video src="Video7.mp4" muted loop playsinline autoplay></video></div>
-                <div class="card-text-info"><span>PVC Interiors</span><h3>Wall Paneling Video</h3></div>
-                <p class="media-desc">Sophisticated vertical wooden strip wall paneling created to enhance room depth and provide elegant texture.</p>
-            </div>
-
-            <div class="custom-card" onclick="zoomCard(this)">
-                <div class="project-number-badge">08</div>
-                <div class="media-box"><video src="Img8.mp4" muted loop playsinline autoplay></video></div>
-                <div class="card-text-info"><span>Staircase Work</span><h3>Glass Staircase Walkthrough</h3></div>
-                <p class="media-desc">An architectural masterpiece featuring toughened frosted glass balustrades combined with a polished natural wooden handrail.</p>
-            </div>
-
-            <div class="custom-card" onclick="zoomCard(this)">
-                <div class="project-number-badge">09</div>
-                <div class="media-box"><video src="Img9.mp4" muted loop playsinline autoplay></video></div>
-                <div class="card-text-info"><span>Kitchen Design</span><h3>Modular Kitchen Video</h3></div>
-                <p class="media-desc">A vibrant custom built modular kitchen featuring bright orange and clean white cabinet shutters framed in sturdy aluminum.</p>
-            </div>
-
-            <div class="custom-card" onclick="zoomCard(this)">
-                <div class="project-number-badge">10</div>
-                <div class="media-box"><video src="Img10.mp4" muted loop playsinline autoplay></video></div>
-                <div class="card-text-info"><span>Bedroom Storage</span><h3>Wardrobe Unit Video</h3></div>
-                <p class="media-desc">A spacious multi door wooden wardrobe equipped with integrated lower storage drawers and sleek metallic handles.</p>
-            </div>
-
-            <div class="custom-card" onclick="zoomCard(this)">
-                <div class="project-number-badge">11</div>
-                <div class="media-box"><video src="Img11.mp4" muted loop playsinline autoplay></video></div>
-                <div class="card-text-info"><span>Commercial Glazing</span><h3>Storefront Glazing Video</h3></div>
-                <p class="media-desc">Large scale commercial window glazing and shopfront facade installation featuring intricate floral etched glass.</p>
-            </div>
-
-            <div class="custom-card" onclick="zoomCard(this)">
-                <div class="project-number-badge">12</div>
-                <div class="media-box"><video src="Img12.mp4" muted loop playsinline autoplay></video></div>
-                <div class="card-text-info"><span>Lighting & Stairs</span><h3>LED Stair Railing Video</h3></div>
-                <p class="media-desc">An ultra modern staircase railing featuring glowing blue LED acrylic bubble balusters that cast mesmerizing ambient light.</p>
-            </div>
-
-            <div class="custom-card" onclick="zoomCard(this)">
-                <div class="project-number-badge">13</div>
-                <div class="media-box"><video src="Img13.mp4" muted loop playsinline autoplay></video></div>
-                <div class="card-text-info"><span>Entertainment Wall</span><h3>TV Unit Paneling Video</h3></div>
-                <p class="media-desc">A stylish television entertainment wall setup built with dark wood grain PVC panels backlit decorative niches.</p>
-            </div>
-
-            <div class="custom-card" onclick="zoomCard(this)">
-                <div class="project-number-badge">14</div>
-                <div class="media-box"><video src="Img14.mp4" muted loop playsinline autoplay></video></div>
-                <div class="card-text-info"><span>Outdoor Canopy</span><h3>Glass Roof Canopy Video</h3></div>
-                <p class="media-desc">A striking outdoor architectural glass canopy and roofing structure featuring multi colored geometric glass panes.</p>
-            </div>
-
-            <div class="custom-card" onclick="zoomCard(this)">
-                <div class="project-number-badge">15</div>
-                <div class="media-box"><video src="Img15.mp4" muted loop playsinline autoplay></video></div>
-                <div class="card-text-info"><span>Paul Interior</span><h3>Master Craftsmanship Video</h3></div>
-                <p class="media-desc">A premier showcase of master craftsmanship by Paul Interior featuring top tier aluminum fabrication and steel work.</p>
+                <div class="media-box"><video src="Video7.mp4" poster="ishu.jpg" preload="metadata" playsinline></video></div>
+                <div class="card-text-info">
+                    <span>Craftsmanship</span>
+                    <h3>Master Fabrication & Interior Showcase</h3>
+                </div>
+                <div class="card-animated-line"></div>
+                <p class="media-desc">At Paul Interior Imamsahib, we take immense pride in delivering top-tier fabrication work backed by unmatched quality and complete customer trust. Every project is crafted using premium materials, heavy-duty structural profiles, and precise architectural measurements. Our experienced master craftsmen ensure flawless installation, superior weather resistance, and long-lasting durability. We combine modern aesthetic elegance with robust security to transform your residential and commercial spaces into absolute perfection. Trust our proven expertise for reliable, low-maintenance, and elite interior solutions built for a lifetime.</p>
             </div>
 
         </div>
@@ -372,10 +352,9 @@
             var contentArea = document.getElementById("modalContentArea");
             
             var cardHtml = cardElement.innerHTML;
-            cardHtml = cardHtml.replace('<p class="media-desc">', '<div class="modal-divider"></div><p class="media-desc">');
-            cardHtml = cardHtml.replace('autoplay muted loop playsinline', 'controls autoplay');
+            cardHtml = cardHtml.replace('preload="metadata" playsinline', 'controls autoplay playsinline');
+            
             contentArea.innerHTML = cardHtml;
-
             overlay.classList.add("active");
             document.body.style.overflow = "hidden";
         }
@@ -384,6 +363,12 @@
             var overlay = document.getElementById("zoomOverlay");
             overlay.classList.remove("active");
             document.body.style.overflow = "auto";
+            
+            var modalVideo = document.querySelector("#modalContentArea video");
+            if (modalVideo) {
+                modalVideo.pause();
+                modalVideo.currentTime = 0;
+            }
         }
 
         function closeZoomModal(event) {
