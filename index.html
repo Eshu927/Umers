@@ -145,8 +145,12 @@
         }
 
         .hero-section { position: relative; padding: 75px 20px 55px; text-align: center; background: linear-gradient(135deg, #0284c7, #38bdf8, #0369a1); overflow: hidden; border-bottom: 1px solid var(--border-color); }
-        .sky-center-moon { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); width: 50px; height: 50px; background: #fffdf0; border-radius: 50%; animation: centerMoonPhase 8s ease-in-out infinite; z-index: 1; pointer-events: none; }
-        .sky-star { position: absolute; background: #ffffff; border-radius: 50%; animation: twinkleStar 3s ease-in-out infinite; z-index: 1; pointer-events: none; }
+        
+        /* Canvas for Real Fireworks */
+        #fireworks-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        
+        .sky-center-moon { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); width: 50px; height: 50px; background: #fffdf0; border-radius: 50%; animation: centerMoonPhase 8s ease-in-out infinite; z-index: 2; pointer-events: none; }
+        .sky-star { position: absolute; background: #ffffff; border-radius: 50%; animation: twinkleStar 3s ease-in-out infinite; z-index: 2; pointer-events: none; }
 
         .s-1 { top: 15px; left: 25%; width: 5px; height: 5px; animation-delay: 0.1s; }
         .s-2 { top: 35px; left: 32%; width: 4px; height: 4px; animation-delay: 0.8s; }
@@ -179,7 +183,7 @@
         .s-29 { top: 50px; left: 5%; width: 5px; height: 5px; animation-delay: 1.3s; }
         .s-30 { top: 55px; left: 95%; width: 4px; height: 4px; animation-delay: 0.6s; }
 
-        .hero-section > * { position: relative; z-index: 2; }
+        .hero-section > * { position: relative; z-index: 3; }
         .hero-section h1 { font-size: 34px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.4); }
         .hero-section h1 span { color: #fef08a; display: block; text-shadow: 0 0 15px rgba(254, 240, 138, 0.6); }
         .hero-section p { font-size: 15px; color: #f1f5f9; max-width: 680px; margin: 0 auto 25px; text-shadow: 0 1px 6px rgba(0,0,0,0.4); }
@@ -293,6 +297,7 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
+        <canvas id="fireworks-canvas"></canvas>
         <div class="sky-center-moon"></div>
         <div class="sky-star s-1"></div>
         <div class="sky-star s-2"></div>
@@ -643,14 +648,14 @@
 
             <div class="custom-card" onclick="zoomCard(this)">
                 <div class="project-number-badge">40</div>
-                <div class="media-box"><img src="Img40.jpg" alt="Interior Fixture"></div>
+                <div class="media-box"><img src="p/mg40.jpg" alt="Interior Fixture"></div>
                 <div class="card-text-info"><span>Home Decor</span><h3>Stylish Interior Finishing Fixture</h3></div>
                 <p class="media-desc">An elegant interior decoration fixture designed to provide the final polishing touch to modern home remodeling projects combining utility and refined styling to create a harmonious and luxurious residential atmosphere.</p>
             </div>
 
             <div class="custom-card" onclick="zoomCard(this)">
                 <div class="project-number-badge">41</div>
-                <div class="media-box"><img src="Img41.jpg" alt="Final Showcase"></div>
+                <div class="media-box"><img src="p/mg41.jpg" alt="Final Showcase"></div>
                 <div class="card-text-info"><span>Paul Interior</span><h3>Master Craftsmanship Project Showcase</h3></div>
                 <p class="media-desc">A premier showcase of master craftsmanship by Paul Interior featuring top tier aluminum fabrication steel work and bespoke interior designing executed with absolute precision to satisfy the highest standards of quality.</p>
             </div>
@@ -721,6 +726,123 @@
                 menu.classList.remove("active");
             }
         });
+
+        // Canvas Real Fireworks & Heart Shape Animation Script
+        const canvas = document.getElementById('fireworks-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = canvas.parentElement.offsetWidth;
+            canvas.height = canvas.parentElement.offsetHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Firework {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height;
+                this.targetY = Math.random() * (canvas.height * 0.5) + 30;
+                this.speed = 4;
+                this.angle = Math.atan2(this.targetY - this.y, 0);
+                this.exploded = false;
+                this.particles = [];
+            }
+            update() {
+                if (!this.exploded) {
+                    this.y -= this.speed;
+                    if (this.y <= this.targetY) {
+                        this.exploded = true;
+                        this.createParticles();
+                    }
+                }
+                for (let i = this.particles.length - 1; i >= 0; i--) {
+                    this.particles[i].update();
+                    if (this.particles[i].alpha <= 0) {
+                        this.particles.splice(i, 1);
+                    }
+                }
+            }
+            createParticles() {
+                const colors = ['#ff0055', '#00ffcc', '#ffcc00', '#9900ff', '#00ff66', '#ff3300', '#00ffff'];
+                const isHeart = Math.random() > 0.4; // 60% chance for heart shape
+                
+                for (let i = 0; i < 70; i++) {
+                    let vx, vy;
+                    if (isHeart) {
+                        // Heart math formula for particles
+                        let t = Math.random() * Math.PI * 2;
+                        let hx = 16 * Math.pow(Math.sin(t), 3);
+                        let hy = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+                        vx = hx * 0.25;
+                        vy = hy * 0.25;
+                    } else {
+                        const angle = Math.random() * Math.PI * 2;
+                        const speed = Math.random() * 5 + 1;
+                        vx = Math.cos(angle) * speed;
+                        vy = Math.sin(angle) * speed;
+                    }
+                    this.particles.push(new Particle(this.x, this.targetY, vx, vy, colors[Math.floor(Math.random() * colors.length)]));
+                }
+            }
+            draw() {
+                if (!this.exploded) {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, 2.5, 0, Math.PI * 2);
+                    ctx.fillStyle = '#ffeb3b';
+                    ctx.fill();
+                }
+                for (let p of this.particles) {
+                    p.draw();
+                }
+            }
+        }
+
+        class Particle {
+            constructor(x, y, vx, vy, color) {
+                this.x = x;
+                this.y = y;
+                this.vx = vx;
+                this.vy = vy;
+                this.alpha = 1;
+                this.decay = Math.random() * 0.015 + 0.01;
+                this.color = color;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vy += 0.05; // gravity
+                this.alpha -= this.decay;
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        let fireworks = [];
+        function animateFireworks() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (Math.random() < 0.04) {
+                fireworks.push(new Firework());
+            }
+            for (let i = fireworks.length - 1; i >= 0; i--) {
+                fireworks[i].update();
+                fireworks[i].draw();
+                if (fireworks[i].exploded && fireworks[i].particles.length === 0) {
+                    fireworks.splice(i, 1);
+                }
+            }
+            requestAnimationFrame(animateFireworks);
+        }
+        animateFireworks();
     </script>
 </body>
 </html>
