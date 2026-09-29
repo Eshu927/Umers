@@ -36,7 +36,8 @@
         }
 
         .brand-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .brand-icon-box { width: 45px; height: 45px; background: linear-gradient(135deg, #fb923c, #f97316); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; box-shadow: 0 4px 10px rgba(249,115,22,0.3); }
+        .brand-icon-box { width: 45px; height: 45px; background: linear-gradient(135deg, #fb923c, #f97316); border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(249,115,22,0.3); border: 2px solid #f97316; }
+        .brand-icon-box img { width: 100%; height: 100%; object-fit: cover; }
         
         .brand-text { display: flex; flex-direction: column; }
         .brand-text h2 { font-size: 18px; font-weight: 800; text-transform: uppercase; line-height: 1.1; animation: multiColorTextAndBorder 10s infinite; }
@@ -196,7 +197,20 @@
         .btn-outline-custom:hover { background: #ffffff; color: var(--text-main); border-color: #ffffff; }
 
         .reference-banner-container { position: relative; max-width: 900px; margin: 40px auto; height: 320px; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 20px; overflow: hidden; }
-        .bg-large-circle { position: absolute; left: 50%; top: 40px; transform: translateX(-50%); width: 240px; height: 240px; background: linear-gradient(135deg, #fed7aa, #fb923c); border-radius: 50%; z-index: 1; opacity: 0.85; box-shadow: 0 10px 40px rgba(249,115,22,0.2); }
+        
+        @keyframes rotateBackgroundCycle {
+            0% { transform: translateX(-50%) rotate(0deg); }
+            100% { transform: translateX(-50%) rotate(360deg); }
+        }
+
+        @keyframes multiColorBackgroundCycle {
+            0% { background: conic-gradient(from 0deg, #f97316, #3b82f6, #10b981, #ec4899, #f97316); }
+            33% { background: conic-gradient(from 0deg, #3b82f6, #10b981, #ec4899, #f97316, #3b82f6); }
+            66% { background: conic-gradient(from 0deg, #10b981, #ec4899, #f97316, #3b82f6, #10b981); }
+            100% { background: conic-gradient(from 0deg, #f97316, #3b82f6, #10b981, #ec4899, #f97316); }
+        }
+
+        .bg-large-circle { position: absolute; left: 50%; top: 20px; transform: translateX(-50%); width: 260px; height: 260px; border-radius: 50%; z-index: 1; opacity: 0.85; box-shadow: 0 10px 45px rgba(249,115,22,0.4); animation: rotateBackgroundCycle 12s linear infinite, multiColorBackgroundCycle 15s ease infinite; }
 
         .custom-organic-card { position: relative; z-index: 2; width: 38%; background: transparent; text-align: center; cursor: pointer; }
         .custom-organic-card img { width: 100%; height: 210px; object-fit: cover; border-radius: 60px 20px 60px 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); transition: transform 0.3s; }
@@ -206,7 +220,11 @@
         .card-caption h4 { font-size: 14px; font-weight: 700; color: var(--text-main); }
         .card-caption span { font-size: 11px; color: var(--accent-orange); font-weight: 600; text-transform: uppercase; }
 
-        .center-reference-icon { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); width: 65px; height: 65px; background: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-orange); font-size: 26px; box-shadow: 0 8px 25px rgba(249,115,22,0.4); border: 3px solid var(--accent-orange); z-index: 5; }
+        .card-animated-line { width: 100%; height: 3px; background: linear-gradient(90deg, #f97316, #3b82f6, #10b981, #ec4899, #f97316); background-size: 300% 300%; animation: multiColorTextAndBorder 6s linear infinite; margin-top: 6px; border-radius: 2px; box-shadow: 0 0 8px rgba(249,115,22,0.5); }
+
+        .center-reference-icon { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); width: 95px; height: 95px; background: #ffffff; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(249,115,22,0.5); border: 4px solid #f97316; z-index: 5; }
+        .center-reference-icon img { width: 100%; height: 100%; object-fit: cover; }
+
         .media-desc { display: none; }
 
         /* Gallery Section */
@@ -262,7 +280,9 @@
     <!-- Locked Sticky Header -->
     <header>
         <a href="index.html" class="brand-container">
-            <div class="brand-icon-box"><i class="fa-solid fa-house-chimney"></i></div>
+            <div class="brand-icon-box">
+                <img src="ishu.jpg" alt="Paul Interior Logo">
+            </div>
             <div class="brand-text">
                 <h2>Paul Interior</h2>
                 <div class="brand-line"></div>
@@ -339,29 +359,31 @@
         </div>
     </section>
 
-    <!-- Custom Organic Shape Photos with Center Icon -->
+    <!-- Custom Organic Shape Photos with Larger Center Logo Poster & Multi-Color Rotating Background -->
     <div class="reference-banner-container">
         <div class="bg-large-circle"></div>
 
         <div class="custom-organic-card" onclick="zoomCard(this)">
-            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=300&fit=crop" alt="Expert Consultation">
+            <img src="Pic1.jpg" alt="Expert Consultation">
             <div class="card-caption">
                 <h4>Expert Consultation</h4>
                 <span>Client Support</span>
             </div>
+            <div class="card-animated-line"></div>
             <p class="media-desc">Providing professional design guidance, material selection help, and prompt quotation support for all custom fabrication needs.</p>
         </div>
 
         <div class="center-reference-icon">
-            <i class="fa-solid fa-building-shield"></i>
+            <img src="ishu.jpg" alt="Paul Interior Logo">
         </div>
 
         <div class="custom-organic-card" onclick="zoomCard(this)">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop" alt="Master Craftsman">
+            <img src="Pic2.jpg" alt="Master Craftsman">
             <div class="card-caption">
                 <h4>Master Craftsman</h4>
                 <span>Production Lead</span>
             </div>
+            <div class="card-animated-line"></div>
             <p class="media-desc">Overseeing precision aluminum profile cutting, flawless welding, and rigorous quality checks for durability and style.</p>
         </div>
     </div>
@@ -765,12 +787,11 @@
             }
             createParticles() {
                 const colors = ['#ff0055', '#00ffcc', '#ffcc00', '#9900ff', '#00ff66', '#ff3300', '#00ffff'];
-                const isHeart = Math.random() > 0.4; // 60% chance for heart shape
+                const isHeart = Math.random() > 0.4;
                 
                 for (let i = 0; i < 70; i++) {
                     let vx, vy;
                     if (isHeart) {
-                        // Heart math formula for particles
                         let t = Math.random() * Math.PI * 2;
                         let hx = 16 * Math.pow(Math.sin(t), 3);
                         let hy = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
@@ -811,7 +832,7 @@
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
-                this.vy += 0.05; // gravity
+                this.vy += 0.05;
                 this.alpha -= this.decay;
             }
             draw() {
