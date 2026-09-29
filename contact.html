@@ -34,7 +34,9 @@
         }
 
         .brand-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .brand-icon-box { width: 45px; height: 45px; background: linear-gradient(135deg, #fb923c, #f97316); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; box-shadow: 0 4px 10px rgba(249,115,22,0.3); }
+        .brand-icon-box { width: 45px; height: 45px; background: linear-gradient(135deg, #fb923c, #f97316); border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(249,115,22,0.3); border: 2px solid #f97316; }
+        .brand-icon-box img { width: 100%; height: 100%; object-fit: cover; }
+        
         .brand-text h2 { font-size: 18px; font-weight: 800; text-transform: uppercase; color: #0f172a; animation: multiColorTextAndBorder 10s infinite; }
         .brand-line { width: 100%; height: 3px; background: linear-gradient(90deg, #b45309, #fbbf24, #d97706); margin: 3px 0; box-shadow: 0 0 8px rgba(251, 191, 36, 0.6); }
         .brand-text span { font-size: 11px; font-weight: 700; color: var(--accent-orange); letter-spacing: 1.5px; animation: multiColorTextAndBorder 10s infinite; }
@@ -127,32 +129,45 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        .hero-section { position: relative; padding: 70px 20px; text-align: center; background: linear-gradient(135deg, #ea580c, #c2410c, #9a3412); background-size: 200% 200%; animation: sunsetValue 10s ease infinite; color: #fff; border-bottom: 1px solid var(--border-color); }
-        .hero-section h1 { font-size: 32px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
+
+        @keyframes heroContactPulse {
+            0% { transform: scale(1); text-shadow: 0 0 10px rgba(254,240,138,0.4); }
+            50% { transform: scale(1.02); text-shadow: 0 0 25px rgba(254,240,138,0.9), 0 0 35px rgba(249,115,22,0.6); }
+            100% { transform: scale(1); text-shadow: 0 0 10px rgba(254,240,138,0.4); }
+        }
+
+        .hero-section { position: relative; padding: 75px 20px; text-align: center; background: linear-gradient(135deg, #ea580c, #c2410c, #9a3412, #fb923c); background-size: 200% 200%; animation: sunsetValue 10s ease infinite; color: #fff; border-bottom: 1px solid var(--border-color); overflow: hidden; }
+        .hero-section h1 { font-size: 34px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; animation: heroContactPulse 4s infinite; }
         .hero-section h1 span { color: #fef08a; }
         .hero-section p { color: #ffedd5; max-width: 600px; margin: 0 auto; font-size: 15px; }
 
         .container { max-width: 1100px; margin: 45px auto; padding: 0 20px; }
         
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 40px; }
+        /* Contact Grid with Equal Height Boxes */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 40px; align-items: stretch; }
         @media(max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
 
-        .contact-box { background: var(--bg-surface); border: 2px solid #f97316; border-radius: 16px; padding: 25px; box-shadow: var(--shadow-soft); animation: cardBorderGlow 8s infinite; position: relative; overflow: hidden; }
-        .contact-box h3 { font-size: 20px; color: #0f172a; margin-bottom: 18px; text-transform: uppercase; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .contact-box { background: var(--bg-surface); border: 2px solid #f97316; border-radius: 16px; padding: 25px; box-shadow: var(--shadow-soft); animation: cardBorderGlow 8s infinite; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+        .contact-box h3 { font-size: 20px; color: #0f172a; margin-bottom: 15px; text-transform: uppercase; font-weight: 700; display: flex; align-items: center; gap: 10px; }
         .contact-box h3 i { color: var(--accent-orange); }
         
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 5px; color: var(--text-main); }
+        /* Improved Shop Thumbnail Image Styling (Larger & Clear View) */
+        .shop-thumbnail-container { width: 100%; height: 220px; border-radius: 12px; overflow: hidden; margin-bottom: 18px; border: 2px solid var(--border-color); box-shadow: 0 6px 15px rgba(0,0,0,0.08); background: #0f172a; display: flex; align-items: center; justify-content: center; }
+        .shop-thumbnail-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .shop-thumbnail-container img:hover { transform: scale(1.05); }
+
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 12.5px; font-weight: 700; margin-bottom: 4px; color: var(--text-main); }
         .form-group input, .form-group textarea { width: 100%; padding: 10px 15px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; outline: none; background: #ffffff; transition: border-color 0.3s; }
         .form-group input:focus, .form-group textarea:focus { border-color: var(--accent-orange); }
         
         /* Captcha Box Styling */
-        .captcha-box-container { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
-        .captcha-display { background: linear-gradient(135deg, #0f172a, #334155); color: #fef08a; font-size: 18px; font-weight: 800; letter-spacing: 4px; padding: 10px 20px; border-radius: 8px; user-select: none; text-align: center; flex: 1; border: 1px dashed #f97316; font-family: monospace; }
+        .captcha-box-container { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+        .captcha-display { background: linear-gradient(135deg, #0f172a, #334155); color: #fef08a; font-size: 18px; font-weight: 800; letter-spacing: 4px; padding: 8px 20px; border-radius: 8px; user-select: none; text-align: center; flex: 1; border: 1px dashed #f97316; font-family: monospace; }
         .captcha-refresh-btn { background: #f1f5f9; border: 1px solid var(--border-color); width: 42px; height: 42px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-main); transition: 0.3s; }
         .captcha-refresh-btn:hover { background: var(--accent-orange); color: #fff; border-color: var(--accent-orange); }
 
-        .submit-btn { background: var(--accent-orange); color: #fff; border: none; padding: 12px 25px; border-radius: 25px; font-weight: 700; width: 100%; cursor: pointer; transition: 0.3s; }
+        .submit-btn { background: var(--accent-orange); color: #fff; border: none; padding: 12px 25px; border-radius: 25px; font-weight: 700; width: 100%; cursor: pointer; transition: 0.3s; margin-top: 5px; }
         .submit-btn:hover { background: #ea580c; }
 
         /* Shake Animation for Invalid Inputs */
@@ -178,8 +193,14 @@
         .success-overlay-box h2 { font-size: 20px; color: #0f172a; margin-bottom: 6px; font-weight: 800; }
         .success-overlay-box p { font-size: 13.5px; color: var(--text-muted); padding: 0 20px; }
 
+        /* Map Card with Interactive Navigation Link */
         .map-card { background: var(--bg-surface); border: 2px solid #f97316; border-radius: 16px; padding: 15px; box-shadow: var(--shadow-soft); animation: cardBorderGlow 8s infinite; margin-bottom: 40px; }
-        .map-card h3 { font-size: 20px; color: #0f172a; margin-bottom: 15px; padding-left: 5px; text-transform: uppercase; font-weight: 700; }
+        .map-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
+        .map-card h3 { font-size: 18px; color: #0f172a; text-transform: uppercase; font-weight: 700; }
+        
+        .directions-btn { background: var(--accent-orange); color: #fff; padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 10px rgba(249,115,22,0.3); transition: transform 0.3s ease; }
+        .directions-btn:hover { transform: scale(1.05); background: #ea580c; }
+
         .map-container { width: 100%; height: 350px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); }
         .map-container iframe { width: 100%; height: 100%; border: 0; }
 
@@ -203,7 +224,9 @@
 <body onload="generateCaptcha()">
     <header>
         <a href="index.html" class="brand-container">
-            <div class="brand-icon-box"><i class="fa-solid fa-house-chimney"></i></div>
+            <div class="brand-icon-box">
+                <img src="ishu.jpg" alt="Paul Interior Logo">
+            </div>
             <div class="brand-text">
                 <h2>Paul Interior</h2>
                 <div class="brand-line"></div>
@@ -244,21 +267,29 @@
         <div class="contact-grid">
             <div class="contact-box">
                 <h3><i class="fa-solid fa-location-dot"></i> Visit Our Shop</h3>
-                <div class="form-group">
-                    <label>Address</label>
-                    <p style="font-size:14px; color:var(--text-muted); margin-bottom:12px;">Paul Interior, Imamsahib, Shopian, Jammu & Kashmir - 192303</p>
+                
+                <!-- Shop Thumbnail Image Preview (Enlarged & Clear) -->
+                <div class="shop-thumbnail-container">
+                    <img src="Shop.jpg" alt="Paul Interior Workshop Imamsahib" onerror="this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80'">
                 </div>
-                <div class="form-group">
-                    <label>Direct Helpline</label>
-                    <p style="font-size:14px; color:var(--text-muted); margin-bottom:12px;">📞 +91 78898 98026</p>
-                </div>
-                <div class="form-group">
-                    <label>Working Hours</label>
-                    <p style="font-size:14px; color:var(--text-muted); margin-bottom:12px;">Monday - Saturday: 9:00 AM - 7:00 PM</p>
-                </div>
-                <div class="form-group">
-                    <label>Support Email</label>
-                    <p style="font-size:14px; color:var(--text-muted);">paulinterior@gmail.com</p>
+
+                <div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:8px;">Paul Interior, Imamsahib, Shopian, Jammu & Kashmir - 192303</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Direct Helpline</label>
+                        <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:8px;">📞 +91 78898 98026</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Working Hours</label>
+                        <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:8px;">Monday - Saturday: 9:00 AM - 7:00 PM</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Support Email</label>
+                        <p style="font-size:13.5px; color:var(--text-muted);">paulinterior@gmail.com</p>
+                    </div>
                 </div>
             </div>
 
@@ -309,9 +340,15 @@
         </div>
 
         <div class="map-card">
-            <h3><i class="fa-solid fa-map-location-dot" style="color:var(--accent-orange);"></i> Shop Location Map (Imamsahib, Shopian)</h3>
+            <div class="map-card-header">
+                <h3><i class="fa-solid fa-map-location-dot" style="color:var(--accent-orange);"></i> Shop Location Map (Imamsahib, Shopian)</h3>
+                <!-- Direct Navigation Directions Link -->
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Imamsahib,+Shopian,+Jammu+and+Kashmir+192303" target="_blank" class="directions-btn">
+                    <i class="fa-solid fa-diamond-turn-right"></i> Get Directions to Shop
+                </a>
+            </div>
             <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3318.8!2d74.8!3d33.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sMzPCsDQyJzAwLjAiTiA3NMKwNDgnMDAuMCJF!5e0!3m2!1sen!2sin!4v1650000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3318.8!2d74.8!3d33.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sImamsahib%2C+Shopian!5e0!3m2!1sen!2sin!4v1650000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
 
@@ -368,7 +405,7 @@
 
         function triggerVibration() {
             if ("vibrate" in navigator) {
-                navigator.vibrate([100, 50, 100]); // Short vibration pattern
+                navigator.vibrate([100, 50, 100]);
             }
         }
 
@@ -385,7 +422,6 @@
             var errorMsgText = document.getElementById("errorMessageText");
             var activeBox = document.getElementById("inquiryBox");
 
-            // 1. Check if Name is empty
             if (nameField.value.trim() === "") {
                 triggerVibration();
                 activeBox.classList.add("shake");
@@ -396,7 +432,6 @@
                 return;
             }
 
-            // 2. Check if Phone number is invalid or less than 10 digits
             if (phoneDigits.length < 10) {
                 triggerVibration();
                 activeBox.classList.add("shake");
@@ -407,7 +442,6 @@
                 return;
             }
 
-            // 3. Check if Message/Requirement is empty
             if (messageField.value.trim() === "") {
                 triggerVibration();
                 activeBox.classList.add("shake");
@@ -418,7 +452,6 @@
                 return;
             }
 
-            // 4. Check if Captcha code is incorrect or empty
             if (captchaInputField.value.trim() !== currentCaptchaCode) {
                 triggerVibration();
                 activeBox.classList.add("shake");
@@ -426,15 +459,13 @@
                 errorMsgText.innerText = "Incorrect Captcha Code! Please check and enter the correct code.";
                 document.getElementById("errorPopup").classList.add("active");
                 setTimeout(() => { activeBox.classList.remove("shake"); captchaInputField.classList.remove("shake"); }, 400);
-                generateCaptcha(); // Refresh captcha on failure
+                generateCaptcha();
                 return;
             }
 
-            // Agar sabhi cheezein bilkul sahi hain toh success overlay show karo
             var successOverlay = document.getElementById("successOverlay");
             successOverlay.classList.add("active");
 
-            // Form data bhejo aur page automatically refresh karo
             setTimeout(function() {
                 var formData = new FormData(form);
                 fetch(form.action, {
