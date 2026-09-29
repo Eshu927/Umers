@@ -34,7 +34,9 @@
         }
 
         .brand-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .brand-icon-box { width: 45px; height: 45px; background: linear-gradient(135deg, #fb923c, #f97316); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; box-shadow: 0 4px 10px rgba(249,115,22,0.3); }
+        .brand-icon-box { width: 45px; height: 45px; background: linear-gradient(135deg, #fb923c, #f97316); border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(249,115,22,0.3); border: 2px solid #f97316; }
+        .brand-icon-box img { width: 100%; height: 100%; object-fit: cover; }
+        
         .brand-text h2 { font-size: 18px; font-weight: 800; text-transform: uppercase; color: #0f172a; animation: multiColorTextAndBorder 10s infinite; }
         .brand-line { width: 100%; height: 3px; background: linear-gradient(90deg, #b45309, #fbbf24, #d97706); margin: 3px 0; box-shadow: 0 0 8px rgba(251, 191, 36, 0.6); }
         .brand-text span { font-size: 11px; font-weight: 700; color: var(--accent-orange); letter-spacing: 1.5px; animation: multiColorTextAndBorder 10s infinite; }
@@ -59,7 +61,6 @@
         .menu-btn { font-size: 14px; cursor: pointer; color: var(--text-main); background: #f1f5f9; padding: 8px 16px; border-radius: 25px; border: 2px solid var(--border-color); font-weight: 600; display: flex; align-items: center; gap: 6px; animation: multiColorTextAndBorder 10s infinite; }
         .menu-btn:hover { background: var(--accent-orange); color: #fff; border-color: var(--accent-orange); }
 
-        /* Upgraded Modern Glassmorphism Menu Dropdown */
         @keyframes menuPopAnimation {
             0% { opacity: 0; transform: translateY(-20px) scale(0.85); filter: blur(10px); }
             70% { opacity: 1; transform: translateY(5px) scale(1.02); filter: blur(0px); }
@@ -123,15 +124,39 @@
             color: #fef08a; 
         }
 
-        @keyframes techMeshShimmer {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 100% 100%; }
-            100% { background-position: 0% 0%; }
+        @keyframes skyCloudMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 1000px 0; }
         }
-        .hero-section { position: relative; padding: 70px 20px; text-align: center; background: linear-gradient(120deg, #1e3a8a, #0284c7, #0f766e); background-size: 200% 200%; animation: techMeshShimmer 10s ease infinite; color: #fff; border-bottom: 1px solid var(--border-color); }
-        .hero-section h1 { font-size: 32px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
+
+        @keyframes twinkleStar {
+            0%, 100% { opacity: 0.3; transform: scale(0.7); }
+            50% { opacity: 1; transform: scale(1.2); filter: drop-shadow(0 0 6px #ffffff); }
+        }
+
+        @keyframes heroRatePulse {
+            0% { transform: scale(1); text-shadow: 0 0 10px rgba(254,240,138,0.4); }
+            50% { transform: scale(1.02); text-shadow: 0 0 25px rgba(254,240,138,0.9), 0 0 35px rgba(249,115,22,0.6); }
+            100% { transform: scale(1); text-shadow: 0 0 10px rgba(254,240,138,0.4); }
+        }
+
+        .hero-section { position: relative; padding: 75px 20px; text-align: center; background: linear-gradient(135deg, #0284c7, #38bdf8, #0369a1); background-size: 1000px 1000px; overflow: hidden; border-bottom: 1px solid var(--border-color); color: #fff; }
+        .hero-section::before { content: ''; position: absolute; top: 0; left: 0; width: 200%; height: 100%; background-image: radial-gradient(rgba(255, 255, 255, 0.4) 2px, transparent 2px), radial-gradient(rgba(255, 255, 255, 0.25) 4px, transparent 4px); background-size: 150px 150px, 250px 250px; background-position: 0 0, 50px 50px; animation: skyCloudMove 25s linear infinite; pointer-events: none; opacity: 0.7; }
+        
+        .sky-star { position: absolute; background: #ffffff; border-radius: 50%; animation: twinkleStar 3s ease-in-out infinite; z-index: 2; pointer-events: none; }
+        .s-1 { top: 15px; left: 25%; width: 5px; height: 5px; animation-delay: 0.1s; }
+        .s-2 { top: 35px; left: 32%; width: 4px; height: 4px; animation-delay: 0.8s; }
+        .s-3 { top: 12px; left: 40%; width: 6px; height: 6px; animation-delay: 0.4s; }
+        .s-4 { top: 40px; left: 58%; width: 5px; height: 5px; animation-delay: 1.2s; }
+        .s-5 { top: 18px; left: 68%; width: 4px; height: 4px; animation-delay: 0.6s; }
+        .s-6 { top: 30px; left: 75%; width: 6px; height: 6px; animation-delay: 1.5s; }
+        .s-7 { top: 60px; left: 18%; width: 4px; height: 4px; animation-delay: 0.3s; }
+        .s-8 { top: 75px; left: 28%; width: 5px; height: 5px; animation-delay: 1.1s; }
+
+        .hero-section > * { position: relative; z-index: 3; }
+        .hero-section h1 { font-size: 34px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; animation: heroRatePulse 4s infinite; }
         .hero-section h1 span { color: #fef08a; }
-        .hero-section p { color: #e0f2fe; max-width: 600px; margin: 0 auto; font-size: 15px; }
+        .hero-section p { color: #e0f2fe; max-width: 600px; margin: 0 auto; font-size: 15px; text-shadow: 0 1px 4px rgba(0,0,0,0.3); }
 
         .table-container { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
         .table-wrapper { background: var(--bg-surface); border: 2px solid #f97316; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-soft); animation: cardBorderGlow 8s infinite; }
@@ -180,7 +205,9 @@
 <body>
     <header>
         <a href="index.html" class="brand-container">
-            <div class="brand-icon-box"><i class="fa-solid fa-house-chimney"></i></div>
+            <div class="brand-icon-box">
+                <img src="ishu.jpg" alt="Paul Interior Logo">
+            </div>
             <div class="brand-text">
                 <h2>Paul Interior</h2>
                 <div class="brand-line"></div>
@@ -213,7 +240,16 @@
     </header>
 
     <section class="hero-section">
-        <h1>Official Fabrication <span>Rate List (30 Items)</span></h1>
+        <div class="sky-star s-1"></div>
+        <div class="sky-star s-2"></div>
+        <div class="sky-star s-3"></div>
+        <div class="sky-star s-4"></div>
+        <div class="sky-star s-5"></div>
+        <div class="sky-star s-6"></div>
+        <div class="sky-star s-7"></div>
+        <div class="sky-star s-8"></div>
+
+        <h1>Official Fabrication <span>Rate List</span></h1>
         <p>Click on any product row below to instantly view its detailed pricing, measurement unit, and grade specifications with smooth animations.</p>
     </section>
 
@@ -232,6 +268,15 @@
                 <tbody>
                     <script>
                         const itemsData = [
+                            { name: "Aluminium Coloured", unit: "Running Feet (Running Ft)", price: "₹180 / running ft" },
+                            { name: "Aluminium Silver", unit: "Running Feet (Running Ft)", price: "₹150 / running ft" },
+                            { name: "5mm Glass", unit: "Square Feet (Sq.Ft)", price: "₹90 / sq.ft" },
+                            { name: "Toughened 12mm Glass", unit: "Square Feet (Sq.Ft)", price: "₹260 / sq.ft" },
+                            { name: "Coloured 5mm Glass", unit: "Square Feet (Sq.Ft)", price: "₹160 / sq.ft" },
+                            { name: "5mm Partition Panel", unit: "Square Feet (Sq.Ft)", price: "₹90 / sq.ft" },
+                            { name: "Steel Railing", unit: "Running Feet (Running Ft)", price: "₹550, ₹650, ₹1050, ₹750 / running ft" },
+                            { name: "Wooden Railing", unit: "Running Feet (Running Ft)", price: "₹1150, ₹1050, ₹1000, ₹950 / running ft" },
+                            { name: "ACP Sheet", unit: "Square Feet (Sq.Ft)", price: "₹200, ₹250 / sq.ft" },
                             { name: "Aluminium Sliding Window", unit: "Square Feet (Sq.Ft)", price: "₹350 - ₹650 / sq.ft" },
                             { name: "Stainless Steel Balcony Railing", unit: "Running Feet (Running Ft)", price: "₹450 - ₹950 / running ft" },
                             { name: "Heavy Duty Security Door", unit: "Square Feet (Sq.Ft)", price: "₹400 - ₹800 / sq.ft" },
