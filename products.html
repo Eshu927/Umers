@@ -34,7 +34,9 @@
         }
 
         .brand-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .brand-icon-box { width: 45px; height: 45px; background: linear-gradient(135deg, #fb923c, #f97316); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; box-shadow: 0 4px 10px rgba(249,115,22,0.3); }
+        .brand-icon-box { width: 45px; height: 45px; background: linear-gradient(135deg, #fb923c, #f97316); border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(249,115,22,0.3); border: 2px solid #f97316; }
+        .brand-icon-box img { width: 100%; height: 100%; object-fit: cover; }
+        
         .brand-text h2 { font-size: 18px; font-weight: 800; text-transform: uppercase; color: #0f172a; animation: multiColorTextAndBorder 10s infinite; }
         .brand-line { width: 100%; height: 3px; background: linear-gradient(90deg, #b45309, #fbbf24, #d97706); margin: 3px 0; box-shadow: 0 0 8px rgba(251, 191, 36, 0.6); }
         .brand-text span { font-size: 11px; font-weight: 700; color: var(--accent-orange); letter-spacing: 1.5px; animation: multiColorTextAndBorder 10s infinite; }
@@ -123,15 +125,23 @@
             color: #fef08a; 
         }
 
-        @keyframes amberSunGlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes skyCloudMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 1000px 0; }
         }
-        .hero-section { position: relative; padding: 70px 20px; text-align: center; background: linear-gradient(135deg, #c2410c, #ea580c, #d97706); background-size: 200% 200%; animation: amberSunGlow 10s ease infinite; color: #fff; border-bottom: 1px solid var(--border-color); }
-        .hero-section h1 { font-size: 32px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
-        .hero-section h1 span { color: #fef08a; }
-        .hero-section p { color: #ffedd5; max-width: 600px; margin: 0 auto; font-size: 15px; }
+
+        @keyframes heroProductsPulse {
+            0% { transform: scale(1); text-shadow: 0 0 10px rgba(254,240,138,0.4); }
+            50% { transform: scale(1.02); text-shadow: 0 0 25px rgba(254,240,138,0.9), 0 0 35px rgba(249,115,22,0.6); }
+            100% { transform: scale(1); text-shadow: 0 0 10px rgba(254,240,138,0.4); }
+        }
+
+        .hero-section { position: relative; padding: 75px 20px; text-align: center; background: linear-gradient(135deg, #0284c7, #38bdf8, #0369a1); background-size: 1000px 1000px; overflow: hidden; border-bottom: 1px solid var(--border-color); }
+        .hero-section::before { content: ''; position: absolute; top: 0; left: 0; width: 200%; height: 100%; background-image: radial-gradient(rgba(255, 255, 255, 0.4) 2px, transparent 2px), radial-gradient(rgba(255, 255, 255, 0.25) 4px, transparent 4px); background-size: 150px 150px, 250px 250px; background-position: 0 0, 50px 50px; animation: skyCloudMove 25s linear infinite; pointer-events: none; opacity: 0.7; }
+        .hero-section > * { position: relative; z-index: 2; }
+        .hero-section h1 { font-size: 34px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; color: #ffffff; animation: heroProductsPulse 4s infinite; }
+        .hero-section h1 span { color: #fef08a; display: block; }
+        .hero-section p { font-size: 15px; color: #f0f9ff; max-width: 650px; margin: 0 auto; text-shadow: 0 1px 4px rgba(0,0,0,0.3); }
 
         .container { max-width: 1300px; margin: 40px auto; padding: 0 20px; }
         
@@ -186,7 +196,9 @@
 <body>
     <header>
         <a href="index.html" class="brand-container">
-            <div class="brand-icon-box"><i class="fa-solid fa-house-chimney"></i></div>
+            <div class="brand-icon-box">
+                <img src="ishu.jpg" alt="Paul Interior Logo">
+            </div>
             <div class="brand-text">
                 <h2>Paul Interior</h2>
                 <div class="brand-line"></div>
