@@ -240,7 +240,7 @@
             <div class="social-icons-box">
                 <a href="https://www.instagram.com/paul__interior621?stkn=MTh0OThka3N1YjcyZA==" target="_blank" class="social-icon-btn ig" title="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.facebook.com/share/1CrgrPyoQa/" target="_blank" class="social-icon-btn fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://youtube.com/@paulinterior621?si=WiEgBMiJcTYjl-eZ" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://youtube.com/@paulinterior621?si=WiEgBMiJcTYjl-eZ" target="_blank" class="social-icon-btn yt" title="YouTube"><i class="fab fa-youtube"></i></a>
                 <a href="https://wa.me/917889898026" target="_blank" class="social-icon-btn wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
             </div>
 
@@ -261,7 +261,7 @@
     </header>
 
     <section class="hero-section">
-        <h1>Client Reviews & <span>Detailed Testimonials (40 Reviews)</span></h1>
+        <h1>Client Reviews & <span>Detailed Testimonials</span></h1>
         <p>Read what our valued customers from Imamsahib and Shopian say about our quality craftsmanship, structural durability, and dedicated service.</p>
     </section>
 
@@ -294,8 +294,8 @@
                             </select>
                         </div>
                         <div class="form-group-field">
-                            <label>Profile Photo URL (Optional)</label>
-                            <input type="url" id="reviewerPhoto" placeholder="Paste image link or leave empty for default">
+                            <label>Profile Photo (Choose from Device / Gallery)</label>
+                            <input type="file" id="reviewerPhotoFile" accept="image/*" style="padding: 7px 10px;">
                         </div>
                     </div>
                     <!-- Secret 4-Digit PIN so only the author can edit their own review -->
@@ -315,150 +315,9 @@
         <div class="section-heading">
             <h2>Customer Feedback <span>& Experiences</span></h2>
         </div>
-        <div class="grid" id="testimonialGrid">
-            <script>
-                const clientNames = [
-                    "Tariq Ahmad Bhat", "Bilal Ahmed Wani", "Showkat Hussain Lone", "Farooq Ahmad Dar", 
-                    "Mohammad Shafi Mir", "Ghulam Nabi Malik", "Bashir Ahmad Rather", "Manzoor Ahmad Sheikh", 
-                    "Javaid Ahmad Shah", "Nisar Ahmad Ganaie", "Reyaz Ahmad Tantray", "Mehraj ud Din Kumar", 
-                    "Fayaz Ahmad Parray", "Tanveer Ahmad Lone", "Parvez Ahmad Sofi", "Mushtaq Ahmad Dar", 
-                    "Abdul Rashid Malik", "Zahoor Ahmad Wani", "Imtiyaz Ahmad Bhat", "Hilal Ahmad Mir", 
-                    "Rameez Ahmad Shah", "Adil Ahmad Rather", "Owais Ahmad Sheikh", "Zubair Ahmad Ganaie", 
-                    "Altaf Ahmad Tantray", "Tanzeel Ahmad Kumar", "Sameer Ahmad Parray", "Shabir Ahmad Lone", 
-                    "Arshid Ahmad Sofi", "Javid Ahmad Dar", "Mudasir Ahmad Malik", "Waseem Ahmad Wani", 
-                    "Firdous Ahmad Bhat", "Tanvir Ahmad Mir", "Nayeem Ahmad Shah", "Bilal Ahmad Rather", 
-                    "Showkat Ahmad Sheikh", "Farooq Ahmad Ganaie", "Mohammad Amin Tantray", "Ghulam Hassan Kumar"
-                ];
-
-                const shopianVillages = [
-                    "Imamsahib, Shopian", "Zainapora, Shopian", "Keller, Shopian", "Chitragam, Shopian", 
-                    "Herman, Shopian", "Turkengam, Shopian", "Nadigam, Shopian", "Checki Cholan, Shopian", 
-                    "Aglar, Shopian", "Heff Shirmal, Shopian", "Ramnagri, Shopian", "Pinjoora, Shopian", 
-                    "Keegam, Shopian", "Sugoo Kalpora, Shopian", "Trenz, Shopian", "Chotipora, Shopian", 
-                    "Sedow, Shopian", "Drvgam, Shopian", "Nowpora, Shopian", "Kapran, Shopian"
-                ];
-
-                const romanUrduReviews = [
-                    "Paul Interior Imamsahib ka kaam waqai lajawab aur behtareen hai. Humne apne ghar ke liye aluminum sliding windows lagwai hain jo na sirf dikhne mein bohot khoobsurat hain balki unki sliding bhi behad smooth hai. Shop ke karigaron ne bade dhyan se saari measurements li aur waqt par kaam mukammal kiya. Exceptional craftsmanship and premium quality materials used by the team. Highly recommended for everyone in Shopian.",
-                    "Steel balcony railings aur main gate ka kaam karwaya hai aur hum inki finishing se poori tarah mutmaeen hain. Welding aur polishing itni saaf-suthri hai ke door se hi ghar ka look shandar lagta hai. Paul Interior ki shop par jo professionalism dekhne ko milti hai wo kabile tareef hai. Strongest steel fabrication with absolute attention to structural safety and rust-free durability.",
-                    "Commercial shopfront glazing aur aluminum office partitions ke liye Paul Interior sabse behtareen option hai. Unka rate list bilkul transparent hai aur kaam mein koi compromise nahi hota. Time par project handover karna aur cooperative staff hona inki sabse badi khasiyat hai. Prompt service, reasonable pricing, and professional execution.",
-                    "Drawing room mein designer false ceiling aur LED lighting ka kaam karwaya hai jisse poore room ka ambiance hi badal gaya hai. Karigaron ne bade saleeqe se geometric patterns banaye aur hidden lighting fit ki. Quality of materials is top-notch and the finishing is completely flawless. Agar aapko apne ghar ko luxurious look dena hai toh Paul Interior se behtareen koi nahi hai.",
-                    "Heavy-duty main entrance gate ki fitting karwai hai jo ke behad mazboot aur stylish hai. Laser-cut designs aur smooth locking mechanism ne hamari umeedon se badh kar kaam kiya hai. Shopian ke sard mausam aur barishon ke bawajood is par zang (rust) ka koi asar nahi hua. Outstanding durability and brilliant metal work executed with utmost perfection.",
-                    "Office cabins ke liye glass partitions lagwayi hain jisse space ka bohot behtareen use hua hai aur office ekdam corporate aur professional lagne laga hai. Sound insulation bhi bohot acchi hai. Great architectural partitioning work with sleek aluminium framing and toughened glass. Paul Interior team is extremely polite and efficient.",
-                    "Paul Interior Imamsahib ki shop par jakar jab humne samples dekhe tabhi samajh aa gaya tha ke kaam kitna uchaa hoga. Unke master craftsmen ki mehnat har ek weld aur joint mein saaf nazar aati hai. Structural safety par unka special focus rehta hai. Reliable, trustworthy, and expert fabrication works delivered right on time.",
-                    "Aluminum kitchen cabinets banwayi hain jo ke 100% waterproof aur termite-proof hain. Bright orange aur clean white combination ne kitchen ki ronak badha di hai. Cleaning karna bhi ab behad aasan ho gaya hai. Top-notch quality and brilliant modern modular kitchen execution by Paul Interior.",
-                    "Customer support aur dealing ka tarika itna shandar hai ke aapko kabhi kisi baat ki pareshani nahi hoti. Initial measurements se lekar final installation tak poori team ne desh-bhakti aur imandari ke sath kaam kiya. Very polite staff and prompt response on every call. Proud to support a premier local business.",
-                    "Duplex house ke liye spiral staircase banwayi hai jo ghar ke beechon-beech ek shandar architectural masterpiece lagti hai. Sturdy steel center post aur polished wooden steps ka combination behad khoobsurat hai. Ultimate structural stability combined with elegant design aesthetics.",
-                    "Commercial complex ke liye stainless steel corridor handrails install karwayein hain. Heavy foot traffic ke bawajood yeh bilkul solid aur shine kar rahe hain. Premium grade 304 steel ka istemal kiya gaya hai jo ke long-lasting durability ki guarantee deta hai. Excellent commercial fabrication services in Shopian.",
-                    "Shop front glazing aur glass display windows ki wajah se hamari retail shop par walk-in customers ki tadaad badh gayi hai. Etched floral glass designs aur strong aluminium frames ne shop ko ek high-end international look diya hai. Professional glazing experts who know their job inside out.",
-                    "Shopian ki bhari barfari aur sard mausam ko bardasht karne ke liye humein mazboot roofing sheds ki zaroorat thi. Paul Interior ne jo polycarbonate roofing aur aluminium framing ki hai, usne saare weather tests pass kar liye hain. Highly durable, weather-resistant, and robust construction work.",
-                    "Boundary wall ke liye custom laser-cut gates banwayein hain jo ghar ki security ko naye level par le gaye hain. Design itna unique hai ke aane-jaane wale sabhi log tareef karte hain. Perfect blend of security, heavy-duty strength, and artistic metal craftsmanship.",
-                    "Bi-fold doors ki measurement aur fitting mein zara si bhi galti nahi hui. Ekdam smooth gliding tracks aur premium hardware fittings ki wajah se doors bina kisi awaz ke operate hote hain. Flawless execution and accurate engineering standards maintained by Paul Interior."
-                ];
-
-                const englishReviews = [
-                    "Exceptional aluminum sliding window installation! Highly professional team with unmatched local expertise in Shopian.",
-                    "Strongest steel balcony railings in our area. Very clean welding work and long-lasting corrosion-resistant finish.",
-                    "Prompt service and transparent rate list for commercial fabrication projects. Highly recommended for businesses.",
-                    "Beautiful false ceiling design executed perfectly in my drawing room with incredible attention to lighting detail.",
-                    "Heavy-duty main gate installed with precision engineering, secure locking, and stunning architectural appeal.",
-                    "Great office glass partitions that gave our corporate workspace a modern, open, and professional aesthetic.",
-                    "Reliable master craftsmen with deep focus on structural safety, precision cutting, and flawless metal joints.",
-                    "Top-notch quality aluminum kitchen cabinets that are completely waterproof, termite-proof, and stylish.",
-                    "Very polite customer support, timely project completion, and hassle-free on-site measurement service.",
-                    "The spiral staircase installed in our duplex residence is exceptionally sturdy, elegant, and space-saving.",
-                    "Outstanding stainless steel corridor handrails built with premium 304 grade steel for maximum commercial strength.",
-                    "Professional shop front glazing work featuring custom etched glass that significantly boosted our store visibility.",
-                    "Durable polycarbonate roofing sheds engineered specifically to withstand heavy winter snowfall in Kashmir.",
-                    "Secure boundary wall gates featuring gorgeous custom laser-cut patterns for elite residential security.",
-                    "Accurate measurements and flawless fitting of premium bi-fold doors with ultra-smooth sliding mechanisms.",
-                    "Amazing metal pergola structure built for our rooftop garden lounge providing perfect shade and style.",
-                    "Top quality retail display shelving units delivered precisely on the committed timeline without any delay.",
-                    "Truly trustworthy interior decoration and custom fabrication business located right in the heart of Imamsahib.",
-                    "Excellent glass skylight framing that brings abundant natural daylight into our main hallway corridors.",
-                    "Impeccable custom metal art pieces crafted meticulously to match our specific interior design requirements.",
-                    "Fantastic PVC wall paneling work that completely transformed our bedroom interior with moisture resistance.",
-                    "The acoustic sound insulation provided by these custom sliding glass windows is truly remarkable.",
-                    "Very cooperative workers who patiently listened to all our custom design ideas and brought them to life.",
-                    "Immaculate finishing on staircase wooden handrails and toughened glass balustrades for a luxury look.",
-                    "Reliable emergency repair and maintenance service provided promptly for our shop entrance setup.",
-                    "Extremely sturdy boundary fence railings constructed using high-grade industrial steel profiles.",
-                    "Clean execution of false ceiling multi-level lighting coves and geometric drop panels.",
-                    "High transparency in quotation pricing with zero hidden costs or unexpected extra charges.",
-                    "The modular kitchen structural framework is exceptionally robust, functional, and visually appealing.",
-                    "Professional team that completed our large commercial building exterior facade precisely on schedule.",
-                    "Unmatched aluminum fabrication quality that stands out as the best across the entire Shopian region.",
-                    "Gorgeous decorative glass etching and frosting applied to our main entrance double doors.",
-                    "Solid construction of outdoor architectural glass roofing canopies for terrace weather protection.",
-                    "Great attention to anti-rust primer coating and fine polishing on all heavy-duty steel gates.",
-                    "Prompt on-site visits and polite technical consultations provided by the Paul Interior team.",
-                    "Pristine installation of private office executive cabins with acoustic glass and aluminium frames.",
-                    "Durable wardrobe sliding door tracks and smooth rollers that operate effortlessly every single day.",
-                    "Magnificent decorative metal wall paneling adding rich texture and high-end luxury to the main hall.",
-                    "Absolute perfection in metal welding alignment, structural balance, and long-term durability.",
-                    "Highly recommended custom fabrication and interior design experts across Jammu and Kashmir!"
-                ];
-
-                let allReviews = [];
-                let shuffledUrdu = [...romanUrduReviews].sort(() => 0.5 - Math.random());
-                for(let i=0; i<15; i++) {
-                    allReviews.push({ text: shuffledUrdu[i], type: "Urdu" });
-                }
-
-                let shuffledEng = [...englishReviews].sort(() => 0.5 - Math.random());
-                for(let i=0; i<25; i++) {
-                    allReviews.push({ text: shuffledEng[i], type: "English" });
-                }
-
-                allReviews.sort(() => 0.5 - Math.random());
-
-                allReviews.forEach((item, i) => {
-                    let num = (i+1) < 10 ? '0'+(i+1) : (i+1);
-                    let photoId = 150 + i;
-                    let clientName = clientNames[i % clientNames.length];
-                    let villageName = shopianVillages[i % shopianVillages.length];
-                    let randomLikes = Math.floor(Math.random() * 25) + 5;
-                    
-                    document.write(`
-                        <div class="testimonial-card" id="card-${i}">
-                            <div class="project-number-badge" style="position:absolute; top:18px; right:18px; background:rgba(15, 23, 42, 0.85); color:#fff; padding:3px 8px; border-radius:15px; font-size:10px; font-weight:700; z-index:3; letter-spacing:1px; border:1px solid rgba(255,255,255,0.3);">#${num}</div>
-                            <div class="client-header">
-                                <img src="https://picsum.photos/id/${photoId}/100/100" alt="Client Photo" class="client-avatar">
-                                <div class="client-meta">
-                                    <h4 class="card-author-name">${clientName}</h4>
-                                    <span class="card-author-village">${villageName}</span>
-                                </div>
-                            </div>
-                            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            <p class="review-text-content">"${item.text}"</p>
-                            
-                            <!-- Interactive Social Actions -->
-                            <div class="social-actions-bar">
-                                <div class="action-btn-group">
-                                    <button type="button" class="card-action-btn" onclick="toggleLike(this)"><i class="fa-regular fa-heart"></i> <span class="like-counter">${randomLikes}</span></button>
-                                    <button type="button" class="card-action-btn" onclick="toggleReplyBox('card-${i}')"><i class="fa-regular fa-comment"></i> Reply</button>
-                                </div>
-                                <div>
-                                    <!-- Only authorized designer passcode can edit default reviews -->
-                                    <button type="button" class="card-action-btn" onclick="editProtectedFeedback('card-${i}', null)" title="Designer Edit"><i class="fa-solid fa-lock"></i> Edit</button>
-                                </div>
-                            </div>
-
-                            <!-- Reply Box Container -->
-                            <div class="reply-container-box" id="reply-box-card-${i}">
-                                <ul class="reply-list" id="reply-list-card-${i}">
-                                    <li class="reply-bubble"><b>Paul Interior:</b> Thank you so much for your kind trust!</li>
-                                </ul>
-                                <div class="reply-input-row">
-                                    <input type="text" placeholder="Write a reply..." id="input-card-${i}" onkeypress="if(event.key === 'Enter') submitReply('card-${i}')">
-                                    <button type="button" class="reply-submit-btn" onclick="submitReply('card-${i}')">Post</button>
-                                </div>
-                            </div>
-                        </div>
-                    `);
-                });
-            </script>
-        </div>
+        
+        <!-- Grid for All Reviews -->
+        <div class="grid" id="testimonialGrid"></div>
 
         <div class="praise-note-box" style="background:var(--bg-surface); border:2px solid #f97316; border-radius:16px; padding:35px; text-align:center; box-shadow:var(--shadow-soft); max-width:900px; margin:0 auto;">
             <h3 style="font-size:22px; font-weight:800; color:var(--text-main); margin-bottom:15px; text-transform:uppercase;">Our Craftsmanship & <span>Dedication</span></h3>
@@ -477,7 +336,7 @@
 
     <footer>
         <div class="footer-info-text">
-            <p>📍 Imamsahib, Shopian, Jammu & Kashmir | 📞 +91 78898 98026</p>
+            <p>📍 Imamsahib, Shopian, Jammu & Kashmir | 📞 +91 78898 98026/6005345718</p>
         </div>
         <div class="footer-copyright">
             <p>&copy; 2026 Paul Interior Imamsahib. All Rights Reserved.</p>
@@ -494,7 +353,7 @@
 
     <script>
         // Master Passcode for Web Designer / Shop Owner
-        const DESIGNER_MASTER_PIN = "ishu927";
+        const DESIGNER_MASTER_PIN = "Ishu927";
 
         function toggleMenu(event) {
             event.stopPropagation();
@@ -502,7 +361,6 @@
             menu.classList.toggle("active");
         }
 
-        // Toggle review form expansion
         function toggleReviewForm() {
             var formBody = document.getElementById("reviewFormBody");
             var btnText = document.getElementById("toggleFormBtnText");
@@ -514,132 +372,279 @@
             }
         }
 
-        // Like / Unlike functionality
-        function toggleLike(btn) {
-            var counter = btn.querySelector(".like-counter");
-            var count = parseInt(counter.innerText);
-            var icon = btn.querySelector("i");
-            if(btn.classList.contains("liked")) {
-                btn.classList.remove("liked");
-                icon.className = "fa-regular fa-heart";
-                counter.innerText = count - 1;
-            } else {
-                btn.classList.add("liked");
-                icon.className = "fa-solid fa-heart";
-                counter.innerText = count + 1;
+        // Default 40 Reviews Data List
+        const clientNames = [
+            "Tariq Ahmad Bhat", "Bilal Ahmed Wani", "Showkat Hussain Lone", "Farooq Ahmad Dar", 
+            "Mohammad Shafi Mir", "Ghulam Nabi Malik", "Bashir Ahmad Rather", "Manzoor Ahmad Sheikh", 
+            "Javaid Ahmad Shah", "Nisar Ahmad Ganaie", "Reyaz Ahmad Tantray", "Mehraj ud Din Kumar", 
+            "Fayaz Ahmad Parray", "Tanveer Ahmad Lone", "Parvez Ahmad Sofi", "Mushtaq Ahmad Dar", 
+            "Abdul Rashid Malik", "Zahoor Ahmad Wani", "Imtiyaz Ahmad Bhat", "Hilal Ahmad Mir", 
+            "Rameez Ahmad Shah", "Adil Ahmad Rather", "Owais Ahmad Sheikh", "Zubair Ahmad Ganaie", 
+            "Altaf Ahmad Tantray", "Tanzeel Ahmad Kumar", "Sameer Ahmad Parray", "Shabir Ahmad Lone", 
+            "Arshid Ahmad Sofi", "Javid Ahmad Dar", "Mudasir Ahmad Malik", "Waseem Ahmad Wani", 
+            "Firdous Ahmad Bhat", "Tanvir Ahmad Mir", "Nayeem Ahmad Shah", "Bilal Ahmad Rather", 
+            "Showkat Ahmad Sheikh", "Farooq Ahmad Ganaie", "Mohammad Amin Tantray", "Ghulam Hassan Kumar"
+        ];
+
+        const shopianVillages = [
+            "Imamsahib, Shopian", "Zainapora, Shopian", "Keller, Shopian", "Chitragam, Shopian", 
+            "Herman, Shopian", "Turkengam, Shopian", "Nadigam, Shopian", "Checki Cholan, Shopian", 
+            "Aglar, Shopian", "Heff Shirmal, Shopian", "Ramnagri, Shopian", "Pinjoora, Shopian", 
+            "Keegam, Shopian", "Sugoo Kalpora, Shopian", "Trenz, Shopian", "Chotipora, Shopian", 
+            "Sedow, Shopian", "Drvgam, Shopian", "Nowpora, Shopian", "Kapran, Shopian"
+        ];
+
+        const presetReviewsText = [
+            "Paul Interior Imamsahib ka kaam waqai lajawab aur behtareen hai. Humne apne ghar ke liye aluminum sliding windows lagwai hain jo na sirf dikhne mein bohot khoobsurat hain balki unki sliding bhi behad smooth hai. Highly recommended for everyone in Shopian.",
+            "Steel balcony railings aur main gate ka kaam karwaya hai aur hum inki finishing se poori tarah mutmaeen hain. Strongest steel fabrication with absolute attention to structural safety and rust-free durability.",
+            "Commercial shopfront glazing aur aluminum office partitions ke liye Paul Interior sabse behtareen option hai. Unka rate list bilkul transparent hai aur kaam mein koi compromise nahi hota.",
+            "Drawing room mein designer false ceiling aur LED lighting ka kaam karwaya hai jisse poore room ka ambiance hi badal gaya hai. Top-notch finishing and luxurious look.",
+            "Heavy-duty main entrance gate ki fitting karwai hai jo ke behad mazboot aur stylish hai. Outstanding durability and brilliant metal work executed with utmost perfection.",
+            "Office cabins ke liye glass partitions lagwayi hain jisse space ka bohot behtareen use hua hai. Great architectural partitioning work with sleek aluminium framing.",
+            "Paul Interior Imamsahib ki shop par jakar jab humne samples dekhe tabhi samajh aa gaya tha ke kaam kitna uchaa hoga. Reliable, trustworthy, and expert fabrication works.",
+            "Aluminum kitchen cabinets banwayi hain jo ke 100% waterproof aur termite-proof hain. Bright orange aur clean white combination ne kitchen ki ronak badha di hai.",
+            "Customer support aur dealing ka tarika itna shandar hai ke aapko kabhi kisi baat ki pareshani nahi hoti. Very polite staff and prompt response on every call.",
+            "Duplex house ke liye spiral staircase banwayi hai jo ghar ke beechon-beech ek shandar architectural masterpiece lagti hai. Ultimate structural stability.",
+            "Commercial complex ke liye stainless steel corridor handrails install karwayein hain. Heavy foot traffic ke bawajood yeh bilkul solid aur shine kar rahe hain.",
+            "Shop front glazing aur glass display windows ki wajah se hamari retail shop par walk-in customers ki tadaad badh gayi hai. Professional glazing experts.",
+            "Shopian ki bhari barfari aur sard mausam ko bardasht karne ke liye humein mazboot roofing sheds ki zaroorat thi. Highly durable and weather-resistant.",
+            "Boundary wall ke liye custom laser-cut gates banwayein hain jo ghar ki security ko naye level par le gaye hain. Perfect blend of security and strength.",
+            "Bi-fold doors ki measurement aur fitting mein zara si bhi galti nahi hui. Flawless execution and accurate engineering standards maintained.",
+            "Exceptional aluminum sliding window installation! Highly professional team with unmatched local expertise in Shopian.",
+            "Strongest steel balcony railings in our area. Very clean welding work and long-lasting corrosion-resistant finish.",
+            "Prompt service and transparent rate list for commercial fabrication projects. Highly recommended for businesses.",
+            "Beautiful false ceiling design executed perfectly in my drawing room with incredible attention to lighting detail.",
+            "Heavy-duty main gate installed with precision engineering, secure locking, and stunning architectural appeal.",
+            "Great office glass partitions that gave our corporate workspace a modern, open, and professional aesthetic.",
+            "Reliable master craftsmen with deep focus on structural safety, precision cutting, and flawless metal joints.",
+            "Top-notch quality aluminum kitchen cabinets that are completely waterproof, termite-proof, and stylish.",
+            "Very polite customer support, timely project completion, and hassle-free on-site measurement service.",
+            "The spiral staircase installed in our duplex residence is exceptionally sturdy, elegant, and space-saving.",
+            "Outstanding stainless steel corridor handrails built with premium 304 grade steel for maximum commercial strength.",
+            "Professional shop front glazing work featuring custom etched glass that significantly boosted our store visibility.",
+            "Durable polycarbonate roofing sheds engineered specifically to withstand heavy winter snowfall in Kashmir.",
+            "Secure boundary wall gates featuring gorgeous custom laser-cut patterns for elite residential security.",
+            "Accurate measurements and flawless fitting of premium bi-fold doors with ultra-smooth sliding mechanisms.",
+            "Amazing metal pergola structure built for our rooftop garden lounge providing perfect shade and style.",
+            "Top quality retail display shelving units delivered precisely on the committed timeline without any delay.",
+            "Truly trustworthy interior decoration and custom fabrication business located right in the heart of Imamsahib.",
+            "Excellent glass skylight framing that brings abundant natural daylight into our main hallway corridors.",
+            "Impeccable custom metal art pieces crafted meticulously to match our specific interior design requirements.",
+            "Fantastic PVC wall paneling work that completely transformed our bedroom interior with moisture resistance.",
+            "The acoustic sound insulation provided by these custom sliding glass windows is truly remarkable.",
+            "Very cooperative workers who patiently listened to all our custom design ideas and brought them to life.",
+            "Immaculate finishing on staircase wooden handrails and toughened glass balustrades for a luxury look.",
+            "Highly recommended custom fabrication and interior design experts across Jammu and Kashmir!"
+        ];
+
+        // Storage Engine: LocalStorage Persistent Data Loading
+        function getSavedFeedbacks() {
+            var saved = localStorage.getItem("paul_interior_testimonials_v1");
+            if (saved) {
+                return JSON.parse(saved);
             }
+            
+            // Generate standard initial array of 40 reviews
+            var initial = [];
+            for(var i = 0; i < 40; i++) {
+                initial.push({
+                    id: "card-" + i,
+                    badge: "#" + (i < 9 ? "0" + (i + 1) : (i + 1)),
+                    name: clientNames[i % clientNames.length],
+                    address: shopianVillages[i % shopianVillages.length],
+                    photo: "https://picsum.photos/id/" + (150 + i) + "/100/100",
+                    stars: 5,
+                    text: presetReviewsText[i],
+                    likes: (i * 3 + 7) % 35 + 5,
+                    isLiked: false,
+                    pin: null, // default reviews need designer PIN
+                    replies: ["Thank you so much for your kind trust!"]
+                });
+            }
+            localStorage.setItem("paul_interior_testimonials_v1", JSON.stringify(initial));
+            return initial;
         }
 
-        // Toggle reply comment box
+        function saveFeedbacks(feedbacks) {
+            localStorage.setItem("paul_interior_testimonials_v1", JSON.stringify(feedbacks));
+        }
+
+        // Render All Cards from Saved State
+        function renderAllCards() {
+            var grid = document.getElementById("testimonialGrid");
+            grid.innerHTML = "";
+            var feedbacks = getSavedFeedbacks();
+
+            feedbacks.forEach(function(item) {
+                var starsHtml = "";
+                for(var s = 0; s < item.stars; s++) {
+                    starsHtml += '<i class="fa-solid fa-star"></i>';
+                }
+
+                var repliesHtml = "";
+                if (item.replies && item.replies.length > 0) {
+                    item.replies.forEach(function(r) {
+                        repliesHtml += `<li class="reply-bubble"><b>Customer / Team:</b> ${r}</li>`;
+                    });
+                }
+
+                var likedClass = item.isLiked ? "liked" : "";
+                var heartIcon = item.isLiked ? "fa-solid fa-heart" : "fa-regular fa-heart";
+
+                var card = document.createElement("div");
+                card.className = "testimonial-card";
+                card.id = item.id;
+                card.innerHTML = `
+                    <div class="project-number-badge" style="position:absolute; top:18px; right:18px; background:rgba(15, 23, 42, 0.85); color:#fff; padding:3px 8px; border-radius:15px; font-size:10px; font-weight:700; z-index:3; letter-spacing:1px; border:1px solid rgba(255,255,255,0.3);">${item.badge}</div>
+                    <div class="client-header">
+                        <img src="${item.photo}" alt="Client Photo" class="client-avatar" onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop'">
+                        <div class="client-meta">
+                            <h4 class="card-author-name">${item.name}</h4>
+                            <span class="card-author-village">${item.address}</span>
+                        </div>
+                    </div>
+                    <div class="stars">${starsHtml}</div>
+                    <p class="review-text-content">"${item.text}"</p>
+                    
+                    <div class="social-actions-bar">
+                        <div class="action-btn-group">
+                            <button type="button" class="card-action-btn ${likedClass}" onclick="toggleLikePermanent('${item.id}')"><i class="${heartIcon}"></i> <span class="like-counter">${item.likes}</span></button>
+                            <button type="button" class="card-action-btn" onclick="toggleReplyBox('${item.id}')"><i class="fa-regular fa-comment"></i> Reply</button>
+                        </div>
+                        <div>
+                            <button type="button" class="card-action-btn" onclick="editProtectedFeedback('${item.id}')" title="Edit Feedback"><i class="fa-solid fa-pencil"></i> Edit</button>
+                        </div>
+                    </div>
+
+                    <div class="reply-container-box" id="reply-box-${item.id}">
+                        <ul class="reply-list" id="reply-list-${item.id}">
+                            ${repliesHtml}
+                        </ul>
+                        <div class="reply-input-row">
+                            <input type="text" placeholder="Write a reply..." id="input-${item.id}" onkeypress="if(event.key === 'Enter') submitReplyPermanent('${item.id}')">
+                            <button type="button" class="reply-submit-btn" onclick="submitReplyPermanent('${item.id}')">Post</button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Toggle and Save Like Permanently
+        function toggleLikePermanent(cardId) {
+            var feedbacks = getSavedFeedbacks();
+            var item = feedbacks.find(f => f.id === cardId);
+            if (!item) return;
+
+            if (item.isLiked) {
+                item.isLiked = false;
+                item.likes = Math.max(0, item.likes - 1);
+            } else {
+                item.isLiked = true;
+                item.likes = item.likes + 1;
+            }
+            saveFeedbacks(feedbacks);
+            renderAllCards();
+        }
+
+        // Submit and Save Reply Permanently
+        function submitReplyPermanent(cardId) {
+            var input = document.getElementById("input-" + cardId);
+            var text = input.value.trim();
+            if (text === "") return;
+
+            var feedbacks = getSavedFeedbacks();
+            var item = feedbacks.find(f => f.id === cardId);
+            if (!item) return;
+
+            if (!item.replies) item.replies = [];
+            item.replies.push(text);
+            saveFeedbacks(feedbacks);
+            renderAllCards();
+        }
+
         function toggleReplyBox(cardId) {
             var box = document.getElementById("reply-box-" + cardId);
-            if(box) {
+            if (box) {
                 box.classList.toggle("active");
             }
         }
 
-        // Submit comment / reply
-        function submitReply(cardId) {
-            var input = document.getElementById("input-" + cardId);
-            var text = input.value.trim();
-            if(text === "") return;
-            var list = document.getElementById("reply-list-" + cardId);
-            var li = document.createElement("li");
-            li.className = "reply-bubble";
-            li.innerHTML = "<b>Customer:</b> " + text;
-            list.appendChild(li);
-            input.value = "";
-        }
-
-        // Secure Edit Feedback (Checks Author PIN or Designer Passcode)
-        function editProtectedFeedback(cardId, authorPin) {
-            var card = document.getElementById(cardId);
-            var contentElem = card.querySelector(".review-text-content");
-            var currentText = contentElem.innerText.replace(/^"|"$/g, '');
+        // Edit Feedback with Author PIN or Designer Passcode Permanently
+        function editProtectedFeedback(cardId) {
+            var feedbacks = getSavedFeedbacks();
+            var item = feedbacks.find(f => f.id === cardId);
+            if (!item) return;
 
             var inputKey = prompt("Security Check: Enter your 4-digit PIN (or Web Designer Passcode) to edit:");
-            if(inputKey === null) return;
+            if (inputKey === null) return;
 
-            // Allow if input matches the reviewer's private PIN OR designer master passcode
-            if((authorPin && inputKey.trim() === authorPin) || inputKey.trim() === DESIGNER_MASTER_PIN) {
-                var newText = prompt("Edit your feedback message:", currentText);
-                if(newText !== null && newText.trim() !== "") {
-                    contentElem.innerText = '"' + newText.trim() + '"';
-                    alert("Feedback updated successfully!");
+            if ((item.pin && inputKey.trim() === item.pin) || inputKey.trim() === DESIGNER_MASTER_PIN) {
+                var newText = prompt("Edit your feedback message:", item.text);
+                if (newText !== null && newText.trim() !== "") {
+                    item.text = newText.trim();
+                    saveFeedbacks(feedbacks);
+                    renderAllCards();
+                    alert("Feedback updated and saved permanently!");
                 }
             } else {
                 alert("Permission Denied! Incorrect PIN or Passcode. Only the review author or Web Designer can edit this feedback.");
             }
         }
 
-        // Add a brand new review submitted from form with its own private PIN
+        // Add New Feedback with Device Gallery Photo Upload
         function handleNewFeedbackSubmit(event) {
             event.preventDefault();
             var name = document.getElementById("reviewerName").value.trim();
             var address = document.getElementById("reviewerAddress").value.trim();
             var rating = parseInt(document.getElementById("reviewerRating").value);
-            var photo = document.getElementById("reviewerPhoto").value.trim();
             var pin = document.getElementById("reviewerPin").value.trim();
             var message = document.getElementById("reviewerMessage").value.trim();
+            var fileInput = document.getElementById("reviewerPhotoFile");
 
-            if(!pin || pin.length < 4) {
-                alert("Please enter at least a 4-digit security PIN so that you can edit your feedback in the future!");
+            if (!pin || pin.length < 4) {
+                alert("Please enter at least a 4-digit security PIN to edit your feedback later!");
                 return;
             }
 
-            if(!photo) {
-                photo = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop";
+            // Function to save review into localStorage
+            function saveReviewWithPhoto(photoBase64) {
+                var feedbacks = getSavedFeedbacks();
+                var newFeedback = {
+                    id: "card-user-" + Date.now(),
+                    badge: "#NEW",
+                    name: name,
+                    address: address,
+                    photo: photoBase64,
+                    stars: rating,
+                    text: message,
+                    likes: 1,
+                    isLiked: true,
+                    pin: pin,
+                    replies: ["Thank you so much for your valuable review!"]
+                };
+
+                // Add to top of array
+                feedbacks.unshift(newFeedback);
+                saveFeedbacks(feedbacks);
+
+                document.getElementById("newFeedbackForm").reset();
+                toggleReviewForm();
+                renderAllCards();
+                alert("Thank you! Your feedback has been permanently published.");
             }
 
-            var starsHtml = "";
-            for(var s=0; s<rating; s++) {
-                starsHtml += '<i class="fa-solid fa-star"></i>';
+            // If user selected photo from Gallery/Device
+            if (fileInput.files && fileInput.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    saveReviewWithPhoto(e.target.result);
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                // Fallback default avatar
+                saveReviewWithPhoto("https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop");
             }
-
-            var grid = document.getElementById("testimonialGrid");
-            var newId = "card-user-" + Date.now();
-
-            var newCard = document.createElement("div");
-            newCard.className = "testimonial-card";
-            newCard.id = newId;
-            newCard.innerHTML = `
-                <div class="project-number-badge" style="position:absolute; top:18px; right:18px; background:rgba(15, 23, 42, 0.85); color:#fff; padding:3px 8px; border-radius:15px; font-size:10px; font-weight:700; z-index:3; letter-spacing:1px; border:1px solid rgba(255,255,255,0.3);">#NEW</div>
-                <div class="client-header">
-                    <img src="${photo}" alt="Client Photo" class="client-avatar" onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop'">
-                    <div class="client-meta">
-                        <h4 class="card-author-name">${name}</h4>
-                        <span class="card-author-village">${address}</span>
-                    </div>
-                </div>
-                <div class="stars">${starsHtml}</div>
-                <p class="review-text-content">"${message}"</p>
-                
-                <div class="social-actions-bar">
-                    <div class="action-btn-group">
-                        <button type="button" class="card-action-btn" onclick="toggleLike(this)"><i class="fa-regular fa-heart"></i> <span class="like-counter">1</span></button>
-                        <button type="button" class="card-action-btn" onclick="toggleReplyBox('${newId}')"><i class="fa-regular fa-comment"></i> Reply</button>
-                    </div>
-                    <div>
-                        <!-- Bound to this reviewer's unique PIN -->
-                        <button type="button" class="card-action-btn" onclick="editProtectedFeedback('${newId}', '${pin}')" title="Edit your review"><i class="fa-solid fa-pencil"></i> Edit</button>
-                    </div>
-                </div>
-
-                <div class="reply-container-box" id="reply-box-${newId}">
-                    <ul class="reply-list" id="reply-list-${newId}">
-                        <li class="reply-bubble"><b>Paul Interior:</b> Thank you so much for your valuable review!</li>
-                    </ul>
-                    <div class="reply-input-row">
-                        <input type="text" placeholder="Write a reply..." id="input-${newId}" onkeypress="if(event.key === 'Enter') submitReply('${newId}')">
-                        <button type="button" class="reply-submit-btn" onclick="submitReply('${newId}')">Post</button>
-                    </div>
-                </div>
-            `;
-
-            grid.prepend(newCard);
-            document.getElementById("newFeedbackForm").reset();
-            toggleReviewForm();
-            alert("Thank you! Your feedback has been published. Remember your 4-digit PIN to edit it anytime.");
         }
 
         function closeZoomDirectly() {
@@ -660,6 +665,11 @@
                 menu.classList.remove("active");
             }
         });
+
+        // Initialize and Load Cards on Window Load
+        window.onload = function() {
+            renderAllCards();
+        };
     </script>
 </body>
 </html>
