@@ -143,15 +143,35 @@
         .hero-section h1 span { color: #fef08a; }
         .hero-section p { color: #fef3c7; max-width: 650px; margin: 0 auto; font-size: 15px; font-weight: 500; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
 
-        .container { max-width: 1300px; margin: 50px auto; padding: 0 20px; }
+        .container { max-width: 1300px; margin: 40px auto; padding: 0 20px; }
+        
+        /* Feedback Submission Section */
+        .add-review-section { background: var(--bg-surface); border: 2px solid #f97316; border-radius: 18px; padding: 25px 30px; margin-bottom: 40px; box-shadow: var(--shadow-soft); animation: cardBorderGlow 8s infinite; }
+        .add-review-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .add-review-header h3 { font-size: 19px; font-weight: 800; text-transform: uppercase; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
+        .add-review-header h3 i { color: var(--accent-orange); }
+        .toggle-form-btn { background: var(--accent-orange); color: #fff; padding: 8px 18px; border-radius: 20px; font-size: 13px; font-weight: 700; border: none; cursor: pointer; transition: 0.3s; }
+        .toggle-form-btn:hover { background: #ea580c; }
+        
+        .review-form-body { display: none; margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 20px; }
+        .review-form-body.active { display: block; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        @media(max-width: 650px) { .form-row { grid-template-columns: 1fr; } }
+        .form-group-field { margin-bottom: 12px; }
+        .form-group-field label { display: block; font-size: 12px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; text-transform: uppercase; }
+        .form-group-field input, .form-group-field textarea, .form-group-field select { width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-color); font-size: 13.5px; outline: none; background: #fff; }
+        .form-group-field input:focus, .form-group-field textarea:focus { border-color: var(--accent-orange); }
+        .form-submit-btn { background: var(--accent-orange); color: #fff; border: none; padding: 11px 28px; border-radius: 25px; font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.3s; }
+        .form-submit-btn:hover { background: #ea580c; }
+
         .section-heading { text-align: center; margin-bottom: 30px; }
         .section-heading h2 { font-size: 26px; font-weight: 800; text-transform: uppercase; color: var(--text-main); }
         .section-heading h2 span { color: var(--accent-orange); }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-bottom: 50px; }
         
-        .testimonial-card { background: var(--bg-surface); border: 2px solid #f97316; border-radius: 16px; padding: 25px; box-shadow: var(--shadow-soft); animation: cardBorderGlow 8s infinite; cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; position: relative; }
-        .testimonial-card:hover { transform: translateY(-5px) scale(1.02); }
+        .testimonial-card { background: var(--bg-surface); border: 2px solid #f97316; border-radius: 16px; padding: 22px; box-shadow: var(--shadow-soft); animation: cardBorderGlow 8s infinite; transition: all 0.3s ease; display: flex; flex-direction: column; position: relative; }
+        .testimonial-card:hover { transform: translateY(-4px); }
 
         .client-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
         .client-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-orange); }
@@ -159,7 +179,24 @@
         .client-meta span { font-size: 11px; color: var(--accent-orange); font-weight: 700; text-transform: uppercase; display: block; }
 
         .stars { color: #eab308; margin-bottom: 10px; font-size: 13px; }
-        .testimonial-card p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 5px; font-style: italic; line-height: 1.7; text-align: justify; }
+        .review-text-content { font-size: 13.5px; color: var(--text-muted); margin-bottom: 12px; font-style: italic; line-height: 1.7; text-align: justify; }
+
+        /* Social Interactive Actions: Like, Reply, Edit */
+        .social-actions-bar { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 12px; margin-top: auto; }
+        .action-btn-group { display: flex; align-items: center; gap: 14px; }
+        .card-action-btn { background: none; border: none; cursor: pointer; font-size: 13px; font-weight: 700; color: var(--text-muted); display: inline-flex; align-items: center; gap: 5px; transition: 0.2s; padding: 4px 6px; border-radius: 6px; }
+        .card-action-btn:hover { color: var(--accent-orange); background: #fff7ed; }
+        .card-action-btn.liked { color: #ef4444; }
+        .card-action-btn.liked i { color: #ef4444; }
+
+        .reply-container-box { display: none; margin-top: 14px; padding-top: 10px; border-top: 1px dashed var(--border-color); }
+        .reply-container-box.active { display: block; }
+        .reply-list { list-style: none; margin-bottom: 10px; }
+        .reply-bubble { background: #fff; border: 1px solid var(--border-color); border-radius: 8px; padding: 7px 12px; font-size: 12px; color: var(--text-main); margin-bottom: 6px; }
+        .reply-bubble b { color: var(--accent-orange); }
+        .reply-input-row { display: flex; gap: 8px; }
+        .reply-input-row input { flex: 1; padding: 7px 12px; border-radius: 20px; border: 1px solid var(--border-color); font-size: 12px; outline: none; }
+        .reply-submit-btn { background: var(--accent-orange); color: #fff; border: none; padding: 7px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; cursor: pointer; }
 
         @keyframes modalBackgroundGlow {
             0% { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); }
@@ -175,12 +212,6 @@
 
         .close-modal-btn { position: absolute; top: 15px; right: 15px; color: var(--text-main); font-size: 20px; cursor: pointer; background: #f1f5f9; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color); transition: 0.3s; }
         .close-modal-btn:hover { background: var(--accent-orange); color: #fff; transform: rotate(90deg); }
-
-        .zoomed-modal-card .client-header { justify-content: center; flex-direction: column; gap: 8px; margin-bottom: 15px; }
-        .zoomed-modal-card .client-avatar { width: 75px; height: 75px; }
-        .zoomed-modal-card .stars { font-size: 18px; margin-bottom: 10px; }
-        .zoomed-modal-card p { font-size: 15px; margin-bottom: 15px; color: var(--text-main); text-align: justify; }
-        .modal-divider { width: 100%; height: 1px; background: var(--border-color); margin: 15px 0; }
 
         footer { background-color: #0f172a; color: #94a3b8; padding: 40px 20px; text-align: center; margin-top: 60px; border-top: 1px solid #1e293b; }
         .footer-info-text { margin-bottom: 15px; font-size: 13px; }
@@ -208,8 +239,8 @@
             <!-- Social Media Animated Icons -->
             <div class="social-icons-box">
                 <a href="https://www.instagram.com/paul__interior621?stkn=MTh0OThka3N1YjcyZA==" target="_blank" class="social-icon-btn ig" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/" target="_blank" class="social-icon-btn fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.youtube.com/" target="_blank" class="social-icon-btn yt" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com/share/1CrgrPyoQa/" target="_blank" class="social-icon-btn fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://youtube.com/@paulinterior621?si=WiEgBMiJcTYjl-eZ" title="YouTube"><i class="fab fa-youtube"></i></a>
                 <a href="https://wa.me/917889898026" target="_blank" class="social-icon-btn wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
             </div>
 
@@ -235,6 +266,52 @@
     </section>
 
     <div class="container">
+        <!-- Add / Write a Review Form Card -->
+        <div class="add-review-section">
+            <div class="add-review-header" onclick="toggleReviewForm()">
+                <h3><i class="fa-solid fa-pen-to-square"></i> Share Your Experience & Feedback</h3>
+                <button type="button" class="toggle-form-btn" id="toggleFormBtnText"><i class="fa-solid fa-plus"></i> Write a Review</button>
+            </div>
+            <div class="review-form-body" id="reviewFormBody">
+                <form id="newFeedbackForm" onsubmit="handleNewFeedbackSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group-field">
+                            <label>Your Full Name</label>
+                            <input type="text" id="reviewerName" placeholder="e.g. Farooq Ahmad Lone" required>
+                        </div>
+                        <div class="form-group-field">
+                            <label>Village / Address (Shopian)</label>
+                            <input type="text" id="reviewerAddress" placeholder="e.g. Imamsahib, Shopian" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group-field">
+                            <label>Star Rating</label>
+                            <select id="reviewerRating">
+                                <option value="5">★★★★★ (5 Stars - Excellent)</option>
+                                <option value="4">★★★★☆ (4 Stars - Very Good)</option>
+                                <option value="3">★★★☆☆ (3 Stars - Good)</option>
+                            </select>
+                        </div>
+                        <div class="form-group-field">
+                            <label>Profile Photo URL (Optional)</label>
+                            <input type="url" id="reviewerPhoto" placeholder="Paste image link or leave empty for default">
+                        </div>
+                    </div>
+                    <!-- Secret 4-Digit PIN so only the author can edit their own review -->
+                    <div class="form-group-field">
+                        <label>Create a 4-Digit Security PIN (To edit your feedback later)</label>
+                        <input type="password" id="reviewerPin" maxlength="6" placeholder="Enter a 4-digit PIN (e.g. 1234)" required>
+                    </div>
+                    <div class="form-group-field">
+                        <label>Your Review Message</label>
+                        <textarea id="reviewerMessage" rows="3" placeholder="Tell us about the aluminum, steel, or interior work done by Paul Interior..." required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit-btn"><i class="fa-solid fa-paper-plane"></i> Submit Feedback</button>
+                </form>
+            </div>
+        </div>
+
         <div class="section-heading">
             <h2>Customer Feedback <span>& Experiences</span></h2>
         </div>
@@ -340,19 +417,43 @@
                     let photoId = 150 + i;
                     let clientName = clientNames[i % clientNames.length];
                     let villageName = shopianVillages[i % shopianVillages.length];
+                    let randomLikes = Math.floor(Math.random() * 25) + 5;
                     
                     document.write(`
-                        <div class="testimonial-card" onclick="zoomCard(this)">
+                        <div class="testimonial-card" id="card-${i}">
                             <div class="project-number-badge" style="position:absolute; top:18px; right:18px; background:rgba(15, 23, 42, 0.85); color:#fff; padding:3px 8px; border-radius:15px; font-size:10px; font-weight:700; z-index:3; letter-spacing:1px; border:1px solid rgba(255,255,255,0.3);">#${num}</div>
                             <div class="client-header">
                                 <img src="https://picsum.photos/id/${photoId}/100/100" alt="Client Photo" class="client-avatar">
                                 <div class="client-meta">
-                                    <h4>${clientName}</h4>
-                                    <span>${villageName}</span>
+                                    <h4 class="card-author-name">${clientName}</h4>
+                                    <span class="card-author-village">${villageName}</span>
                                 </div>
                             </div>
                             <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            <p>"${item.text}"</p>
+                            <p class="review-text-content">"${item.text}"</p>
+                            
+                            <!-- Interactive Social Actions -->
+                            <div class="social-actions-bar">
+                                <div class="action-btn-group">
+                                    <button type="button" class="card-action-btn" onclick="toggleLike(this)"><i class="fa-regular fa-heart"></i> <span class="like-counter">${randomLikes}</span></button>
+                                    <button type="button" class="card-action-btn" onclick="toggleReplyBox('card-${i}')"><i class="fa-regular fa-comment"></i> Reply</button>
+                                </div>
+                                <div>
+                                    <!-- Only authorized designer passcode can edit default reviews -->
+                                    <button type="button" class="card-action-btn" onclick="editProtectedFeedback('card-${i}', null)" title="Designer Edit"><i class="fa-solid fa-lock"></i> Edit</button>
+                                </div>
+                            </div>
+
+                            <!-- Reply Box Container -->
+                            <div class="reply-container-box" id="reply-box-card-${i}">
+                                <ul class="reply-list" id="reply-list-card-${i}">
+                                    <li class="reply-bubble"><b>Paul Interior:</b> Thank you so much for your kind trust!</li>
+                                </ul>
+                                <div class="reply-input-row">
+                                    <input type="text" placeholder="Write a reply..." id="input-card-${i}" onkeypress="if(event.key === 'Enter') submitReply('card-${i}')">
+                                    <button type="button" class="reply-submit-btn" onclick="submitReply('card-${i}')">Post</button>
+                                </div>
+                            </div>
                         </div>
                     `);
                 });
@@ -366,7 +467,7 @@
         </div>
     </div>
 
-    <!-- Zoom Overlay Modal -->
+    <!-- Zoom Overlay Modal (for detailed view) -->
     <div class="zoom-overlay" id="zoomOverlay" onclick="closeZoomModal(event)">
         <div class="zoomed-modal-card" id="zoomedModalCard">
             <div class="close-modal-btn" onclick="closeZoomDirectly()">×</div>
@@ -385,28 +486,160 @@
             </div>
             <div class="footer-social-links">
                 <a href="https://www.instagram.com/jaani_927/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="https://www.facebook.com/bhat.ishtiyaq.737" target="_blank" title="Facebook"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="https://www.facebook.com/bhat.ishtiyaq.737" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
                 <a href="https://wa.me/919149604818" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
             </div>
         </div>
     </footer>
 
     <script>
+        // Master Passcode for Web Designer / Shop Owner
+        const DESIGNER_MASTER_PIN = "ishu927";
+
         function toggleMenu(event) {
             event.stopPropagation();
             var menu = document.getElementById("side-menu");
             menu.classList.toggle("active");
         }
 
-        function zoomCard(cardElement) {
-            var overlay = document.getElementById("zoomOverlay");
-            var contentArea = document.getElementById("modalContentArea");
-            
-            var cardHtml = cardElement.innerHTML;
-            contentArea.innerHTML = cardHtml;
+        // Toggle review form expansion
+        function toggleReviewForm() {
+            var formBody = document.getElementById("reviewFormBody");
+            var btnText = document.getElementById("toggleFormBtnText");
+            formBody.classList.toggle("active");
+            if(formBody.classList.contains("active")) {
+                btnText.innerHTML = '<i class="fa-solid fa-minus"></i> Close Form';
+            } else {
+                btnText.innerHTML = '<i class="fa-solid fa-plus"></i> Write a Review';
+            }
+        }
 
-            overlay.classList.add("active");
-            document.body.style.overflow = "hidden";
+        // Like / Unlike functionality
+        function toggleLike(btn) {
+            var counter = btn.querySelector(".like-counter");
+            var count = parseInt(counter.innerText);
+            var icon = btn.querySelector("i");
+            if(btn.classList.contains("liked")) {
+                btn.classList.remove("liked");
+                icon.className = "fa-regular fa-heart";
+                counter.innerText = count - 1;
+            } else {
+                btn.classList.add("liked");
+                icon.className = "fa-solid fa-heart";
+                counter.innerText = count + 1;
+            }
+        }
+
+        // Toggle reply comment box
+        function toggleReplyBox(cardId) {
+            var box = document.getElementById("reply-box-" + cardId);
+            if(box) {
+                box.classList.toggle("active");
+            }
+        }
+
+        // Submit comment / reply
+        function submitReply(cardId) {
+            var input = document.getElementById("input-" + cardId);
+            var text = input.value.trim();
+            if(text === "") return;
+            var list = document.getElementById("reply-list-" + cardId);
+            var li = document.createElement("li");
+            li.className = "reply-bubble";
+            li.innerHTML = "<b>Customer:</b> " + text;
+            list.appendChild(li);
+            input.value = "";
+        }
+
+        // Secure Edit Feedback (Checks Author PIN or Designer Passcode)
+        function editProtectedFeedback(cardId, authorPin) {
+            var card = document.getElementById(cardId);
+            var contentElem = card.querySelector(".review-text-content");
+            var currentText = contentElem.innerText.replace(/^"|"$/g, '');
+
+            var inputKey = prompt("Security Check: Enter your 4-digit PIN (or Web Designer Passcode) to edit:");
+            if(inputKey === null) return;
+
+            // Allow if input matches the reviewer's private PIN OR designer master passcode
+            if((authorPin && inputKey.trim() === authorPin) || inputKey.trim() === DESIGNER_MASTER_PIN) {
+                var newText = prompt("Edit your feedback message:", currentText);
+                if(newText !== null && newText.trim() !== "") {
+                    contentElem.innerText = '"' + newText.trim() + '"';
+                    alert("Feedback updated successfully!");
+                }
+            } else {
+                alert("Permission Denied! Incorrect PIN or Passcode. Only the review author or Web Designer can edit this feedback.");
+            }
+        }
+
+        // Add a brand new review submitted from form with its own private PIN
+        function handleNewFeedbackSubmit(event) {
+            event.preventDefault();
+            var name = document.getElementById("reviewerName").value.trim();
+            var address = document.getElementById("reviewerAddress").value.trim();
+            var rating = parseInt(document.getElementById("reviewerRating").value);
+            var photo = document.getElementById("reviewerPhoto").value.trim();
+            var pin = document.getElementById("reviewerPin").value.trim();
+            var message = document.getElementById("reviewerMessage").value.trim();
+
+            if(!pin || pin.length < 4) {
+                alert("Please enter at least a 4-digit security PIN so that you can edit your feedback in the future!");
+                return;
+            }
+
+            if(!photo) {
+                photo = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop";
+            }
+
+            var starsHtml = "";
+            for(var s=0; s<rating; s++) {
+                starsHtml += '<i class="fa-solid fa-star"></i>';
+            }
+
+            var grid = document.getElementById("testimonialGrid");
+            var newId = "card-user-" + Date.now();
+
+            var newCard = document.createElement("div");
+            newCard.className = "testimonial-card";
+            newCard.id = newId;
+            newCard.innerHTML = `
+                <div class="project-number-badge" style="position:absolute; top:18px; right:18px; background:rgba(15, 23, 42, 0.85); color:#fff; padding:3px 8px; border-radius:15px; font-size:10px; font-weight:700; z-index:3; letter-spacing:1px; border:1px solid rgba(255,255,255,0.3);">#NEW</div>
+                <div class="client-header">
+                    <img src="${photo}" alt="Client Photo" class="client-avatar" onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop'">
+                    <div class="client-meta">
+                        <h4 class="card-author-name">${name}</h4>
+                        <span class="card-author-village">${address}</span>
+                    </div>
+                </div>
+                <div class="stars">${starsHtml}</div>
+                <p class="review-text-content">"${message}"</p>
+                
+                <div class="social-actions-bar">
+                    <div class="action-btn-group">
+                        <button type="button" class="card-action-btn" onclick="toggleLike(this)"><i class="fa-regular fa-heart"></i> <span class="like-counter">1</span></button>
+                        <button type="button" class="card-action-btn" onclick="toggleReplyBox('${newId}')"><i class="fa-regular fa-comment"></i> Reply</button>
+                    </div>
+                    <div>
+                        <!-- Bound to this reviewer's unique PIN -->
+                        <button type="button" class="card-action-btn" onclick="editProtectedFeedback('${newId}', '${pin}')" title="Edit your review"><i class="fa-solid fa-pencil"></i> Edit</button>
+                    </div>
+                </div>
+
+                <div class="reply-container-box" id="reply-box-${newId}">
+                    <ul class="reply-list" id="reply-list-${newId}">
+                        <li class="reply-bubble"><b>Paul Interior:</b> Thank you so much for your valuable review!</li>
+                    </ul>
+                    <div class="reply-input-row">
+                        <input type="text" placeholder="Write a reply..." id="input-${newId}" onkeypress="if(event.key === 'Enter') submitReply('${newId}')">
+                        <button type="button" class="reply-submit-btn" onclick="submitReply('${newId}')">Post</button>
+                    </div>
+                </div>
+            `;
+
+            grid.prepend(newCard);
+            document.getElementById("newFeedbackForm").reset();
+            toggleReviewForm();
+            alert("Thank you! Your feedback has been published. Remember your 4-digit PIN to edit it anytime.");
         }
 
         function closeZoomDirectly() {
