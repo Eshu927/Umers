@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testimonials | Paul Interior Imamsahib</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Firebase SDK Scripts for Global Realtime Database -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
     <style>
         :root { 
             --bg-body: #ffffff; 
@@ -353,7 +358,27 @@
 
     <script>
         // Master Passcode for Web Designer / Shop Owner
-        const DESIGNER_MASTER_PIN = "Ishu927";
+        const DESIGNER_MASTER_PIN = "ishu927";
+
+        /* =========================================================================
+           YOUR CONNECTED FIREBASE REALTIME DATABASE CONFIGURATION
+           ========================================================================= */
+        const firebaseConfig = {
+            databaseURL: "https://webdesigner-c2a72-default-rtdb.firebaseio.com",
+            projectId: "webdesigner-c2a72"
+        };
+
+        let db = null;
+        let isFirebaseActive = false;
+
+        try {
+            firebase.initializeApp(firebaseConfig);
+            db = firebase.database();
+            isFirebaseActive = true;
+            console.log("Firebase Connected Successfully with webdesigner-c2a72!");
+        } catch (e) {
+            console.log("Firebase connection error:", e);
+        }
 
         function toggleMenu(event) {
             event.stopPropagation();
@@ -437,14 +462,13 @@
             "Highly recommended custom fabrication and interior design experts across Jammu and Kashmir!"
         ];
 
-        // Storage Engine: LocalStorage Persistent Data Loading
+        // Storage Engine: LocalStorage Backup + Realtime Cloud Firebase Sync
         function getSavedFeedbacks() {
-            var saved = localStorage.getItem("paul_interior_testimonials_v1");
+            var saved = localStorage.getItem("paul_interior_testimonials_live");
             if (saved) {
                 return JSON.parse(saved);
             }
             
-            // Generate standard initial array of 40 reviews
             var initial = [];
             for(var i = 0; i < 40; i++) {
                 initial.push({
@@ -457,23 +481,28 @@
                     text: presetReviewsText[i],
                     likes: (i * 3 + 7) % 35 + 5,
                     isLiked: false,
-                    pin: null, // default reviews need designer PIN
+                    pin: null,
                     replies: ["Thank you so much for your kind trust!"]
                 });
             }
-            localStorage.setItem("paul_interior_testimonials_v1", JSON.stringify(initial));
+            localStorage.setItem("paul_interior_testimonials_live", JSON.stringify(initial));
             return initial;
         }
 
         function saveFeedbacks(feedbacks) {
-            localStorage.setItem("paul_interior_testimonials_v1", JSON.stringify(feedbacks));
+            localStorage.setItem("paul_interior_testimonials_live", JSON.stringify(feedbacks));
+            
+            // Sync directly to your Firebase Database across all phones worldwide
+            if (isFirebaseActive && db) {
+                db.ref("global_testimonials").set(feedbacks);
+            }
         }
 
-        // Render All Cards from Saved State
-        function renderAllCards() {
+        // Render All Cards
+        function renderAllCards(feedbacksList) {
             var grid = document.getElementById("testimonialGrid");
             grid.innerHTML = "";
-            var feedbacks = getSavedFeedbacks();
+            var feedbacks = feedbacksList || getSavedFeedbacks();
 
             feedbacks.forEach(function(item) {
                 var starsHtml = "";
@@ -530,7 +559,22 @@
             });
         }
 
-        // Toggle and Save Like Permanently
+        // Live Realtime Database Listener: Syncs updates live across all phones
+        if (isFirebaseActive && db) {
+            db.ref("global_testimonials").on("value", function(snapshot) {
+                var cloudData = snapshot.val();
+                if (cloudData && Array.isArray(cloudData)) {
+                    localStorage.setItem("paul_interior_testimonials_live", JSON.stringify(cloudData));
+                    renderAllCards(cloudData);
+                } else {
+                    // Initial database upload if empty
+                    var current = getSavedFeedbacks();
+                    db.ref("global_testimonials").set(current);
+                }
+            });
+        }
+
+        // Like / Unlike & Sync
         function toggleLikePermanent(cardId) {
             var feedbacks = getSavedFeedbacks();
             var item = feedbacks.find(f => f.id === cardId);
@@ -544,10 +588,10 @@
                 item.likes = item.likes + 1;
             }
             saveFeedbacks(feedbacks);
-            renderAllCards();
+            renderAllCards(feedbacks);
         }
 
-        // Submit and Save Reply Permanently
+        // Submit Reply & Sync
         function submitReplyPermanent(cardId) {
             var input = document.getElementById("input-" + cardId);
             var text = input.value.trim();
@@ -560,7 +604,7 @@
             if (!item.replies) item.replies = [];
             item.replies.push(text);
             saveFeedbacks(feedbacks);
-            renderAllCards();
+            renderAllCards(feedbacks);
         }
 
         function toggleReplyBox(cardId) {
@@ -570,7 +614,7 @@
             }
         }
 
-        // Edit Feedback with Author PIN or Designer Passcode Permanently
+        // Edit Feedback with Author PIN or Designer Passcode
         function editProtectedFeedback(cardId) {
             var feedbacks = getSavedFeedbacks();
             var item = feedbacks.find(f => f.id === cardId);
@@ -584,15 +628,15 @@
                 if (newText !== null && newText.trim() !== "") {
                     item.text = newText.trim();
                     saveFeedbacks(feedbacks);
-                    renderAllCards();
-                    alert("Feedback updated and saved permanently!");
+                    renderAllCards(feedbacks);
+                    alert("Feedback updated and synced live across all phones!");
                 }
             } else {
                 alert("Permission Denied! Incorrect PIN or Passcode. Only the review author or Web Designer can edit this feedback.");
             }
         }
 
-        // Add New Feedback with Device Gallery Photo Upload
+        // Add New Feedback with Photo & Cloud Sync
         function handleNewFeedbackSubmit(event) {
             event.preventDefault();
             var name = document.getElementById("reviewerName").value.trim();
@@ -607,7 +651,6 @@
                 return;
             }
 
-            // Function to save review into localStorage
             function saveReviewWithPhoto(photoBase64) {
                 var feedbacks = getSavedFeedbacks();
                 var newFeedback = {
@@ -624,17 +667,15 @@
                     replies: ["Thank you so much for your valuable review!"]
                 };
 
-                // Add to top of array
                 feedbacks.unshift(newFeedback);
                 saveFeedbacks(feedbacks);
 
                 document.getElementById("newFeedbackForm").reset();
                 toggleReviewForm();
-                renderAllCards();
-                alert("Thank you! Your feedback has been permanently published.");
+                renderAllCards(feedbacks);
+                alert("Thank you! Your feedback has been published and synced live across all devices.");
             }
 
-            // If user selected photo from Gallery/Device
             if (fileInput.files && fileInput.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
@@ -642,7 +683,6 @@
                 };
                 reader.readAsDataURL(fileInput.files[0]);
             } else {
-                // Fallback default avatar
                 saveReviewWithPhoto("https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop");
             }
         }
