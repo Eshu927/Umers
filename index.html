@@ -225,7 +225,7 @@
             100% { background: conic-gradient(from 0deg, #f97316, #3b82f6, #10b981, #ec4899, #f97316); }
         }
 
-        /* CD disc chalegi peeche (z-index: 1) */
+        /* CD Disc Rotating Behind (z-index: 1) */
         .bg-large-circle { 
             position: absolute; 
             left: 50%; 
@@ -240,7 +240,7 @@
             animation: rotateBackgroundCycle 12s linear infinite, multiColorBackgroundCycle 15s ease infinite; 
         }
 
-        /* CD outer rim text rotating behind photos */
+        /* CD outer rim text rotating behind photos (Perfect 2-Repeat Cycle Without Cuts) */
         .cd-outer-text-ring {
             position: absolute;
             left: 50%;
@@ -254,7 +254,13 @@
             animation: rotateBackgroundCycle 14s linear infinite;
         }
         .cd-outer-text-ring svg { width: 100%; height: 100%; }
-        .cd-outer-text-ring text { fill: #0f172a; font-size: 8.5px; font-weight: 900; letter-spacing: 2.2px; text-transform: uppercase; }
+        .cd-outer-text-ring text { 
+            fill: #0f172a; 
+            font-size: 6.7px; 
+            font-weight: 900; 
+            letter-spacing: 1.1px; 
+            text-transform: uppercase; 
+        }
 
         /* Photos aage rahengi (z-index: 3) */
         .custom-organic-card { position: relative; z-index: 3; width: 38%; background: transparent; text-align: center; cursor: pointer; }
@@ -267,7 +273,7 @@
 
         .card-animated-line { width: 100%; height: 3px; background: linear-gradient(90deg, #f97316, #3b82f6, #10b981, #ec4899, #f97316); background-size: 300% 300%; animation: multiColorTextAndBorder 6s linear infinite; margin-top: 6px; border-radius: 2px; box-shadow: 0 0 8px rgba(249,115,22,0.5); }
 
-        /* Stable Central Icon */
+        /* Stable Central Icon (z-index: 2) */
         .center-reference-icon { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 95px; height: 95px; background: #ffffff; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(249,115,22,0.5); border: 4px solid #f97316; z-index: 2; }
         .center-reference-icon img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -427,10 +433,12 @@
     <div class="reference-banner-container">
         <!-- CD Disc Rotating Behind (z-index: 1) -->
         <div class="bg-large-circle"></div>
+        
+        <!-- CD Outer Rim Rotating Text: Perfect Double Repeat Loop -->
         <div class="cd-outer-text-ring">
             <svg viewBox="0 0 100 100">
-                <path id="cdRingPath" d="M 12, 50 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" fill="transparent" />
-                <text><textPath href="#cdRingPath" startOffset="0%">PAUL INTERIOR IMAMSAHIB • PAUL INTERIOR IMAMSAHIB • </textPath></text>
+                <path id="cdRingPath" d="M 11, 50 a 39,39 0 1,1 78,0 a 39,39 0 1,1 -78,0" fill="transparent" />
+                <text><textPath href="#cdRingPath" startOffset="0%">• PAUL INTERIOR IMAMSAHIB • PAUL INTERIOR IMAMSAHIB </textPath></text>
             </svg>
         </div>
 
@@ -567,7 +575,7 @@
                         <li class="comment-item"><b>Bashir Rather:</b> Strong safety and looks elegant.</li>
                     </ul>
                     <div class="comment-input-row">
-                        <input type="text" placeholder="Add a comment..." id="comm-input-5" onkeypress="if(event.key==='Enter') submitProjectComment(5)">
+                        <input type="text" placeholder="Add a comment..." id="comm-input-2" onkeypress="if(event.key==='Enter') submitProjectComment(5)">
                         <button type="button" class="comment-submit-btn" onclick="submitProjectComment(5)">Post</button>
                     </div>
                 </div>
@@ -758,7 +766,7 @@
     <!-- Footer with Developer Social Links -->
     <footer>
         <div class="footer-info-text">
-            <p>📍 Imamsahib, Shopian, Jammu & Kashmir | 📞 +91 78898 98026/6005345718</p>
+            <p>📍 Imamsahib, Shopian, Jammu & Kashmir | 📞 +91 78898 98026</p>
         </div>
         <div class="footer-copyright">
             <p>&copy; 2026 Paul Interior Imamsahib. All Rights Reserved.</p>
