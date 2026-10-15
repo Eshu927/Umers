@@ -4,22 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rate List | Paul Interior Imamsahib</title>
+    <!-- FontAwesome CDN for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { 
-            --bg-body: #f8fafc; 
+            --bg-body: #f1f5f9; 
             --bg-surface: #ffffff; 
             --text-main: #0f172a; 
             --text-muted: #64748b;
             --accent-orange: #f97316; 
             --border-color: #e2e8f0; 
-            --shadow-soft: 0 10px 25px -5px rgba(0,0,0,0.08);
+            --shadow-soft: 0 10px 25px -5px rgba(0,0,0,0.06);
+            --neo-border: 2px solid #0f172a;
+            --neo-shadow: 4px 4px 0px #0f172a;
+
+            /* STYLE 4: NEUMORPHISM TOKENS */
+            --neu-bg: #e2e8f0;
+            --neu-flat: #f1f5f9;
+            --neu-shadow-outer: 7px 7px 15px #cbd5e1, -7px -7px 15px #ffffff;
+            --neu-shadow-inset: inset 4px 4px 8px #cbd5e1, inset -4px -4px 8px #ffffff;
+            --neu-shadow-pill: 4px 4px 8px #cbd5e1, -4px -4px 8px #ffffff;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--bg-body); color: var(--text-main); overflow-x: hidden; line-height: 1.6; padding-top: 75px; }
+        body { background-color: var(--bg-body); color: var(--text-main); overflow-x: hidden; line-height: 1.6; padding-top: 78px; }
         
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; background-color: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; border-bottom: 1px solid var(--border-color); }
+        /* STYLE 3: GLASSMORPHISM STICKY HEADER */
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 14px 30px; 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04); 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8); 
+        }
         
         @keyframes multiColorTextAndBorder {
             0% { color: #f97316; border-color: #f97316; }
@@ -58,8 +84,28 @@
         .social-icon-btn.wa { background: #25d366; }
         .social-icon-btn:hover { transform: scale(1.15); }
 
-        .menu-btn { font-size: 14px; cursor: pointer; color: var(--text-main); background: #f1f5f9; padding: 8px 16px; border-radius: 25px; border: 2px solid var(--border-color); font-weight: 600; display: flex; align-items: center; gap: 6px; animation: multiColorTextAndBorder 10s infinite; }
-        .menu-btn:hover { background: var(--accent-orange); color: #fff; border-color: var(--accent-orange); }
+        /* Neo-Brutalism Menu Button */
+        .menu-btn { 
+            font-size: 14px; 
+            cursor: pointer; 
+            color: var(--text-main); 
+            background: #ffffff; 
+            padding: 8px 18px; 
+            border-radius: 30px; 
+            border: var(--neo-border); 
+            box-shadow: 2px 2px 0px #0f172a; 
+            font-weight: 700; 
+            display: flex; 
+            align-items: center; 
+            gap: 7px; 
+            transition: all 0.2s ease; 
+        }
+        .menu-btn:hover { 
+            background: var(--accent-orange); 
+            color: #fff; 
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px #0f172a;
+        }
 
         @keyframes menuPopAnimation {
             0% { opacity: 0; transform: translateY(-20px) scale(0.85); filter: blur(10px); }
@@ -77,14 +123,15 @@
             display: none; 
             flex-direction: column; 
             position: absolute; 
-            top: 65px; 
+            top: 68px; 
             right: 0; 
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95)); 
-            backdrop-filter: blur(20px); 
+            background: rgba(15, 23, 42, 0.88); 
+            backdrop-filter: blur(24px); 
+            -webkit-backdrop-filter: blur(24px);
             min-width: 270px; 
             border-radius: 18px; 
             padding: 15px 0; 
-            border: 2px solid #f97316; 
+            border: 2px solid rgba(249, 115, 22, 0.7); 
             z-index: 2000; 
             animation: menuPopAnimation 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, menuGlowBorder 8s infinite; 
         }
@@ -140,7 +187,7 @@
             100% { transform: scale(1); text-shadow: 0 0 10px rgba(254,240,138,0.4); }
         }
 
-        .hero-section { position: relative; padding: 75px 20px; text-align: center; background: linear-gradient(135deg, #0284c7, #38bdf8, #0369a1); background-size: 1000px 1000px; overflow: hidden; border-bottom: 1px solid var(--border-color); color: #fff; }
+        .hero-section { position: relative; padding: 75px 20px 60px; text-align: center; background: linear-gradient(135deg, #0284c7, #38bdf8, #0369a1); background-size: 1000px 1000px; overflow: hidden; border-bottom: 1px solid var(--border-color); color: #fff; }
         .hero-section::before { content: ''; position: absolute; top: 0; left: 0; width: 200%; height: 100%; background-image: radial-gradient(rgba(255, 255, 255, 0.4) 2px, transparent 2px), radial-gradient(rgba(255, 255, 255, 0.25) 4px, transparent 4px); background-size: 150px 150px, 250px 250px; background-position: 0 0, 50px 50px; animation: skyCloudMove 25s linear infinite; pointer-events: none; opacity: 0.7; }
         
         .sky-star { position: absolute; background: #ffffff; border-radius: 50%; animation: twinkleStar 3s ease-in-out infinite; z-index: 2; pointer-events: none; }
@@ -154,18 +201,183 @@
         .s-8 { top: 75px; left: 28%; width: 5px; height: 5px; animation-delay: 1.1s; }
 
         .hero-section > * { position: relative; z-index: 3; }
-        .hero-section h1 { font-size: 34px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; animation: heroRatePulse 4s infinite; }
+        .hero-section h1 { font-size: 34px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; animation: heroRatePulse 4s infinite; }
         .hero-section h1 span { color: #fef08a; }
-        .hero-section p { color: #e0f2fe; max-width: 600px; margin: 0 auto; font-size: 15px; text-shadow: 0 1px 4px rgba(0,0,0,0.3); }
+        .hero-section p { color: #e0f2fe; max-width: 650px; margin: 0 auto; font-size: 15px; text-shadow: 0 1px 4px rgba(0,0,0,0.3); }
 
-        .table-container { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
-        .table-wrapper { background: var(--bg-surface); border: 2px solid #f97316; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-soft); animation: cardBorderGlow 8s infinite; }
+        /* ========================================================
+           STYLE 4: NEUMORPHISM INTERACTIVE RATE CALCULATOR
+           ======================================================== */
+        .neu-calc-container {
+            max-width: 820px;
+            margin: -30px auto 40px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .neu-calc-card {
+            background: #f1f5f9;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: var(--neu-shadow-outer);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .neu-calc-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .neu-calc-title h3 {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text-main);
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .neu-calc-title h3 i {
+            color: var(--accent-orange);
+            font-size: 20px;
+        }
+
+        .neu-calc-tag {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            background: #e2e8f0;
+            color: var(--text-muted);
+            box-shadow: var(--neu-shadow-pill);
+        }
+
+        .neu-grid-form {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 16px;
+            align-items: end;
+        }
+
+        .neu-field-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .neu-select, .neu-input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 14px;
+            background: #f1f5f9;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+            box-shadow: var(--neu-shadow-inset);
+            transition: all 0.2s ease;
+        }
+
+        .neu-select:focus, .neu-input:focus {
+            box-shadow: inset 5px 5px 10px #cbd5e1, inset -5px -5px 10px #ffffff;
+            color: var(--accent-orange);
+        }
+
+        .neu-calc-btn {
+            padding: 12px 20px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            box-shadow: 4px 4px 10px rgba(249, 115, 22, 0.4), -3px -3px 8px #ffffff;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            height: 47px;
+        }
+
+        .neu-calc-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 14px rgba(249, 115, 22, 0.5), -4px -4px 10px #ffffff;
+        }
+
+        .neu-calc-btn:active {
+            transform: translateY(1px);
+            box-shadow: inset 3px 3px 6px rgba(0,0,0,0.3);
+        }
+
+        .neu-result-box {
+            margin-top: 20px;
+            padding: 18px 24px;
+            border-radius: 16px;
+            background: #f8fafc;
+            box-shadow: var(--neu-shadow-inset);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .neu-result-text span {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .neu-result-text h4 {
+            font-size: 15px;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .neu-result-val {
+            font-size: 26px;
+            font-weight: 900;
+            color: #ea580c;
+        }
+
+        @media (max-width: 768px) {
+            .neu-grid-form { grid-template-columns: 1fr; }
+        }
+
+        /* ========================================================
+           STYLE 9: FLAT DESIGN CLEAN TABLE LAYOUT
+           ======================================================== */
+        .table-container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        .table-wrapper { 
+            background: #ffffff; 
+            border: 2px solid #0f172a; 
+            border-radius: 18px; 
+            overflow: hidden; 
+            box-shadow: 4px 4px 0px #0f172a; 
+        }
         .rate-table { width: 100%; border-collapse: collapse; }
         .rate-table th, .rate-table td { padding: 15px 20px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 14px; }
         .rate-table th { background: #0f172a; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-        .rate-table tbody tr { cursor: pointer; transition: background 0.2s; }
-        .rate-table tbody tr:hover { background: #fff7ed; }
+        .rate-table tbody tr { cursor: pointer; transition: all 0.2s ease; }
+        .rate-table tbody tr:hover { background: #fff7ed; transform: scale(1.002); }
 
+        /* Animated Zoom Overlay Modal for Rates - Neumorphic Bevel Card */
         @keyframes modalBackgroundGlow {
             0% { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); }
             50% { background: rgba(30, 41, 59, 0.9); backdrop-filter: blur(12px); }
@@ -175,7 +387,21 @@
         .zoom-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.4s ease; animation: modalBackgroundGlow 6s infinite; }
         .zoom-overlay.active { opacity: 1; visibility: visible; }
 
-        .zoomed-modal-card { width: 90%; max-width: 520px; background: #ffffff; border-radius: 24px; padding: 40px; position: relative; box-shadow: 0 25px 60px rgba(0,0,0,0.4); text-align: center; border: 3px solid #f97316; animation: cardBorderGlow 6s infinite; transform: scale(0.5); opacity: 0; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .zoomed-modal-card { 
+            width: 90%; 
+            max-width: 520px; 
+            background: #ffffff; 
+            border-radius: 24px; 
+            padding: 40px; 
+            position: relative; 
+            box-shadow: 0 25px 60px rgba(0,0,0,0.35); 
+            text-align: center; 
+            border: 3px solid #f97316; 
+            animation: cardBorderGlow 6s infinite; 
+            transform: scale(0.5); 
+            opacity: 0; 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        }
         .zoom-overlay.active .zoomed-modal-card { transform: scale(1); opacity: 1; }
 
         .close-modal-btn { position: absolute; top: 15px; right: 15px; color: var(--text-main); font-size: 20px; cursor: pointer; background: #f1f5f9; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color); transition: 0.3s; }
@@ -192,17 +418,322 @@
 
         .zoomed-modal-card .modal-price { font-size: 28px; font-weight: 800; color: #ea580c; background: linear-gradient(135deg, #fff7ed, #ffedd5); padding: 20px; border-radius: 14px; border: 2px dashed #fb923c; margin-top: 15px; animation: pricePulse 2s infinite; }
 
-        footer { background-color: #0f172a; color: #94a3b8; padding: 40px 20px; text-align: center; margin-top: 60px; border-top: 1px solid #1e293b; }
-        .footer-info-text { margin-bottom: 15px; font-size: 13px; }
-        .footer-copyright { font-size: 13px; color: #94a3b8; border-top: 1px solid #1e293b; padding-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .developer-signature { color: #f8fafc; font-weight: 700; text-decoration: none; transition: color 0.3s; }
-        .developer-signature:hover { color: var(--accent-orange); }
-        .footer-social-links { display: flex; align-items: center; gap: 18px; margin-top: 5px; }
-        .footer-social-links a { color: #cbd5e1; font-size: 15px; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.3s; }
-        .footer-social-links a:hover { color: var(--accent-orange); }
+        /* ========================================================
+           PREMIUM UPGRADED FOOTER & COPYRIGHT SECTION
+           ======================================================== */
+        footer.paul-footer {
+            background: linear-gradient(180deg, #090e17 0%, #030712 100%);
+            color: #cbd5e1;
+            padding: 70px 24px 30px;
+            margin-top: 80px;
+            border-top: 3px solid #f97316;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer.paul-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: radial-gradient(ellipse at center, rgba(249,115,22,0.8), transparent 70%);
+        }
+
+        .footer-main-grid {
+            max-width: 1260px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.3fr;
+            gap: 40px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-brand-col .footer-logo-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            text-decoration: none;
+        }
+
+        .footer-brand-col .logo-disc {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid #f97316;
+            box-shadow: 0 0 15px rgba(249,115,22,0.4);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+        }
+
+        .footer-brand-col .logo-disc img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .footer-brand-col h3 {
+            font-size: 20px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .footer-brand-col h3 span {
+            color: #fb923c;
+            display: block;
+            font-size: 11px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .footer-brand-col p {
+            font-size: 13.5px;
+            color: #94a3b8;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-col-title {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 35px;
+            height: 3px;
+            background: #f97316;
+            border-radius: 2px;
+        }
+
+        .footer-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links-list a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+        }
+
+        .footer-links-list a i {
+            font-size: 10px;
+            color: #f97316;
+            transition: transform 0.25s ease;
+        }
+
+        .footer-links-list a:hover {
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
+        .footer-links-list a:hover i {
+            transform: translateX(3px);
+            color: #fef08a;
+        }
+
+        /* Interactive Contact Card Pills */
+        .footer-contact-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-pill-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: #cbd5e1;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .contact-pill-card:hover {
+            background: rgba(249, 115, 22, 0.12);
+            border-color: rgba(249, 115, 22, 0.5);
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+
+        .contact-pill-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(249, 115, 22, 0.15);
+            color: #fb923c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            flex-shrink: 0;
+            border: 1px solid rgba(249, 115, 22, 0.3);
+        }
+
+        .contact-pill-info h4 {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #94a3b8;
+            font-weight: 700;
+        }
+
+        .contact-pill-info span {
+            font-size: 13px;
+            font-weight: 600;
+            color: #f8fafc;
+        }
+
+        /* Bottom Copyright Bar with Developer Neo Badge */
+        .footer-bottom-bar {
+            max-width: 1260px;
+            margin: 30px auto 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .copyright-text {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .copyright-text b {
+            color: #cbd5e1;
+        }
+
+        .developer-neo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 2px solid #334155;
+            padding: 8px 18px;
+            border-radius: 40px;
+            text-decoration: none;
+            box-shadow: 3px 3px 0px #f97316;
+            transition: all 0.25s ease;
+        }
+
+        .developer-neo-badge:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px #f97316;
+            border-color: #f97316;
+        }
+
+        .developer-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .developer-name {
+            font-size: 13.5px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .developer-name i {
+            color: #22c55e;
+            font-size: 8px;
+            animation: pulseDot 2s infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { opacity: 0.4; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        .footer-social-circles {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-circle-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-circle-btn:hover {
+            background: #f97316;
+            color: #ffffff;
+            border-color: #f97316;
+            transform: translateY(-3px) scale(1.08);
+            box-shadow: 0 6px 15px rgba(249, 115, 22, 0.4);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-main-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 35px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            footer.paul-footer { padding: 50px 18px 25px; }
+            .footer-main-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .footer-bottom-bar {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Sticky Header (Glassmorphism & Minimalism) -->
     <header>
         <a href="index.html" class="brand-container">
             <div class="brand-icon-box">
@@ -218,14 +749,15 @@
             <!-- Social Media Animated Icons -->
             <div class="social-icons-box">
                 <a href="https://www.instagram.com/paul__interior621?stkn=MTh0OThka3N1YjcyZA==" target="_blank" class="social-icon-btn ig" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/" target="_blank" class="social-icon-btn fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.youtube.com/" target="_blank" class="social-icon-btn yt" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com/share/1CrgrPyoQa/" target="_blank" class="social-icon-btn fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://youtube.com/@paulinterior621?si=WiEgBMiJcTYjl-eZ" target="_blank" class="social-icon-btn yt" title="YouTube"><i class="fab fa-youtube"></i></a>
                 <a href="https://wa.me/917889898026" target="_blank" class="social-icon-btn wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
             </div>
 
+            <!-- Neo-Brutalist Menu Button -->
             <div class="menu-btn" onclick="toggleMenu(event)"><i class="fa-solid fa-bars"></i> Menu</div>
             
-            <!-- Upgraded Modern Glassmorphism Menu Dropdown -->
+            <!-- Glassmorphism Menu Dropdown -->
             <nav id="side-menu">
                 <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
                 <a href="services.html"><i class="fa-solid fa-gears"></i> Services</a>
@@ -239,6 +771,7 @@
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero-section">
         <div class="sky-star s-1"></div>
         <div class="sky-star s-2"></div>
@@ -250,9 +783,55 @@
         <div class="sky-star s-8"></div>
 
         <h1>Official Fabrication <span>Rate List</span></h1>
-        <p>Click on any product row below to instantly view its detailed pricing, measurement unit, and grade specifications with smooth animations.</p>
+        <p>Explore transparent square-feet & running-feet prices for aluminium, glass, steel, and PVC works across Shopian and Kashmir. Click any row for popup details.</p>
     </section>
 
+    <!-- STYLE 4: NEUMORPHISM INTERACTIVE RATE CALCULATOR -->
+    <div class="neu-calc-container">
+        <div class="neu-calc-card">
+            <div class="neu-calc-title">
+                <h3><i class="fa-solid fa-calculator"></i> Quick Instant Cost Estimator</h3>
+                <span class="neu-calc-tag">Live Dynamic Math</span>
+            </div>
+            <div class="neu-grid-form">
+                <div class="neu-field-group">
+                    <label>Choose Item</label>
+                    <select id="calcItemSelect" class="neu-select" onchange="calculateQuickEstimate()">
+                        <option value="180">Aluminium Coloured (₹180 / running ft)</option>
+                        <option value="150">Aluminium Silver (₹150 / running ft)</option>
+                        <option value="90">5mm Clear Glass (₹90 / sq.ft)</option>
+                        <option value="260">Toughened 12mm Glass (₹260 / sq.ft)</option>
+                        <option value="160">Coloured 5mm Glass (₹160 / sq.ft)</option>
+                        <option value="90">5mm Partition Panel (₹90 / sq.ft)</option>
+                        <option value="650">Steel Railing (Avg ₹650 / running ft)</option>
+                        <option value="1050">Wooden Railing (Avg ₹1050 / running ft)</option>
+                        <option value="225">ACP Cladding Sheet (Avg ₹225 / sq.ft)</option>
+                        <option value="450">Aluminium Sliding Window (Avg ₹450 / sq.ft)</option>
+                        <option value="100">False Ceiling Installation (Avg ₹100 / sq.ft)</option>
+                        <option value="85">PVC Wall Panelling Strip (Avg ₹85 / sq.ft)</option>
+                    </select>
+                </div>
+                <div class="neu-field-group">
+                    <label>Quantity / Area (Sq.Ft / R.Ft)</label>
+                    <input type="number" id="calcAreaInput" class="neu-input" value="100" min="1" oninput="calculateQuickEstimate()">
+                </div>
+                <div>
+                    <button type="button" class="neu-calc-btn" onclick="calculateQuickEstimate()">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Calculate
+                    </button>
+                </div>
+            </div>
+            <div class="neu-result-box">
+                <div class="neu-result-text">
+                    <span>Estimated Material & Fabrication Cost:</span>
+                    <h4 id="calcSummaryText">100 Units of selected fabrication item</h4>
+                </div>
+                <div class="neu-result-val" id="calcTotalOutput">₹18,000</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STYLE 9: FLAT DESIGN CLEAN DATA TABLE -->
     <div class="table-container">
         <div class="table-wrapper">
             <table class="rate-table">
@@ -338,20 +917,101 @@
         </div>
     </div>
 
-    <!-- Footer with Developer Social Links -->
-    <footer>
-        <div class="footer-info-text">
-            <p>📍 Imamsahib, Shopian, Jammu & Kashmir | 📞 +91 78898 98026</p>
-        </div>
-        <div class="footer-copyright">
-            <p>&copy; 2026 Paul Interior Imamsahib. All Rights Reserved.</p>
-            <div>
-                Designed by <a href="https://www.instagram.com/jaani_927/" target="_blank" class="developer-signature">ISHTIYAQ GULZAR</a>
+    <!-- ========================================================
+         PREMIUM UPGRADED FOOTER & COPYRIGHT SECTION
+         ======================================================== -->
+    <footer class="paul-footer">
+        <div class="footer-main-grid">
+            
+            <!-- Col 1: Brand Info -->
+            <div class="footer-brand-col">
+                <a href="index.html" class="footer-logo-title">
+                    <div class="logo-disc">
+                        <img src="ishu.jpg" alt="Paul Interior">
+                    </div>
+                    <h3>Paul Interior <span>IMAMSAHIB SHOPIAN</span></h3>
+                </a>
+                <p>Kashmir's trusted interior fabrication studio specializing in modern architectural aluminium sliding windows, designer PVC panelling, stainless steel safety railings, and custom commercial glass facades.</p>
+                <div class="footer-social-circles">
+                    <a href="https://www.instagram.com/paul__interior621?stkn=MTh0OThka3N1YjcyZA==" target="_blank" class="footer-circle-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/share/1CrgrPyoQa/" target="_blank" class="footer-circle-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://youtube.com/@paulinterior621?si=WiEgBMiJcTYjl-eZ" target="_blank" class="footer-circle-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://wa.me/917889898026" target="_blank" class="footer-circle-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
             </div>
-            <div class="footer-social-links">
-                <a href="https://www.instagram.com/jaani_927/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="https://www.facebook.com/bhat.ishtiyaq.737" target="_blank" title="Facebook"><i class="fab fa-facebook"></i> Facebook</a>
-                <a href="https://wa.me/919149604818" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+
+            <!-- Col 2: Quick Links -->
+            <div>
+                <h4 class="footer-col-title">Navigation</h4>
+                <ul class="footer-links-list">
+                    <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home Overview</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> All Services</a></li>
+                    <li><a href="portfolio.html"><i class="fa-solid fa-chevron-right"></i> Project Gallery</a></li>
+                    <li><a href="rate-list.html"><i class="fa-solid fa-chevron-right"></i> Transparent Rate List</a></li>
+                    <li><a href="products.html"><i class="fa-solid fa-chevron-right"></i> Materials & Hardware</a></li>
+                    <li><a href="testimonials.html"><i class="fa-solid fa-chevron-right"></i> Client Reviews</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Specialized Works -->
+            <div>
+                <h4 class="footer-col-title">Specialization</h4>
+                <ul class="footer-links-list">
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Aluminium Sliding Windows</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> PVC Wall & Ceiling Panel</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Glass Staircase Railing</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Stainless Steel Gates</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Luxury Wardrobe & TV Units</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Office Glass Cabins</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Interactive Contact Cards -->
+            <div>
+                <h4 class="footer-col-title">Direct Connect</h4>
+                <div class="footer-contact-cards">
+                    <a href="https://maps.google.com/?q=Imamsahib+Shopian" target="_blank" class="contact-pill-card">
+                        <div class="contact-pill-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div class="contact-pill-info">
+                            <h4>Workshop Location</h4>
+                            <span>Imamsahib, Shopian (J&K)</span>
+                        </div>
+                    </a>
+                    <a href="tel:+917889898026" class="contact-pill-card">
+                        <div class="contact-pill-icon"><i class="fa-solid fa-phone"></i></div>
+                        <div class="contact-pill-info">
+                            <h4>Direct Call & Estimate</h4>
+                            <span>+91 78898 98026 / 6005345718</span>
+                        </div>
+                    </a>
+                    <a href="https://wa.me/917889898026?text=Hello%20Paul%20Interior,%20I%20want%20a%20quotation" target="_blank" class="contact-pill-card">
+                        <div class="contact-pill-icon" style="color:#22c55e; background:rgba(34,197,94,0.15); border-color:rgba(34,197,94,0.3);"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div class="contact-pill-info">
+                            <h4>Live Chat on WhatsApp</h4>
+                            <span>Instant Reply & Design Help</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Copyright Row with Developer Card -->
+        <div class="footer-bottom-bar">
+            <div class="copyright-text">
+                &copy; 2026 <b>Paul Interior Imamsahib</b>. All architectural rights reserved.
+            </div>
+
+            <!-- Neo-Brutalist Developer Signature Badge -->
+            <a href="https://www.instagram.com/jaani_927/" target="_blank" class="developer-neo-badge" title="Connect with Developer">
+                <span class="developer-label">Engineered by</span>
+                <span class="developer-name"><i class="fa-solid fa-circle"></i> ISHTIYAQ GULZAR</span>
+            </a>
+
+            <div class="footer-social-circles">
+                <a href="https://www.instagram.com/jaani_927/" target="_blank" class="footer-circle-btn" title="Dev Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/bhat.ishtiyaq.737" target="_blank" class="footer-circle-btn" title="Dev Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://wa.me/919149604818" target="_blank" class="footer-circle-btn" title="Dev WhatsApp"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
     </footer>
@@ -361,6 +1021,18 @@
             event.stopPropagation();
             var menu = document.getElementById("side-menu");
             menu.classList.toggle("active");
+        }
+
+        // Live Dynamic Neumorphic Rate Calculator Logic
+        function calculateQuickEstimate() {
+            var select = document.getElementById("calcItemSelect");
+            var ratePerUnit = parseFloat(select.value) || 0;
+            var area = parseFloat(document.getElementById("calcAreaInput").value) || 0;
+            var itemName = select.options[select.selectedIndex].text.split("(")[0].trim();
+
+            var total = Math.round(ratePerUnit * area);
+            document.getElementById("calcSummaryText").innerText = area + " units of " + itemName;
+            document.getElementById("calcTotalOutput").innerText = "₹" + total.toLocaleString('en-IN');
         }
 
         function showRateModal(name, unit, price) {
