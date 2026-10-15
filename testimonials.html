@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testimonials | Paul Interior Imamsahib</title>
+    <!-- FontAwesome CDN for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Firebase SDK Scripts for Global Realtime Database -->
@@ -12,19 +13,39 @@
 
     <style>
         :root { 
-            --bg-body: #ffffff; 
-            --bg-surface: #f8fafc; 
+            --bg-body: #f8fafc; 
+            --bg-surface: #ffffff; 
             --text-main: #0f172a; 
             --text-muted: #64748b;
             --accent-orange: #f97316; 
             --border-color: #e2e8f0; 
-            --shadow-soft: 0 10px 25px -5px rgba(0,0,0,0.08);
+            --shadow-soft: 0 10px 25px -5px rgba(0,0,0,0.06);
+            --neo-border: 2px solid #0f172a;
+            --neo-shadow: 4px 4px 0px #0f172a;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--bg-body); color: var(--text-main); overflow-x: hidden; line-height: 1.6; padding-top: 75px; }
         
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; background-color: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; border-bottom: 1px solid var(--border-color); }
+        /* STYLE 1: MINIMALISM CLEAN BASE */
+        body { background-color: var(--bg-body); color: var(--text-main); overflow-x: hidden; line-height: 1.6; padding-top: 78px; }
+        
+        /* STYLE 3: GLASSMORPHISM STICKY HEADER */
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 14px 30px; 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04); 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8); 
+        }
         
         @keyframes multiColorTextAndBorder {
             0% { color: #f97316; border-color: #f97316; }
@@ -63,10 +84,29 @@
         .social-icon-btn.wa { background: #25d366; }
         .social-icon-btn:hover { transform: scale(1.15); }
 
-        .menu-btn { font-size: 14px; cursor: pointer; color: var(--text-main); background: #f1f5f9; padding: 8px 16px; border-radius: 25px; border: 2px solid var(--border-color); font-weight: 600; display: flex; align-items: center; gap: 6px; animation: multiColorTextAndBorder 10s infinite; }
-        .menu-btn:hover { background: var(--accent-orange); color: #fff; border-color: var(--accent-orange); }
+        /* STYLE 7: NEO-BRUTALISM MENU BUTTON */
+        .menu-btn { 
+            font-size: 14px; 
+            cursor: pointer; 
+            color: var(--text-main); 
+            background: #ffffff; 
+            padding: 8px 18px; 
+            border-radius: 30px; 
+            border: var(--neo-border); 
+            box-shadow: 2px 2px 0px #0f172a; 
+            font-weight: 700; 
+            display: flex; 
+            align-items: center; 
+            gap: 7px; 
+            transition: all 0.2s ease; 
+        }
+        .menu-btn:hover { 
+            background: var(--accent-orange); 
+            color: #fff; 
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px #0f172a; 
+        }
 
-        /* Upgraded Modern Glassmorphism Menu Dropdown */
         @keyframes menuPopAnimation {
             0% { opacity: 0; transform: translateY(-20px) scale(0.85); filter: blur(10px); }
             70% { opacity: 1; transform: translateY(5px) scale(1.02); filter: blur(0px); }
@@ -83,14 +123,15 @@
             display: none; 
             flex-direction: column; 
             position: absolute; 
-            top: 65px; 
+            top: 68px; 
             right: 0; 
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95)); 
-            backdrop-filter: blur(20px); 
+            background: rgba(15, 23, 42, 0.88); 
+            backdrop-filter: blur(24px); 
+            -webkit-backdrop-filter: blur(24px);
             min-width: 270px; 
             border-radius: 18px; 
             padding: 15px 0; 
-            border: 2px solid #f97316; 
+            border: 2px solid rgba(249, 115, 22, 0.7); 
             z-index: 2000; 
             animation: menuPopAnimation 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, menuGlowBorder 8s infinite; 
         }
@@ -141,33 +182,79 @@
             100% { text-shadow: 0 0 10px rgba(254,240,138,0.4); }
         }
 
-        .hero-section { position: relative; padding: 75px 20px; text-align: center; background: linear-gradient(135deg, #ea580c, #f97316, #fb923c); background-size: 1000px 1000px; color: #fff; border-bottom: 2px solid var(--accent-orange); overflow: hidden; }
+        .hero-section { position: relative; padding: 75px 20px 60px; text-align: center; background: linear-gradient(135deg, #ea580c, #f97316, #fb923c); background-size: 1000px 1000px; color: #fff; border-bottom: 2px solid var(--accent-orange); overflow: hidden; }
         .hero-section::before { content: ''; position: absolute; top: 0; left: 0; width: 200%; height: 100%; background-image: radial-gradient(rgba(255, 255, 255, 0.4) 2px, transparent 2px), radial-gradient(rgba(255, 255, 255, 0.25) 4px, transparent 4px); background-size: 150px 150px, 250px 250px; background-position: 0 0, 50px 50px; animation: skyCloudMove 25s linear infinite; pointer-events: none; opacity: 0.7; }
         .hero-section > * { position: relative; z-index: 2; }
-        .hero-section h1 { font-size: 32px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; animation: heroGlowPulse 4s infinite; }
+        .hero-section h1 { font-size: 34px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; animation: heroGlowPulse 4s infinite; }
         .hero-section h1 span { color: #fef08a; }
         .hero-section p { color: #fef3c7; max-width: 650px; margin: 0 auto; font-size: 15px; font-weight: 500; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
 
         .container { max-width: 1300px; margin: 40px auto; padding: 0 20px; }
         
-        /* Feedback Submission Section */
-        .add-review-section { background: var(--bg-surface); border: 2px solid #f97316; border-radius: 18px; padding: 25px 30px; margin-bottom: 40px; box-shadow: var(--shadow-soft); animation: cardBorderGlow 8s infinite; }
+        /* STYLE 7: NEO-BRUTALISM FEEDBACK FORM BOX */
+        .add-review-section { 
+            background: #ffffff; 
+            border: 2px solid #0f172a; 
+            border-radius: 20px; 
+            padding: 25px 30px; 
+            margin-bottom: 45px; 
+            box-shadow: 5px 5px 0px #0f172a; 
+            transition: all 0.3s ease; 
+        }
         .add-review-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
         .add-review-header h3 { font-size: 19px; font-weight: 800; text-transform: uppercase; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
         .add-review-header h3 i { color: var(--accent-orange); }
-        .toggle-form-btn { background: var(--accent-orange); color: #fff; padding: 8px 18px; border-radius: 20px; font-size: 13px; font-weight: 700; border: none; cursor: pointer; transition: 0.3s; }
-        .toggle-form-btn:hover { background: #ea580c; }
         
-        .review-form-body { display: none; margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 20px; }
+        .toggle-form-btn { 
+            background: #ffffff; 
+            color: #0f172a; 
+            padding: 9px 20px; 
+            border-radius: 25px; 
+            font-size: 13px; 
+            font-weight: 800; 
+            border: 2px solid #0f172a; 
+            box-shadow: 3px 3px 0px #0f172a; 
+            cursor: pointer; 
+            transition: all 0.2s ease; 
+        }
+        .toggle-form-btn:hover { background: #fef08a; transform: translate(-1px, -1px); box-shadow: 4px 4px 0px #0f172a; }
+        
+        .review-form-body { display: none; margin-top: 20px; border-top: 2px dashed #e2e8f0; padding-top: 20px; }
         .review-form-body.active { display: block; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 15px; }
         @media(max-width: 650px) { .form-row { grid-template-columns: 1fr; } }
-        .form-group-field { margin-bottom: 12px; }
-        .form-group-field label { display: block; font-size: 12px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; text-transform: uppercase; }
-        .form-group-field input, .form-group-field textarea, .form-group-field select { width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-color); font-size: 13.5px; outline: none; background: #fff; }
-        .form-group-field input:focus, .form-group-field textarea:focus { border-color: var(--accent-orange); }
-        .form-submit-btn { background: var(--accent-orange); color: #fff; border: none; padding: 11px 28px; border-radius: 25px; font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.3s; }
-        .form-submit-btn:hover { background: #ea580c; }
+        
+        .form-group-field { margin-bottom: 14px; }
+        .form-group-field label { display: block; font-size: 12px; font-weight: 700; color: var(--text-main); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-group-field input, .form-group-field textarea, .form-group-field select { 
+            width: 100%; 
+            padding: 11px 15px; 
+            border-radius: 12px; 
+            border: 2px solid #0f172a; 
+            font-size: 13.5px; 
+            outline: none; 
+            background: #f8fafc; 
+            box-shadow: 2px 2px 0px #0f172a; 
+            transition: all 0.2s ease; 
+        }
+        .form-group-field input:focus, .form-group-field textarea:focus { background: #ffffff; border-color: var(--accent-orange); box-shadow: 3px 3px 0px var(--accent-orange); }
+        
+        .form-submit-btn { 
+            background: linear-gradient(135deg, #f97316, #ea580c); 
+            color: #ffffff; 
+            border: 2px solid #0f172a; 
+            box-shadow: 4px 4px 0px #0f172a; 
+            padding: 12px 32px; 
+            border-radius: 30px; 
+            font-weight: 800; 
+            font-size: 14px; 
+            cursor: pointer; 
+            transition: all 0.2s ease; 
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .form-submit-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #0f172a; }
 
         .section-heading { text-align: center; margin-bottom: 30px; }
         .section-heading h2 { font-size: 26px; font-weight: 800; text-transform: uppercase; color: var(--text-main); }
@@ -175,33 +262,91 @@
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-bottom: 50px; }
         
-        .testimonial-card { background: var(--bg-surface); border: 2px solid #f97316; border-radius: 16px; padding: 22px; box-shadow: var(--shadow-soft); animation: cardBorderGlow 8s infinite; transition: all 0.3s ease; display: flex; flex-direction: column; position: relative; }
-        .testimonial-card:hover { transform: translateY(-4px); }
+        /* ========================================================
+           STYLE 3: GLASSMORPHISM + STYLE 12: Y2K NOSTALGIC ACCENTS
+           ======================================================== */
+        .testimonial-card { 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid #0f172a; 
+            border-radius: 20px; 
+            padding: 24px; 
+            box-shadow: 4px 4px 0px #0f172a; 
+            transition: all 0.25s ease; 
+            display: flex; 
+            flex-direction: column; 
+            position: relative; 
+            overflow: hidden;
+        }
+        .testimonial-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #0f172a; }
 
-        .client-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-        .client-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-orange); }
-        .client-meta h4 { font-size: 15px; font-weight: 700; color: var(--text-main); }
+        /* STYLE 12: Y2K VERIFIED BADGE SEAL */
+        .y2k-verified-seal {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: linear-gradient(135deg, #fef08a, #fed7aa, #fbcfe8);
+            border: 1.5px solid #0f172a;
+            color: #0f172a;
+            padding: 3px 9px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 0.6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 2px 2px 0px #0f172a;
+            text-transform: uppercase;
+        }
+
+        .client-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+        .client-avatar { 
+            width: 52px; 
+            height: 52px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            border: 2px solid #0f172a; 
+            box-shadow: 2px 2px 0px #0f172a; 
+        }
+        .client-meta h4 { font-size: 15px; font-weight: 800; color: var(--text-main); }
         .client-meta span { font-size: 11px; color: var(--accent-orange); font-weight: 700; text-transform: uppercase; display: block; }
 
-        .stars { color: #eab308; margin-bottom: 10px; font-size: 13px; }
-        .review-text-content { font-size: 13.5px; color: var(--text-muted); margin-bottom: 12px; font-style: italic; line-height: 1.7; text-align: justify; }
+        .stars { color: #eab308; margin-bottom: 12px; font-size: 14px; }
+        .review-text-content { font-size: 13.5px; color: #475569; margin-bottom: 16px; font-style: italic; line-height: 1.7; text-align: justify; }
 
-        /* Social Interactive Actions: Like, Reply, Edit */
-        .social-actions-bar { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 12px; margin-top: auto; }
-        .action-btn-group { display: flex; align-items: center; gap: 14px; }
-        .card-action-btn { background: none; border: none; cursor: pointer; font-size: 13px; font-weight: 700; color: var(--text-muted); display: inline-flex; align-items: center; gap: 5px; transition: 0.2s; padding: 4px 6px; border-radius: 6px; }
-        .card-action-btn:hover { color: var(--accent-orange); background: #fff7ed; }
-        .card-action-btn.liked { color: #ef4444; }
+        /* Social Interactive Actions */
+        .social-actions-bar { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 14px; margin-top: auto; }
+        .action-btn-group { display: flex; align-items: center; gap: 12px; }
+        
+        .card-action-btn { 
+            background: #ffffff; 
+            border: 1.5px solid #0f172a; 
+            box-shadow: 2px 2px 0px #0f172a; 
+            cursor: pointer; 
+            font-size: 12.5px; 
+            font-weight: 700; 
+            color: var(--text-main); 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px; 
+            transition: all 0.2s ease; 
+            padding: 5px 11px; 
+            border-radius: 8px; 
+        }
+        .card-action-btn:hover { background: #fff7ed; transform: translate(-1px, -1px); box-shadow: 3px 3px 0px #0f172a; color: var(--accent-orange); }
+        .card-action-btn.liked { background: #fee2e2; border-color: #ef4444; color: #ef4444; }
         .card-action-btn.liked i { color: #ef4444; }
 
-        .reply-container-box { display: none; margin-top: 14px; padding-top: 10px; border-top: 1px dashed var(--border-color); }
+        .reply-container-box { display: none; margin-top: 14px; padding-top: 12px; border-top: 2px dashed #e2e8f0; }
         .reply-container-box.active { display: block; }
         .reply-list { list-style: none; margin-bottom: 10px; }
-        .reply-bubble { background: #fff; border: 1px solid var(--border-color); border-radius: 8px; padding: 7px 12px; font-size: 12px; color: var(--text-main); margin-bottom: 6px; }
+        .reply-bubble { background: #ffffff; border: 1.5px solid #0f172a; border-radius: 10px; padding: 7px 12px; font-size: 12px; color: var(--text-main); margin-bottom: 6px; box-shadow: 2px 2px 0px #0f172a; }
         .reply-bubble b { color: var(--accent-orange); }
         .reply-input-row { display: flex; gap: 8px; }
-        .reply-input-row input { flex: 1; padding: 7px 12px; border-radius: 20px; border: 1px solid var(--border-color); font-size: 12px; outline: none; }
-        .reply-submit-btn { background: var(--accent-orange); color: #fff; border: none; padding: 7px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; cursor: pointer; }
+        .reply-input-row input { flex: 1; padding: 7px 12px; border-radius: 20px; border: 2px solid #0f172a; font-size: 12px; outline: none; background: #fff; }
+        .reply-submit-btn { background: var(--accent-orange); color: #fff; border: 2px solid #0f172a; padding: 7px 14px; border-radius: 20px; font-size: 11px; font-weight: 800; cursor: pointer; box-shadow: 2px 2px 0px #0f172a; }
 
         @keyframes modalBackgroundGlow {
             0% { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); }
@@ -218,14 +363,318 @@
         .close-modal-btn { position: absolute; top: 15px; right: 15px; color: var(--text-main); font-size: 20px; cursor: pointer; background: #f1f5f9; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color); transition: 0.3s; }
         .close-modal-btn:hover { background: var(--accent-orange); color: #fff; transform: rotate(90deg); }
 
-        footer { background-color: #0f172a; color: #94a3b8; padding: 40px 20px; text-align: center; margin-top: 60px; border-top: 1px solid #1e293b; }
-        .footer-info-text { margin-bottom: 15px; font-size: 13px; }
-        .footer-copyright { font-size: 13px; color: #94a3b8; border-top: 1px solid #1e293b; padding-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .developer-signature { color: #f8fafc; font-weight: 700; text-decoration: none; transition: color 0.3s; }
-        .developer-signature:hover { color: var(--accent-orange); }
-        .footer-social-links { display: flex; align-items: center; gap: 18px; margin-top: 5px; }
-        .footer-social-links a { color: #cbd5e1; font-size: 15px; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.3s; }
-        .footer-social-links a:hover { color: var(--accent-orange); }
+        /* ========================================================
+           PREMIUM UPGRADED FOOTER & COPYRIGHT SECTION
+           ======================================================== */
+        footer.paul-footer {
+            background: linear-gradient(180deg, #090e17 0%, #030712 100%);
+            color: #cbd5e1;
+            padding: 70px 24px 30px;
+            margin-top: 80px;
+            border-top: 3px solid #f97316;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer.paul-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: radial-gradient(ellipse at center, rgba(249,115,22,0.8), transparent 70%);
+        }
+
+        .footer-main-grid {
+            max-width: 1260px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.3fr;
+            gap: 40px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-brand-col .footer-logo-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            text-decoration: none;
+        }
+
+        .footer-brand-col .logo-disc {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid #f97316;
+            box-shadow: 0 0 15px rgba(249,115,22,0.4);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+        }
+
+        .footer-brand-col .logo-disc img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .footer-brand-col h3 {
+            font-size: 20px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .footer-brand-col h3 span {
+            color: #fb923c;
+            display: block;
+            font-size: 11px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .footer-brand-col p {
+            font-size: 13.5px;
+            color: #94a3b8;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-col-title {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 35px;
+            height: 3px;
+            background: #f97316;
+            border-radius: 2px;
+        }
+
+        .footer-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links-list a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+        }
+
+        .footer-links-list a i {
+            font-size: 10px;
+            color: #f97316;
+            transition: transform 0.25s ease;
+        }
+
+        .footer-links-list a:hover {
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
+        .footer-links-list a:hover i {
+            transform: translateX(3px);
+            color: #fef08a;
+        }
+
+        /* Interactive Contact Card Pills */
+        .footer-contact-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-pill-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: #cbd5e1;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .contact-pill-card:hover {
+            background: rgba(249, 115, 22, 0.12);
+            border-color: rgba(249, 115, 22, 0.5);
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+
+        .contact-pill-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(249, 115, 22, 0.15);
+            color: #fb923c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            flex-shrink: 0;
+            border: 1px solid rgba(249, 115, 22, 0.3);
+        }
+
+        .contact-pill-info h4 {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #94a3b8;
+            font-weight: 700;
+        }
+
+        .contact-pill-info span {
+            font-size: 13px;
+            font-weight: 600;
+            color: #f8fafc;
+        }
+
+        /* Bottom Copyright Bar with Developer Neo Badge */
+        .footer-bottom-bar {
+            max-width: 1260px;
+            margin: 30px auto 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .copyright-text {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .copyright-text b {
+            color: #cbd5e1;
+        }
+
+        .developer-neo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 2px solid #334155;
+            padding: 8px 18px;
+            border-radius: 40px;
+            text-decoration: none;
+            box-shadow: 3px 3px 0px #f97316;
+            transition: all 0.25s ease;
+        }
+
+        .developer-neo-badge:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px #f97316;
+            border-color: #f97316;
+        }
+
+        .developer-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .developer-name {
+            font-size: 13.5px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .developer-name i {
+            color: #22c55e;
+            font-size: 8px;
+            animation: pulseDot 2s infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { opacity: 0.4; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        .footer-social-circles {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-circle-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-circle-btn:hover {
+            background: #f97316;
+            color: #ffffff;
+            border-color: #f97316;
+            transform: translateY(-3px) scale(1.08);
+            box-shadow: 0 6px 15px rgba(249, 115, 22, 0.4);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-main-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 35px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            footer.paul-footer { padding: 50px 18px 25px; }
+            .footer-main-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .footer-bottom-bar {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -249,9 +698,10 @@
                 <a href="https://wa.me/917889898026" target="_blank" class="social-icon-btn wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
             </div>
 
+            <!-- Neo-Brutalist Menu Button -->
             <div class="menu-btn" onclick="toggleMenu(event)"><i class="fa-solid fa-bars"></i> Menu</div>
             
-            <!-- Upgraded Modern Glassmorphism Menu Dropdown -->
+            <!-- Glassmorphism Dropdown Menu -->
             <nav id="side-menu">
                 <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
                 <a href="services.html"><i class="fa-solid fa-gears"></i> Services</a>
@@ -271,7 +721,7 @@
     </section>
 
     <div class="container">
-        <!-- Add / Write a Review Form Card -->
+        <!-- Add / Write a Review Form Card (Neo-Brutalism Styling) -->
         <div class="add-review-section">
             <div class="add-review-header" onclick="toggleReviewForm()">
                 <h3><i class="fa-solid fa-pen-to-square"></i> Share Your Experience & Feedback</h3>
@@ -321,10 +771,10 @@
             <h2>Customer Feedback <span>& Experiences</span></h2>
         </div>
         
-        <!-- Grid for All Reviews -->
+        <!-- Grid for All Reviews (Glassmorphism + Y2K Verified Badges) -->
         <div class="grid" id="testimonialGrid"></div>
 
-        <div class="praise-note-box" style="background:var(--bg-surface); border:2px solid #f97316; border-radius:16px; padding:35px; text-align:center; box-shadow:var(--shadow-soft); max-width:900px; margin:0 auto;">
+        <div class="praise-note-box" style="background:#ffffff; border:2px solid #0f172a; border-radius:20px; padding:35px; text-align:center; box-shadow:5px 5px 0px #0f172a; max-width:900px; margin:0 auto;">
             <h3 style="font-size:22px; font-weight:800; color:var(--text-main); margin-bottom:15px; text-transform:uppercase;">Our Craftsmanship & <span>Dedication</span></h3>
             <p style="font-size:15px; color:var(--text-muted); line-height:1.8; margin-bottom:12px;"><strong>Paul Interior Imamsahib</strong> mein hamara maqsad sirf kaam karna nahi, balki har customer ka dil jeetna hai. Hum Shopian aur poore J&K mein behtareen quality ki aluminium fabrication, steel works aur modern interior designing provide karte hain.</p>
             <p style="font-size:15px; color:var(--text-muted); line-height:1.8;">Our commitment to precision engineering, top-grade raw materials, and timely project delivery makes us the most trusted name for your dream homes and commercial spaces.</p>
@@ -339,19 +789,101 @@
         </div>
     </div>
 
-    <footer>
-        <div class="footer-info-text">
-            <p>📍 Imamsahib, Shopian, Jammu & Kashmir | 📞 +91 78898 98026/6005345718</p>
-        </div>
-        <div class="footer-copyright">
-            <p>&copy; 2026 Paul Interior Imamsahib. All Rights Reserved.</p>
-            <div>
-                Designed by <a href="https://www.instagram.com/jaani_927/" target="_blank" class="developer-signature">ISHTIYAQ GULZAR</a>
+    <!-- ========================================================
+         PREMIUM UPGRADED FOOTER & COPYRIGHT SECTION
+         ======================================================== -->
+    <footer class="paul-footer">
+        <div class="footer-main-grid">
+            
+            <!-- Col 1: Brand Info -->
+            <div class="footer-brand-col">
+                <a href="index.html" class="footer-logo-title">
+                    <div class="logo-disc">
+                        <img src="ishu.jpg" alt="Paul Interior">
+                    </div>
+                    <h3>Paul Interior <span>IMAMSAHIB SHOPIAN</span></h3>
+                </a>
+                <p>Kashmir's trusted interior fabrication studio specializing in modern architectural aluminium sliding windows, designer PVC panelling, stainless steel safety railings, and custom commercial glass facades.</p>
+                <div class="footer-social-circles">
+                    <a href="https://www.instagram.com/paul__interior621?stkn=MTh0OThka3N1YjcyZA==" target="_blank" class="footer-circle-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/share/1CrgrPyoQa/" target="_blank" class="footer-circle-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://youtube.com/@paulinterior621?si=WiEgBMiJcTYjl-eZ" target="_blank" class="footer-circle-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://wa.me/917889898026" target="_blank" class="footer-circle-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
             </div>
-            <div class="footer-social-links">
-                <a href="https://www.instagram.com/jaani_927/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="https://www.facebook.com/bhat.ishtiyaq.737" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
-                <a href="https://wa.me/919149604818" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+
+            <!-- Col 2: Quick Links -->
+            <div>
+                <h4 class="footer-col-title">Navigation</h4>
+                <ul class="footer-links-list">
+                    <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home Overview</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> All Services</a></li>
+                    <li><a href="portfolio.html"><i class="fa-solid fa-chevron-right"></i> Project Gallery</a></li>
+                    <li><a href="rate-list.html"><i class="fa-solid fa-chevron-right"></i> Transparent Rate List</a></li>
+                    <li><a href="products.html"><i class="fa-solid fa-box-open"></i> Products</a></li>
+                    <li><a href="testimonials.html"><i class="fa-solid fa-chevron-right"></i> Client Reviews</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Specialized Works -->
+            <div>
+                <h4 class="footer-col-title">Specialization</h4>
+                <ul class="footer-links-list">
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Aluminium Sliding Windows</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> PVC Wall & Ceiling Panel</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Glass Staircase Railing</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Stainless Steel Gates</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Luxury Wardrobe & TV Units</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Office Glass Cabins</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Interactive Contact Cards -->
+            <div>
+                <h4 class="footer-col-title">Direct Connect</h4>
+                <div class="footer-contact-cards">
+                    <a href="https://maps.google.com/?q=Imamsahib+Shopian" target="_blank" class="contact-pill-card">
+                        <div class="contact-pill-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div class="contact-pill-info">
+                            <h4>Workshop Location</h4>
+                            <span>Imamsahib, Shopian (J&K)</span>
+                        </div>
+                    </a>
+                    <a href="tel:+917889898026" class="contact-pill-card">
+                        <div class="contact-pill-icon"><i class="fa-solid fa-phone"></i></div>
+                        <div class="contact-pill-info">
+                            <h4>Direct Call & Estimate</h4>
+                            <span>+91 78898 98026 / 6005345718</span>
+                        </div>
+                    </a>
+                    <a href="https://wa.me/917889898026?text=Hello%20Paul%20Interior,%20I%20want%20a%20quotation" target="_blank" class="contact-pill-card">
+                        <div class="contact-pill-icon" style="color:#22c55e; background:rgba(34,197,94,0.15); border-color:rgba(34,197,94,0.3);"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div class="contact-pill-info">
+                            <h4>Live Chat on WhatsApp</h4>
+                            <span>Instant Reply & Design Help</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Copyright Row with Developer Card -->
+        <div class="footer-bottom-bar">
+            <div class="copyright-text">
+                &copy; 2026 <b>Paul Interior Imamsahib</b>. All architectural rights reserved.
+            </div>
+
+            <!-- Neo-Brutalist Developer Signature Badge -->
+            <a href="https://www.instagram.com/jaani_927/" target="_blank" class="developer-neo-badge" title="Connect with Developer">
+                <span class="developer-label">Engineered by</span>
+                <span class="developer-name"><i class="fa-solid fa-circle"></i> ISHTIYAQ GULZAR</span>
+            </a>
+
+            <div class="footer-social-circles">
+                <a href="https://www.instagram.com/jaani_927/" target="_blank" class="footer-circle-btn" title="Dev Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/bhat.ishtiyaq.737" target="_blank" class="footer-circle-btn" title="Dev Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://wa.me/919149604818" target="_blank" class="footer-circle-btn" title="Dev WhatsApp"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
     </footer>
@@ -498,7 +1030,7 @@
             }
         }
 
-        // Render All Cards
+        // Render All Cards with Y2K Badges & Glassmorphism
         function renderAllCards(feedbacksList) {
             var grid = document.getElementById("testimonialGrid");
             grid.innerHTML = "";
@@ -524,7 +1056,9 @@
                 card.className = "testimonial-card";
                 card.id = item.id;
                 card.innerHTML = `
-                    <div class="project-number-badge" style="position:absolute; top:18px; right:18px; background:rgba(15, 23, 42, 0.85); color:#fff; padding:3px 8px; border-radius:15px; font-size:10px; font-weight:700; z-index:3; letter-spacing:1px; border:1px solid rgba(255,255,255,0.3);">${item.badge}</div>
+                    <div class="y2k-verified-seal">
+                        <i class="fa-solid fa-certificate"></i> Verified ✦
+                    </div>
                     <div class="client-header">
                         <img src="${item.photo}" alt="Client Photo" class="client-avatar" onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop'">
                         <div class="client-meta">
@@ -567,7 +1101,6 @@
                     localStorage.setItem("paul_interior_testimonials_live", JSON.stringify(cloudData));
                     renderAllCards(cloudData);
                 } else {
-                    // Initial database upload if empty
                     var current = getSavedFeedbacks();
                     db.ref("global_testimonials").set(current);
                 }
