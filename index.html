@@ -13,20 +13,39 @@
 
     <style>
         :root {
-            --bg-body: #ffffff;
-            --bg-surface: #f8fafc;
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
             --text-main: #0f172a;
             --text-muted: #64748b;
             --accent-orange: #f97316;
             --border-color: #e2e8f0;
-            --shadow-soft: 0 10px 25px -5px rgba(0,0,0,0.08);
+            --shadow-soft: 0 10px 25px -5px rgba(0,0,0,0.06);
+            --neo-border: 2px solid #0f172a;
+            --neo-shadow: 4px 4px 0px #0f172a;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--bg-body); color: var(--text-main); overflow-x: hidden; line-height: 1.6; padding-top: 75px; }
         
-        /* Fully Locked Sticky Header */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; background-color: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; border-bottom: 1px solid var(--border-color); }
+        /* STYLE 1: MINIMALISM - Balanced spacing, refined clean background & layout */
+        body { background-color: var(--bg-body); color: var(--text-main); overflow-x: hidden; line-height: 1.6; padding-top: 78px; }
+        
+        /* STYLE 3: GLASSMORPHISM - Frosted glass locked sticky header */
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 14px 30px; 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04); 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8); 
+        }
         
         @keyframes multiColorTextAndBorder {
             0% { color: #f97316; border-color: #f97316; }
@@ -54,7 +73,6 @@
 
         .header-actions { display: flex; align-items: center; gap: 12px; position: relative; }
 
-        /* Social Media Animated Icons in Header */
         @keyframes cardBorderGlow {
             0% { border-color: #f97316; box-shadow: 0 0 10px rgba(249,115,22,0.3); }
             33% { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59,130,246,0.4); }
@@ -70,10 +88,30 @@
         .social-icon-btn.wa { background: #25d366; }
         .social-icon-btn:hover { transform: scale(1.15); }
 
-        .menu-btn { font-size: 14px; cursor: pointer; color: var(--text-main); background: var(--bg-surface); padding: 8px 16px; border-radius: 25px; border: 2px solid var(--border-color); font-weight: 600; display: flex; align-items: center; gap: 6px; transition: all 0.3s; animation: multiColorTextAndBorder 10s infinite; }
-        .menu-btn:hover { background: var(--accent-orange); color: #fff; border-color: var(--accent-orange); }
+        /* STYLE 7: NEO-BRUTALISM ACCENT ON BUTTONS */
+        .menu-btn { 
+            font-size: 14px; 
+            cursor: pointer; 
+            color: var(--text-main); 
+            background: #ffffff; 
+            padding: 8px 18px; 
+            border-radius: 30px; 
+            border: var(--neo-border); 
+            box-shadow: 2px 2px 0px #0f172a; 
+            font-weight: 700; 
+            display: flex; 
+            align-items: center; 
+            gap: 7px; 
+            transition: all 0.2s ease; 
+        }
+        .menu-btn:hover { 
+            background: var(--accent-orange); 
+            color: #fff; 
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px #0f172a;
+        }
 
-        /* Animated Menu Dropdown */
+        /* Animated Menu Dropdown - Glassmorphism UI */
         @keyframes menuPopAnimation {
             0% { opacity: 0; transform: translateY(-20px) scale(0.85); filter: blur(10px); }
             70% { opacity: 1; transform: translateY(5px) scale(1.02); filter: blur(0px); }
@@ -92,12 +130,13 @@
             position: absolute; 
             top: 68px; 
             right: 0; 
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95)); 
-            backdrop-filter: blur(20px); 
+            background: rgba(15, 23, 42, 0.88); 
+            backdrop-filter: blur(24px); 
+            -webkit-backdrop-filter: blur(24px);
             min-width: 270px; 
             border-radius: 18px; 
             padding: 15px 0; 
-            border: 2px solid #f97316; 
+            border: 2px solid rgba(249, 115, 22, 0.7); 
             z-index: 2000; 
             animation: menuPopAnimation 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, menuGlowBorder 8s infinite; 
         }
@@ -148,7 +187,7 @@
             50% { box-shadow: inset -35px 0 0 0 #fef08a, 0 0 25px rgba(254, 240, 138, 0.6); }
         }
 
-        .hero-section { position: relative; padding: 75px 20px 55px; text-align: center; background: linear-gradient(135deg, #0284c7, #38bdf8, #0369a1); overflow: hidden; border-bottom: 1px solid var(--border-color); }
+        .hero-section { position: relative; padding: 80px 20px 60px; text-align: center; background: linear-gradient(135deg, #0284c7, #38bdf8, #0369a1); overflow: hidden; border-bottom: 1px solid var(--border-color); }
         
         #fireworks-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
         
@@ -189,14 +228,43 @@
         .hero-section > * { position: relative; z-index: 3; }
         .hero-section h1 { font-size: 34px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.4); }
         .hero-section h1 span { color: #fef08a; display: block; text-shadow: 0 0 15px rgba(254, 240, 138, 0.6); }
-        .hero-section p { font-size: 15px; color: #f1f5f9; max-width: 680px; margin: 0 auto 25px; text-shadow: 0 1px 6px rgba(0,0,0,0.4); }
+        .hero-section p { font-size: 15px; color: #f1f5f9; max-width: 680px; margin: 0 auto 28px; text-shadow: 0 1px 6px rgba(0,0,0,0.4); }
 
-        .hero-action-box { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 25px; }
-        .btn-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743); color: #ffffff; padding: 12px 35px; border-radius: 30px; font-weight: 700; text-decoration: none; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(220,39,67,0.4); transition: transform 0.3s; }
-        .btn-instagram:hover { transform: scale(1.05); }
+        /* STYLE 7: NEO-BRUTALISM HERO BUTTONS */
+        .hero-action-box { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px; margin-bottom: 25px; }
+        .btn-instagram { 
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743); 
+            color: #ffffff; 
+            padding: 12px 32px; 
+            border-radius: 12px; 
+            font-weight: 800; 
+            text-decoration: none; 
+            font-size: 14px; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px; 
+            border: 2px solid #0f172a; 
+            box-shadow: 4px 4px 0px #0f172a; 
+            transition: all 0.2s ease; 
+        }
+        .btn-instagram:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #0f172a; }
 
-        .btn-outline-custom { background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); color: #ffffff; border: 2px solid rgba(255,255,255,0.6); padding: 10px 33px; border-radius: 30px; font-weight: 700; text-decoration: none; font-size: 14px; transition: all 0.3s; }
-        .btn-outline-custom:hover { background: #ffffff; color: var(--text-main); border-color: #ffffff; }
+        .btn-outline-custom { 
+            background: #ffffff; 
+            color: #0f172a; 
+            border: 2px solid #0f172a; 
+            box-shadow: 4px 4px 0px #0f172a; 
+            padding: 12px 32px; 
+            border-radius: 12px; 
+            font-weight: 800; 
+            text-decoration: none; 
+            font-size: 14px; 
+            transition: all 0.2s ease; 
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-outline-custom:hover { background: #fef08a; transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #0f172a; color: #0f172a; }
 
         /* ========================================================
            BANNER & CD LAYER (CD CHALEGI PHOTOS KE PEECHE)
@@ -267,7 +335,7 @@
         .custom-organic-card img { width: 100%; height: 210px; object-fit: cover; border-radius: 60px 20px 60px 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); transition: transform 0.3s; border: 2px solid #f97316; }
         .custom-organic-card:hover img { transform: scale(1.03); }
         
-        .card-caption { background: var(--bg-surface); padding: 8px; border: 1px solid var(--border-color); border-radius: 12px; margin-top: 8px; }
+        .card-caption { background: #ffffff; padding: 10px; border: 2px solid #0f172a; box-shadow: 3px 3px 0px #0f172a; border-radius: 12px; margin-top: 8px; }
         .card-caption h4 { font-size: 14px; font-weight: 700; color: var(--text-main); }
         .card-caption span { font-size: 11px; color: var(--accent-orange); font-weight: 600; text-transform: uppercase; }
 
@@ -279,6 +347,52 @@
 
         .media-desc { display: none; }
 
+        /* ========================================================
+           STYLE 11: BENTO UI SECTION (Modular Cards & Feature Grid)
+           ======================================================== */
+        .bento-section { max-width: 1200px; margin: 40px auto 20px; padding: 0 20px; }
+        .bento-header { text-align: center; margin-bottom: 25px; }
+        .bento-header h2 { font-size: 24px; font-weight: 800; text-transform: uppercase; }
+        .bento-header span { color: var(--accent-orange); }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+        .bento-card {
+            background: #ffffff;
+            border: 2px solid #0f172a;
+            box-shadow: 4px 4px 0px #0f172a;
+            border-radius: 16px;
+            padding: 22px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+        }
+        .bento-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #0f172a; }
+        .bento-span-2 { grid-column: span 2; }
+        .bento-card-bg-orange { background: #fff7ed; }
+        .bento-card-bg-blue { background: #eff6ff; }
+        .bento-card-bg-dark { background: #0f172a; color: #ffffff; }
+        .bento-card-bg-dark h3 { color: #ffffff; }
+        .bento-card-bg-dark p { color: #94a3b8; }
+        .bento-icon-wrapper { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 15px; border: 2px solid #0f172a; }
+        .bento-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
+        .bento-card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+        .bento-metric { font-size: 32px; font-weight: 900; color: var(--accent-orange); margin-top: 10px; }
+
+        @media (max-width: 900px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .bento-span-2 { grid-column: span 2; }
+        }
+        @media (max-width: 600px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .bento-span-2 { grid-column: span 1; }
+        }
+
         /* Gallery Section */
         .showcase-container { max-width: 1300px; margin: 50px auto; padding: 0 20px; }
         .section-heading { text-align: center; margin-bottom: 30px; }
@@ -287,10 +401,35 @@
 
         .grid-cards-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
         
-        .custom-card { background: var(--bg-surface); border-radius: 16px; overflow: hidden; border: 2px solid #f97316; box-shadow: var(--shadow-soft); transition: all 0.3s ease; display: flex; flex-direction: column; padding: 14px; position: relative; animation: cardBorderGlow 8s infinite; }
+        .custom-card { 
+            background: #ffffff; 
+            border-radius: 16px; 
+            overflow: hidden; 
+            border: 2px solid #f97316; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06); 
+            transition: all 0.3s ease; 
+            display: flex; 
+            flex-direction: column; 
+            padding: 14px; 
+            position: relative; 
+            animation: cardBorderGlow 8s infinite; 
+        }
         .custom-card:hover { transform: translateY(-4px); }
 
-        .project-number-badge { position: absolute; top: 22px; left: 22px; background: rgba(15, 23, 42, 0.85); color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; z-index: 3; letter-spacing: 1px; border: 1px solid rgba(255,255,255,0.3); }
+        .project-number-badge { 
+            position: absolute; 
+            top: 22px; 
+            left: 22px; 
+            background: rgba(15, 23, 42, 0.9); 
+            color: #fff; 
+            padding: 4px 10px; 
+            border-radius: 20px; 
+            font-size: 11px; 
+            font-weight: 700; 
+            z-index: 3; 
+            letter-spacing: 1px; 
+            border: 1px solid rgba(255,255,255,0.3); 
+        }
 
         .media-box { width: 100%; height: 170px; border-radius: 10px; overflow: hidden; background: #000; position: relative; cursor: pointer; }
         .custom-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
@@ -312,20 +451,20 @@
         .gallery-comment-box { display: none; margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--border-color); }
         .gallery-comment-box.active { display: block; }
         .gallery-comment-list { list-style: none; max-height: 110px; overflow-y: auto; margin-bottom: 8px; padding-right: 4px; }
-        .comment-item { background: #fff; border: 1px solid var(--border-color); border-radius: 8px; padding: 6px 10px; font-size: 11.5px; margin-bottom: 5px; }
+        .comment-item { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 6px 10px; font-size: 11.5px; margin-bottom: 5px; }
         .comment-item b { color: var(--accent-orange); display: block; font-size: 10.5px; }
         .comment-input-row { display: flex; gap: 6px; }
         .comment-input-row input { flex: 1; padding: 6px 10px; border-radius: 15px; border: 1px solid var(--border-color); font-size: 11px; outline: none; }
         .comment-submit-btn { background: var(--accent-orange); color: #fff; border: none; padding: 6px 12px; border-radius: 15px; font-size: 11px; font-weight: 700; cursor: pointer; }
 
-        /* Zoom Overlay Modal */
-        .zoom-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.4s ease; backdrop-filter: blur(5px); }
+        /* Zoom Overlay Modal - Glassmorphism Backdrop */
+        .zoom-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.85); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.4s ease; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
         .zoom-overlay.active { opacity: 1; visibility: visible; }
 
         .zoomed-modal-card { width: 90%; max-width: 550px; background: #ffffff; border: 2px solid var(--accent-orange); border-radius: 20px; padding: 30px; position: relative; transform: scale(0.7); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 25px 50px rgba(0,0,0,0.3); max-height: 90vh; overflow-y: auto; }
         .zoom-overlay.active .zoomed-modal-card { transform: scale(1); }
 
-        .close-modal-btn { position: absolute; top: 15px; right: 15px; color: var(--text-main); font-size: 20px; cursor: pointer; background: var(--bg-surface); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color); }
+        .close-modal-btn { position: absolute; top: 15px; right: 15px; color: var(--text-main); font-size: 20px; cursor: pointer; background: var(--bg-body); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color); }
         .close-modal-btn:hover { background: var(--accent-orange); color: #fff; }
 
         .zoomed-modal-card .media-box { width: 100%; height: auto; max-height: 45vh; border-radius: 10px; margin-bottom: 15px; }
@@ -334,20 +473,325 @@
         .modal-divider { width: 100%; height: 1px; background: var(--border-color); margin: 15px 0; }
         .zoomed-modal-card .media-desc { display: block; color: var(--text-muted); font-size: 13px; line-height: 1.6; text-align: center; }
 
-        /* Footer */
-        footer { background-color: #0f172a; color: #94a3b8; padding: 40px 20px; text-align: center; margin-top: 60px; border-top: 1px solid #1e293b; }
-        .footer-info-text { margin-bottom: 15px; font-size: 13px; }
-        .footer-copyright { font-size: 13px; color: #94a3b8; border-top: 1px solid #1e293b; padding-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .developer-signature { color: #f8fafc; font-weight: 700; text-decoration: none; transition: color 0.3s; }
-        .developer-signature:hover { color: var(--accent-orange); }
-        .footer-social-links { display: flex; align-items: center; gap: 18px; margin-top: 5px; }
-        .footer-social-links a { color: #cbd5e1; font-size: 15px; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.3s; }
-        .footer-social-links a:hover { color: var(--accent-orange); }
+        /* ========================================================
+           PREMIUM UPGRADED FOOTER & COPYRIGHT SECTION
+           ======================================================== */
+        footer.paul-footer {
+            background: linear-gradient(180deg, #090e17 0%, #030712 100%);
+            color: #cbd5e1;
+            padding: 70px 24px 30px;
+            margin-top: 80px;
+            border-top: 3px solid #f97316;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer.paul-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: radial-gradient(ellipse at center, rgba(249,115,22,0.8), transparent 70%);
+        }
+
+        .footer-main-grid {
+            max-width: 1260px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.3fr;
+            gap: 40px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-brand-col .footer-logo-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            text-decoration: none;
+        }
+
+        .footer-brand-col .logo-disc {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid #f97316;
+            box-shadow: 0 0 15px rgba(249,115,22,0.4);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+        }
+
+        .footer-brand-col .logo-disc img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .footer-brand-col h3 {
+            font-size: 20px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .footer-brand-col h3 span {
+            color: #fb923c;
+            display: block;
+            font-size: 11px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .footer-brand-col p {
+            font-size: 13.5px;
+            color: #94a3b8;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-col-title {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 35px;
+            height: 3px;
+            background: #f97316;
+            border-radius: 2px;
+        }
+
+        .footer-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links-list a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+        }
+
+        .footer-links-list a i {
+            font-size: 10px;
+            color: #f97316;
+            transition: transform 0.25s ease;
+        }
+
+        .footer-links-list a:hover {
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
+        .footer-links-list a:hover i {
+            transform: translateX(3px);
+            color: #fef08a;
+        }
+
+        /* Interactive Contact Card Pills */
+        .footer-contact-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-pill-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: #cbd5e1;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .contact-pill-card:hover {
+            background: rgba(249, 115, 22, 0.12);
+            border-color: rgba(249, 115, 22, 0.5);
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+
+        .contact-pill-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(249, 115, 22, 0.15);
+            color: #fb923c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            flex-shrink: 0;
+            border: 1px solid rgba(249, 115, 22, 0.3);
+        }
+
+        .contact-pill-info h4 {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #94a3b8;
+            font-weight: 700;
+        }
+
+        .contact-pill-info span {
+            font-size: 13px;
+            font-weight: 600;
+            color: #f8fafc;
+        }
+
+        /* Bottom Copyright Bar with Developer Neo Badge */
+        .footer-bottom-bar {
+            max-width: 1260px;
+            margin: 30px auto 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .copyright-text {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .copyright-text b {
+            color: #cbd5e1;
+        }
+
+        /* Developer Badge - Neo-Brutalist High End Card */
+        .developer-neo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 2px solid #334155;
+            padding: 8px 18px;
+            border-radius: 40px;
+            text-decoration: none;
+            box-shadow: 3px 3px 0px #f97316;
+            transition: all 0.25s ease;
+        }
+
+        .developer-neo-badge:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px #f97316;
+            border-color: #f97316;
+        }
+
+        .developer-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .developer-name {
+            font-size: 13.5px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .developer-name i {
+            color: #22c55e;
+            font-size: 8px;
+            animation: pulseDot 2s infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { opacity: 0.4; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        /* Footer Social Circles */
+        .footer-social-circles {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-circle-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-circle-btn:hover {
+            background: #f97316;
+            color: #ffffff;
+            border-color: #f97316;
+            transform: translateY(-3px) scale(1.08);
+            box-shadow: 0 6px 15px rgba(249, 115, 22, 0.4);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-main-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 35px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            footer.paul-footer { padding: 50px 18px 25px; }
+            .footer-main-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .footer-bottom-bar {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Locked Sticky Header -->
+    <!-- Locked Sticky Header (Glassmorphism & Minimalism) -->
     <header>
         <a href="index.html" class="brand-container">
             <div class="brand-icon-box">
@@ -369,9 +813,10 @@
                 <a href="https://wa.me/917889898026" target="_blank" class="social-icon-btn wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
             </div>
 
+            <!-- Neo-Brutalist Menu Button -->
             <div class="menu-btn" onclick="toggleMenu(event)"><i class="fa-solid fa-bars"></i> Menu</div>
             
-            <!-- Upgraded Modern Glassmorphism Menu Dropdown -->
+            <!-- Glassmorphism Dropdown Menu -->
             <nav id="side-menu">
                 <a href="index.html"><i class="fa-solid fa-house" style="color:#fb923c;"></i> Home</a>
                 <a href="services.html"><i class="fa-solid fa-gears"></i> Services</a>
@@ -423,9 +868,10 @@
         <h1>Welcome to Paul Interior <span>Aluminium, Steel & PVC Solutions</span></h1>
         <p>Your premier destination for high-end aluminum sliding windows, security doors, custom steel railings, and modern PVC panelling and interior fabrication in Imamsahib, Shopian.</p>
         
+        <!-- Neo-Brutalism Action Buttons -->
         <div class="hero-action-box">
             <a href="https://www.instagram.com/paul__interior621?stkn=MTh0OThka3N1YjcyZA==" target="_blank" class="btn-instagram"><i class="fab fa-instagram"></i> Follow on Instagram</a>
-            <a href="contact.html" class="btn-outline-custom">Get a Free Quote</a>
+            <a href="contact.html" class="btn-outline-custom"><i class="fa-solid fa-paper-plane"></i> Get a Free Quote</a>
         </div>
     </section>
 
@@ -469,6 +915,66 @@
             <p class="media-desc">Overseeing precision aluminum profile cutting, flawless welding, and rigorous quality checks for durability and style.</p>
         </div>
     </div>
+
+    <!-- STYLE 11: BENTO UI SECTION -->
+    <section class="bento-section">
+        <div class="bento-header">
+            <h2>Why Choose <span>Paul Interior</span></h2>
+        </div>
+        <div class="bento-grid">
+            <div class="bento-card bento-span-2 bento-card-bg-orange">
+                <div>
+                    <div class="bento-icon-wrapper" style="background:#fed7aa;"><i class="fa-solid fa-trophy" style="color:#c2410c;"></i></div>
+                    <h3>Precision Craftsmanship</h3>
+                    <p>Every aluminium cut, steel joint, and PVC alignment is engineered with millimeter precision for maximum longevity and modern beauty.</p>
+                </div>
+                <div class="bento-metric">100% Quality Assured</div>
+            </div>
+
+            <div class="bento-card bento-card-bg-blue">
+                <div>
+                    <div class="bento-icon-wrapper" style="background:#bfdbfe;"><i class="fa-solid fa-shapes" style="color:#1d4ed8;"></i></div>
+                    <h3>41+ Live Projects</h3>
+                    <p>Delivered across Kashmir with verified reviews and satisfied homeowners.</p>
+                </div>
+                <div class="bento-metric">41+ Done</div>
+            </div>
+
+            <div class="bento-card bento-card-bg-dark">
+                <div>
+                    <div class="bento-icon-wrapper" style="background:#334155;"><i class="fa-solid fa-shield-halved" style="color:#38bdf8;"></i></div>
+                    <h3>Durable Materials</h3>
+                    <p>Top-grade aluminium alloys, rust-proof steel, and authentic fire-resistant PVC sheets.</p>
+                </div>
+                <div class="bento-metric" style="color:#38bdf8;">Grade-A</div>
+            </div>
+
+            <div class="bento-card">
+                <div>
+                    <div class="bento-icon-wrapper" style="background:#fef08a;"><i class="fa-solid fa-bolt" style="color:#854d0e;"></i></div>
+                    <h3>Fast Installation</h3>
+                    <p>Timely completion without compromising on site finishing standards.</p>
+                </div>
+            </div>
+
+            <div class="bento-card bento-span-2">
+                <div>
+                    <div class="bento-icon-wrapper" style="background:#bbf7d0;"><i class="fa-solid fa-headset" style="color:#15803d;"></i></div>
+                    <h3>Personal Consultation & Free Quotes</h3>
+                    <p>Reach out directly via WhatsApp or call our craftsmen at Imamsahib for exact measurements and estimates.</p>
+                </div>
+                <div class="bento-metric" style="color:#16a34a; font-size:22px; margin-top:12px;">+91 78898 98026</div>
+            </div>
+
+            <div class="bento-card bento-card-bg-orange">
+                <div>
+                    <div class="bento-icon-wrapper" style="background:#ffedd5;"><i class="fa-solid fa-award" style="color:#ea580c;"></i></div>
+                    <h3>Local Trust</h3>
+                    <p>Serving Shopian & South Kashmir with transparent rates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Gallery Section (Full 41 Items Included with 5 Stars, Likes & Comments) -->
     <section class="showcase-container">
@@ -575,7 +1081,7 @@
                         <li class="comment-item"><b>Bashir Rather:</b> Strong safety and looks elegant.</li>
                     </ul>
                     <div class="comment-input-row">
-                        <input type="text" placeholder="Add a comment..." id="comm-input-2" onkeypress="if(event.key==='Enter') submitProjectComment(5)">
+                        <input type="text" placeholder="Add a comment..." id="comm-input-5" onkeypress="if(event.key==='Enter') submitProjectComment(5)">
                         <button type="button" class="comment-submit-btn" onclick="submitProjectComment(5)">Post</button>
                     </div>
                 </div>
@@ -763,20 +1269,101 @@
         </div>
     </div>
 
-    <!-- Footer with Developer Social Links -->
-    <footer>
-        <div class="footer-info-text">
-            <p>📍 Imamsahib, Shopian, Jammu & Kashmir | 📞 +91 78898 98026/+91 6005345718</p>
-        </div>
-        <div class="footer-copyright">
-            <p>&copy; 2026 Paul Interior Imamsahib. All Rights Reserved.</p>
-            <div>
-                Designed by <a href="https://www.instagram.com/jaani_927/" target="_blank" class="developer-signature">ISHTIYAQ GULZAR</a>
+    <!-- ========================================================
+         IMPRESSIVE NEW FOOTER & COPYRIGHT SECTION
+         ======================================================== -->
+    <footer class="paul-footer">
+        <div class="footer-main-grid">
+            
+            <!-- Col 1: Brand Info -->
+            <div class="footer-brand-col">
+                <a href="index.html" class="footer-logo-title">
+                    <div class="logo-disc">
+                        <img src="ishu.jpg" alt="Paul Interior">
+                    </div>
+                    <h3>Paul Interior <span>IMAMSAHIB SHOPIAN</span></h3>
+                </a>
+                <p>Kashmir's trusted interior fabrication studio specializing in modern architectural aluminium sliding windows, designer PVC panelling, stainless steel safety railings, and custom commercial glass facades.</p>
+                <div class="footer-social-circles">
+                    <a href="https://www.instagram.com/paul__interior621?stkn=MTh0OThka3N1YjcyZA==" target="_blank" class="footer-circle-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/share/1CrgrPyoQa/" target="_blank" class="footer-circle-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://youtube.com/@paulinterior621?si=WiEgBMiJcTYjl-eZ" target="_blank" class="footer-circle-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://wa.me/917889898026" target="_blank" class="footer-circle-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
             </div>
-            <div class="footer-social-links">
-                <a href="https://www.instagram.com/jaani_927/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="https://www.facebook.com/bhat.ishtiyaq.737" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
-                <a href="https://wa.me/919149604818" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+
+            <!-- Col 2: Quick Links -->
+            <div>
+                <h4 class="footer-col-title">Navigation</h4>
+                <ul class="footer-links-list">
+                    <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home Overview</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> All Services</a></li>
+                    <li><a href="portfolio.html"><i class="fa-solid fa-chevron-right"></i> Project Gallery</a></li>
+                    <li><a href="rate-list.html"><i class="fa-solid fa-chevron-right"></i> Transparent Rate List</a></li>
+                    <li><a href="products.html"><i class="fa-solid fa-chevron-right"></i> Materials & Hardware</a></li>
+                    <li><a href="testimonials.html"><i class="fa-solid fa-chevron-right"></i> Client Reviews</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Specialized Works -->
+            <div>
+                <h4 class="footer-col-title">Specialization</h4>
+                <ul class="footer-links-list">
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Aluminium Sliding Windows</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> PVC Wall & Ceiling Panel</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Glass Staircase Railing</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Stainless Steel Gates</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Luxury Wardrobe & TV Units</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Office Glass Cabins</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Interactive Contact Cards -->
+            <div>
+                <h4 class="footer-col-title">Direct Connect</h4>
+                <div class="footer-contact-cards">
+                    <a href="https://maps.google.com/?q=Imamsahib+Shopian" target="_blank" class="contact-pill-card">
+                        <div class="contact-pill-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div class="contact-pill-info">
+                            <h4>Workshop Location</h4>
+                            <span>Imamsahib, Shopian (J&K)</span>
+                        </div>
+                    </a>
+                    <a href="tel:+917889898026" class="contact-pill-card">
+                        <div class="contact-pill-icon"><i class="fa-solid fa-phone"></i></div>
+                        <div class="contact-pill-info">
+                            <h4>Direct Call & Estimate</h4>
+                            <span>+91 78898 98026 / 6005345718</span>
+                        </div>
+                    </a>
+                    <a href="https://wa.me/917889898026?text=Hello%20Paul%20Interior,%20I%20want%20a%20quotation" target="_blank" class="contact-pill-card">
+                        <div class="contact-pill-icon" style="color:#22c55e; background:rgba(34,197,94,0.15); border-color:rgba(34,197,94,0.3);"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div class="contact-pill-info">
+                            <h4>Live Chat on WhatsApp</h4>
+                            <span>Instant Reply & Design Help</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Copyright Row with Impressive Developer Card -->
+        <div class="footer-bottom-bar">
+            <div class="copyright-text">
+                &copy; 2026 <b>Paul Interior Imamsahib</b>. All architectural rights reserved.
+            </div>
+
+            <!-- Neo-Brutalist Developer Signature Badge -->
+            <a href="https://www.instagram.com/jaani_927/" target="_blank" class="developer-neo-badge" title="Connect with Developer">
+                <span class="developer-label">Engineered by</span>
+                <span class="developer-name"><i class="fa-solid fa-circle"></i> ISHTIYAQ GULZAR</span>
+            </a>
+
+            <div class="footer-social-circles">
+                <a href="https://www.instagram.com/jaani_927/" target="_blank" class="footer-circle-btn" title="Dev Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/bhat.ishtiyaq.737" target="_blank" class="footer-circle-btn" title="Dev Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://wa.me/919149604818" target="_blank" class="footer-circle-btn" title="Dev WhatsApp"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
     </footer>
