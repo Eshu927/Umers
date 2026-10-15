@@ -8,20 +8,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-body: #ffffff;
-            --bg-surface: #f8fafc;
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
             --text-main: #0f172a;
             --text-muted: #64748b;
             --accent-orange: #f97316;
             --border-color: #e2e8f0;
-            --shadow-soft: 0 10px 25px -5px rgba(0,0,0,0.08);
+            --shadow-soft: 0 10px 25px -5px rgba(0,0,0,0.06);
+            --neo-border: 2px solid #0f172a;
+            --neo-shadow: 4px 4px 0px #0f172a;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--bg-body); color: var(--text-main); overflow-x: hidden; line-height: 1.6; padding-top: 75px; }
         
-        /* Sticky Header */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; background-color: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; border-bottom: 1px solid var(--border-color); }
+        /* STYLE 1: MINIMALISM & CLEAN BASE */
+        body { background-color: var(--bg-body); color: var(--text-main); overflow-x: hidden; line-height: 1.6; padding-top: 78px; }
+        
+        /* STYLE 3: GLASSMORPHISM - Sticky Header */
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 14px 30px; 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04); 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8); 
+        }
         
         @keyframes multiColorTextAndBorder {
             0% { color: #f97316; border-color: #f97316; }
@@ -42,6 +61,7 @@
         .brand-text { display: flex; flex-direction: column; }
         .brand-text h2 { font-size: 18px; font-weight: 800; text-transform: uppercase; line-height: 1.1; animation: multiColorTextAndBorder 10s infinite; }
         
+        /* Golden Look Line */
         .brand-line { width: 100%; height: 3px; background: linear-gradient(90deg, #b45309, #fbbf24, #d97706); margin: 3px 0; box-shadow: 0 0 8px rgba(251, 191, 36, 0.6); }
         
         .brand-text span { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; animation: multiColorTextAndBorder 10s infinite; }
@@ -63,20 +83,93 @@
         .social-icon-btn.wa { background: #25d366; }
         .social-icon-btn:hover { transform: scale(1.15); }
 
-        .menu-btn { font-size: 14px; cursor: pointer; color: var(--text-main); background: var(--bg-surface); padding: 8px 16px; border-radius: 25px; border: 2px solid var(--border-color); font-weight: 600; display: flex; align-items: center; gap: 6px; transition: all 0.3s; animation: multiColorTextAndBorder 10s infinite; }
-        .menu-btn:hover { background: var(--accent-orange); color: #fff; border-color: var(--accent-orange); }
-
-        /* Upgraded Modern Glassmorphism Menu Dropdown */
-        @keyframes menuSlideDown {
-            0% { opacity: 0; transform: translateY(-15px) scale(0.95); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
+        /* STYLE 7: NEO-BRUTALISM MENU BUTTON */
+        .menu-btn { 
+            font-size: 14px; 
+            cursor: pointer; 
+            color: var(--text-main); 
+            background: #ffffff; 
+            padding: 8px 18px; 
+            border-radius: 30px; 
+            border: var(--neo-border); 
+            box-shadow: 2px 2px 0px #0f172a; 
+            font-weight: 700; 
+            display: flex; 
+            align-items: center; 
+            gap: 7px; 
+            transition: all 0.2s ease; 
         }
-        nav#side-menu { display: none; flex-direction: column; position: absolute; top: 65px; right: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(15px); min-width: 260px; border-radius: 16px; padding: 12px 0; box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2); border: 2px solid var(--accent-orange); z-index: 2000; animation: menuSlideDown 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        .menu-btn:hover { 
+            background: var(--accent-orange); 
+            color: #fff; 
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px #0f172a;
+        }
+
+        /* Glassmorphism Menu Dropdown */
+        @keyframes menuPopAnimation {
+            0% { opacity: 0; transform: translateY(-20px) scale(0.85); filter: blur(10px); }
+            70% { opacity: 1; transform: translateY(5px) scale(1.02); filter: blur(0px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); }
+        }
+
+        @keyframes menuGlowBorder {
+            0% { border-color: #f97316; box-shadow: 0 15px 40px rgba(249,115,22,0.3); }
+            50% { border-color: #3b82f6; box-shadow: 0 15px 40px rgba(59,130,246,0.3); }
+            100% { border-color: #f97316; box-shadow: 0 15px 40px rgba(249,115,22,0.3); }
+        }
+
+        nav#side-menu { 
+            display: none; 
+            flex-direction: column; 
+            position: absolute; 
+            top: 68px; 
+            right: 0; 
+            background: rgba(15, 23, 42, 0.88); 
+            backdrop-filter: blur(24px); 
+            -webkit-backdrop-filter: blur(24px);
+            min-width: 270px; 
+            border-radius: 18px; 
+            padding: 15px 0; 
+            border: 2px solid rgba(249, 115, 22, 0.7); 
+            z-index: 2000; 
+            animation: menuPopAnimation 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, menuGlowBorder 8s infinite; 
+        }
+        
         nav#side-menu.active { display: flex; }
-        nav#side-menu a { color: var(--text-main); text-decoration: none; padding: 12px 22px; font-weight: 600; font-size: 13.5px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f1f5f9; transition: all 0.3s ease; }
-        nav#side-menu a i { font-size: 15px; width: 20px; text-align: center; color: var(--accent-orange); transition: transform 0.3s ease; }
-        nav#side-menu a:hover { background: linear-gradient(135deg, #fff7ed, #ffedd5); color: var(--accent-orange); padding-left: 28px; }
-        nav#side-menu a:hover i { transform: scale(1.2); }
+        
+        nav#side-menu a { 
+            color: #f8fafc; 
+            text-decoration: none; 
+            padding: 12px 24px; 
+            font-weight: 600; 
+            font-size: 14px; 
+            transition: all 0.3s ease; 
+            display: flex; 
+            align-items: center; 
+            gap: 14px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
+        }
+        
+        nav#side-menu a i { 
+            font-size: 16px; 
+            width: 22px; 
+            text-align: center; 
+            color: #fb923c; 
+            transition: transform 0.3s ease, color 0.3s ease; 
+        }
+        
+        nav#side-menu a:hover { 
+            background: linear-gradient(90deg, rgba(249, 115, 22, 0.25), transparent); 
+            color: #fef08a; 
+            padding-left: 32px; 
+            border-left: 4px solid var(--accent-orange); 
+        }
+        
+        nav#side-menu a:hover i { 
+            transform: scale(1.3) rotate(8deg); 
+            color: #fef08a; 
+        }
 
         /* Hero Section */
         @keyframes skyCloudMove {
@@ -84,41 +177,111 @@
             100% { background-position: 1000px 0; }
         }
 
-        .hero-section { position: relative; padding: 60px 20px 50px; text-align: center; background: linear-gradient(135deg, #38bdf8, #0284c7, #0369a1); background-size: 1000px 1000px; overflow: hidden; border-bottom: 1px solid var(--border-color); }
+        .hero-section { position: relative; padding: 75px 20px 60px; text-align: center; background: linear-gradient(135deg, #38bdf8, #0284c7, #0369a1); background-size: 1000px 1000px; overflow: hidden; border-bottom: 1px solid var(--border-color); }
         .hero-section::before { content: ''; position: absolute; top: 0; left: 0; width: 200%; height: 100%; background-image: radial-gradient(rgba(255, 255, 255, 0.4) 2px, transparent 2px), radial-gradient(rgba(255, 255, 255, 0.25) 4px, transparent 4px); background-size: 150px 150px, 250px 250px; background-position: 0 0, 50px 50px; animation: skyCloudMove 25s linear infinite; pointer-events: none; opacity: 0.7; }
         .hero-section > * { position: relative; z-index: 2; }
-        .hero-section h1 { font-size: 32px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; color: #ffffff; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
-        .hero-section h1 span { color: #fef08a; display: block; }
-        .hero-section p { font-size: 15px; color: #f0f9ff; max-width: 650px; margin: 0 auto; text-shadow: 0 1px 4px rgba(0,0,0,0.3); }
+        .hero-section h1 { font-size: 34px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; color: #ffffff; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        .hero-section h1 span { color: #fef08a; display: block; text-shadow: 0 0 15px rgba(254, 240, 138, 0.6); }
+        .hero-section p { font-size: 15px; color: #f0f9ff; max-width: 680px; margin: 0 auto; text-shadow: 0 1px 4px rgba(0,0,0,0.3); }
 
-        /* Detailed Services Info Section */
-        .detailed-services-container { max-width: 1300px; margin: 45px auto; padding: 0 20px; }
+        /* ========================================================
+           STYLE 10: MATERIAL DESIGN + STYLE 5: CLAYMORPHISM BADGES
+           ======================================================== */
+        .detailed-services-container { max-width: 1300px; margin: 50px auto; padding: 0 20px; }
         .detailed-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 30px; }
 
-        .service-info-card { background: var(--bg-surface); border: 2px solid #f97316; border-radius: 16px; padding: 25px; box-shadow: var(--shadow-soft); animation: cardBorderGlow 8s infinite; transition: transform 0.3s; }
-        .service-info-card:hover { transform: translateY(-5px); }
-        .service-info-card h3 { font-size: 18px; color: var(--text-main); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
-        .service-info-card h3 i { color: var(--accent-orange); }
-        .service-info-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.7; text-align: justify; }
+        /* Material Design Structured Cards */
+        .service-info-card { 
+            background: #ffffff; 
+            border: 1px solid rgba(226, 232, 240, 0.8); 
+            border-radius: 20px; 
+            padding: 30px 25px; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 10px 20px -3px rgba(0, 0, 0, 0.08); 
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); 
+            position: relative;
+        }
+        .service-info-card:hover { 
+            transform: translateY(-7px); 
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 15px 15px -5px rgba(0, 0, 0, 0.06); 
+            border-color: #fb923c;
+        }
+
+        /* STYLE 5: CLAYMORPHISM 3D SOFT FLOATING ICON BADGE */
+        .clay-badge-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            background: linear-gradient(145deg, #ffedd5, #fed7aa);
+            box-shadow: 8px 8px 16px rgba(249, 115, 22, 0.25), -6px -6px 12px rgba(255, 255, 255, 0.9), inset 2px 2px 4px rgba(255, 255, 255, 0.6);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: #ea580c;
+            margin-bottom: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            transition: transform 0.3s ease;
+        }
+        .service-info-card:hover .clay-badge-icon {
+            transform: scale(1.1) rotate(6deg);
+        }
+
+        .service-info-card h3 { 
+            font-size: 19px; 
+            font-weight: 800;
+            color: var(--text-main); 
+            margin-bottom: 14px; 
+            display: flex; 
+            flex-direction: column;
+            gap: 4px; 
+            text-transform: uppercase; 
+        }
+        .service-info-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.75; text-align: justify; }
 
         /* Video Showcase Section */
-        .showcase-container { max-width: 1300px; margin: 50px auto; padding: 0 20px; }
+        .showcase-container { max-width: 1300px; margin: 60px auto 40px; padding: 0 20px; }
         .section-heading { text-align: center; margin-bottom: 35px; }
         .section-heading h2 { font-size: 28px; font-weight: 800; text-transform: uppercase; color: var(--text-main); }
         .section-heading h2 span { color: var(--accent-orange); }
 
-        .grid-cards-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .grid-cards-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
         
-        .custom-card { background: var(--bg-surface); border-radius: 14px; overflow: hidden; border: 2px solid #f97316; box-shadow: var(--shadow-soft); cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; padding: 12px; position: relative; animation: cardBorderGlow 8s infinite; }
-        .custom-card:hover { transform: translateY(-5px) scale(1.02); }
+        .custom-card { 
+            background: #ffffff; 
+            border-radius: 18px; 
+            overflow: hidden; 
+            border: 2px solid #f97316; 
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.06); 
+            cursor: pointer; 
+            transition: all 0.35s ease; 
+            display: flex; 
+            flex-direction: column; 
+            padding: 14px; 
+            position: relative; 
+            animation: cardBorderGlow 8s infinite; 
+        }
+        .custom-card:hover { transform: translateY(-6px); box-shadow: 0 20px 30px -10px rgba(249,115,22,0.3); }
 
-        .project-number-badge { position: absolute; top: 22px; left: 22px; background: rgba(15, 23, 42, 0.85); color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; z-index: 3; letter-spacing: 1px; border: 1px solid rgba(255,255,255,0.3); }
+        .project-number-badge { 
+            position: absolute; 
+            top: 22px; 
+            left: 22px; 
+            background: rgba(15, 23, 42, 0.9); 
+            color: #fff; 
+            padding: 4px 10px; 
+            border-radius: 20px; 
+            font-size: 11px; 
+            font-weight: 700; 
+            z-index: 3; 
+            letter-spacing: 1px; 
+            border: 1px solid rgba(255,255,255,0.3); 
+        }
 
-        .media-box { width: 100%; height: 180px; border-radius: 10px; overflow: hidden; background: #000; position: relative; }
+        .media-box { width: 100%; height: 185px; border-radius: 12px; overflow: hidden; background: #000; position: relative; }
         .custom-card video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 
         .card-text-info { padding: 12px 10px 8px; text-align: center; }
-        .card-text-info h3 { font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
+        .card-text-info h3 { font-size: 15.5px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
         .card-text-info span { font-size: 11px; color: var(--accent-orange); font-weight: 700; text-transform: uppercase; }
 
         /* Animated Glowing Line Underneath Text */
@@ -126,14 +289,14 @@
 
         .media-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; text-align: justify; padding: 0 5px 5px; }
 
-        /* Zoom Overlay Modal */
-        .zoom-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.4s ease; backdrop-filter: blur(5px); }
+        /* Zoom Overlay Modal - Glassmorphic Blur Backdrop */
+        .zoom-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.88); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.4s ease; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
         .zoom-overlay.active { opacity: 1; visibility: visible; }
 
         .zoomed-modal-card { width: 90%; max-width: 550px; background: #ffffff; border: 2px solid var(--accent-orange); border-radius: 20px; padding: 30px; position: relative; transform: scale(0.7); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 25px 50px rgba(0,0,0,0.3); max-height: 90vh; overflow-y: auto; animation: cardBorderGlow 8s infinite; }
         .zoom-overlay.active .zoomed-modal-card { transform: scale(1); }
 
-        .close-modal-btn { position: absolute; top: 15px; right: 15px; color: var(--text-main); font-size: 20px; cursor: pointer; background: var(--bg-surface); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color); }
+        .close-modal-btn { position: absolute; top: 15px; right: 15px; color: var(--text-main); font-size: 20px; cursor: pointer; background: var(--bg-body); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color); }
         .close-modal-btn:hover { background: var(--accent-orange); color: #fff; }
 
         .zoomed-modal-card .media-box { width: 100%; height: auto; max-height: 45vh; border-radius: 10px; margin-bottom: 15px; }
@@ -142,20 +305,323 @@
         .modal-divider { width: 100%; height: 1px; background: var(--border-color); margin: 15px 0; }
         .zoomed-modal-card .media-desc { display: block; color: var(--text-muted); font-size: 13px; line-height: 1.6; text-align: center; }
 
-        /* Footer */
-        footer { background-color: #0f172a; color: #94a3b8; padding: 40px 20px; text-align: center; margin-top: 60px; border-top: 1px solid #1e293b; }
-        .footer-info-text { margin-bottom: 15px; font-size: 13px; }
-        .footer-copyright { font-size: 13px; color: #94a3b8; border-top: 1px solid #1e293b; padding-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .developer-signature { color: #f8fafc; font-weight: 700; text-decoration: none; transition: color 0.3s; }
-        .developer-signature:hover { color: var(--accent-orange); }
-        .footer-social-links { display: flex; align-items: center; gap: 18px; margin-top: 5px; }
-        .footer-social-links a { color: #cbd5e1; font-size: 15px; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.3s; }
-        .footer-social-links a:hover { color: var(--accent-orange); }
+        /* ========================================================
+           PREMIUM UPGRADED FOOTER & COPYRIGHT SECTION
+           ======================================================== */
+        footer.paul-footer {
+            background: linear-gradient(180deg, #090e17 0%, #030712 100%);
+            color: #cbd5e1;
+            padding: 70px 24px 30px;
+            margin-top: 80px;
+            border-top: 3px solid #f97316;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer.paul-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: radial-gradient(ellipse at center, rgba(249,115,22,0.8), transparent 70%);
+        }
+
+        .footer-main-grid {
+            max-width: 1260px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.3fr;
+            gap: 40px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-brand-col .footer-logo-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            text-decoration: none;
+        }
+
+        .footer-brand-col .logo-disc {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid #f97316;
+            box-shadow: 0 0 15px rgba(249,115,22,0.4);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+        }
+
+        .footer-brand-col .logo-disc img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .footer-brand-col h3 {
+            font-size: 20px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .footer-brand-col h3 span {
+            color: #fb923c;
+            display: block;
+            font-size: 11px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .footer-brand-col p {
+            font-size: 13.5px;
+            color: #94a3b8;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-col-title {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 35px;
+            height: 3px;
+            background: #f97316;
+            border-radius: 2px;
+        }
+
+        .footer-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links-list a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+        }
+
+        .footer-links-list a i {
+            font-size: 10px;
+            color: #f97316;
+            transition: transform 0.25s ease;
+        }
+
+        .footer-links-list a:hover {
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
+        .footer-links-list a:hover i {
+            transform: translateX(3px);
+            color: #fef08a;
+        }
+
+        /* Interactive Contact Card Pills */
+        .footer-contact-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-pill-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: #cbd5e1;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .contact-pill-card:hover {
+            background: rgba(249, 115, 22, 0.12);
+            border-color: rgba(249, 115, 22, 0.5);
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+
+        .contact-pill-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(249, 115, 22, 0.15);
+            color: #fb923c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            flex-shrink: 0;
+            border: 1px solid rgba(249, 115, 22, 0.3);
+        }
+
+        .contact-pill-info h4 {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #94a3b8;
+            font-weight: 700;
+        }
+
+        .contact-pill-info span {
+            font-size: 13px;
+            font-weight: 600;
+            color: #f8fafc;
+        }
+
+        /* Bottom Copyright Bar with Developer Neo Badge */
+        .footer-bottom-bar {
+            max-width: 1260px;
+            margin: 30px auto 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .copyright-text {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .copyright-text b {
+            color: #cbd5e1;
+        }
+
+        .developer-neo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 2px solid #334155;
+            padding: 8px 18px;
+            border-radius: 40px;
+            text-decoration: none;
+            box-shadow: 3px 3px 0px #f97316;
+            transition: all 0.25s ease;
+        }
+
+        .developer-neo-badge:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px #f97316;
+            border-color: #f97316;
+        }
+
+        .developer-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .developer-name {
+            font-size: 13.5px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .developer-name i {
+            color: #22c55e;
+            font-size: 8px;
+            animation: pulseDot 2s infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { opacity: 0.4; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        .footer-social-circles {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-circle-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-circle-btn:hover {
+            background: #f97316;
+            color: #ffffff;
+            border-color: #f97316;
+            transform: translateY(-3px) scale(1.08);
+            box-shadow: 0 6px 15px rgba(249, 115, 22, 0.4);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-main-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 35px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            footer.paul-footer { padding: 50px 18px 25px; }
+            .footer-main-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .footer-bottom-bar {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Sticky Header -->
+    <!-- Sticky Header (Glassmorphism & Minimalism) -->
     <header>
         <a href="index.html" class="brand-container">
             <div class="brand-icon-box">
@@ -172,17 +638,18 @@
             <!-- Social Media Animated Icons -->
             <div class="social-icons-box">
                 <a href="https://www.instagram.com/paul__interior621?stkn=MTh0OThka3N1YjcyZA==" target="_blank" class="social-icon-btn ig" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/" target="_blank" class="social-icon-btn fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.youtube.com/" target="_blank" class="social-icon-btn yt" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com/share/1CrgrPyoQa/" target="_blank" class="social-icon-btn fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://youtube.com/@paulinterior621?si=WiEgBMiJcTYjl-eZ" target="_blank" class="social-icon-btn yt" title="YouTube"><i class="fab fa-youtube"></i></a>
                 <a href="https://wa.me/917889898026" target="_blank" class="social-icon-btn wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
             </div>
 
+            <!-- Neo-Brutalist Menu Button -->
             <div class="menu-btn" onclick="toggleMenu(event)"><i class="fa-solid fa-bars"></i> Menu</div>
             
-            <!-- Upgraded Modern Glassmorphism Menu Dropdown -->
+            <!-- Glassmorphism Dropdown Menu -->
             <nav id="side-menu">
                 <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-                <a href="services.html"><i class="fa-solid fa-gears" style="color:var(--accent-orange);"></i> Services</a>
+                <a href="services.html"><i class="fa-solid fa-gears" style="color:#fb923c;"></i> Services</a>
                 <a href="portfolio.html"><i class="fa-solid fa-images"></i> Portfolio</a>
                 <a href="rate-list.html"><i class="fa-solid fa-list-check"></i> Rate List</a>
                 <a href="products.html"><i class="fa-solid fa-box-open"></i> Products</a>
@@ -199,7 +666,7 @@
         <p>Explore our wide range of custom aluminium, steel, and PVC interior fabrication solutions crafted with extreme precision, premium materials, and unmatched durability right here in Imamsahib, Shopian.</p>
     </section>
 
-    <!-- Detailed Services Info Section -->
+    <!-- STYLE 10 (Material Design) & STYLE 5 (Claymorphism): Detailed Services Info Section -->
     <section class="detailed-services-container">
         <div class="section-heading">
             <h2>Detailed Service <span>Overview</span></h2>
@@ -208,19 +675,28 @@
             
             <!-- Service Card 1 -->
             <div class="service-info-card">
-                <h3><i class="fa-solid fa-window-maximize"></i> Aluminium Fabrication</h3>
+                <div class="clay-badge-icon">
+                    <i class="fa-solid fa-window-maximize"></i>
+                </div>
+                <h3>Aluminium Fabrication</h3>
                 <p>At Paul Interior Imamsahib, our aluminium fabrication service stands as a benchmark of modern architectural excellence and superior engineering precision. We specialize in designing, crafting, and installing heavy-duty sliding windows, elegant office partitions, commercial shopfront glazing, and secure entrance doors that completely transform residential and business buildings. Utilizing top-tier aluminium profiles combined with toughened safety glass and smooth-gliding tracks, our installations guarantee exceptional resistance against harsh weather conditions, corrosion, and everyday wear. Every single project is meticulously measured and custom-built by experienced master craftsmen to ensure seamless alignment, airtight acoustic insulation, and magnificent aesthetic appeal. Whether you want to maximize natural daylight inside corporate workspaces or upgrade your home security with stylish sliding structures, our aluminium works deliver absolute structural stability, low maintenance, and long-lasting modern elegance that exceeds customer expectations every single time.</p>
             </div>
 
             <!-- Service Card 2 -->
             <div class="service-info-card">
-                <h3><i class="fa-solid fa-shield-halved"></i> Steel & Metal Works</h3>
+                <div class="clay-badge-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3>Steel & Metal Works</h3>
                 <p>Our steel and metal fabrication division is dedicated to delivering uncompromising security paired with breathtaking aesthetic grandeur for properties across Shopian and surrounding regions. We engineer robust main entrance security gates, ornamental balcony railings, modern staircases, and protective window grills using premium-grade stainless steel and high-tensile iron profiles. By incorporating cutting-edge laser-cut floral designs and precision welding technology, our metal structures provide ultimate physical protection without sacrificing visual sophistication. Each railing and gate undergoes rigorous anti-rust treatment and meticulous polishing to maintain its mirror shine and structural integrity through extreme seasonal shifts. Our skilled fabricators work closely with clients to bring unique custom design visions to life, ensuring every weld is secure and every finish reflects absolute perfection. Trust Paul Interior to secure your home perimeter and interior staircases with heavy-duty steel fabrication works built for a lifetime of dependable performance and elite modern style.</p>
             </div>
 
             <!-- Service Card 3 -->
             <div class="service-info-card">
-                <h3><i class="fa-solid fa-house-chimney"></i> PVC Paneling & Interiors</h3>
+                <div class="clay-badge-icon">
+                    <i class="fa-solid fa-house-chimney"></i>
+                </div>
+                <h3>PVC Paneling & Interiors</h3>
                 <p>Revolutionize your living spaces with our premium PVC wall panelling and designer false ceiling installation services, tailored to bring warmth, texture, and luxury into contemporary homes. We offer an extensive variety of wood-finish louvers, multi-layered geometric false ceilings, integrated LED ambient lighting setups, and durable wardrobe storage compartments that optimize room organization and visual depth. PVC panelling provides an exceptional moisture-resistant, termite-proof, and effortless maintenance solution that keeps your walls looking immaculate for decades. Our interior design team expertly blends traditional wooden warmth with futuristic modern lighting techniques to craft cinematic TV entertainment feature walls, cozy bedroom setups, and stunning ceiling drops that elevate indoor room ambiance to a whole new level. Experience fast, clean, and flawless interior transformation work executed with supreme dedication by the expert craftsmen at Paul Interior Imamsahib, turning your dream home decor concepts into a breathtaking reality.</p>
             </div>
 
@@ -322,20 +798,101 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-info-text">
-            <p>📍 Imamsahib, Shopian, Jammu & Kashmir | 📞 +91 78898 98026</p>
-        </div>
-        <div class="footer-copyright">
-            <p>&copy; 2026 Paul Interior Imamsahib. All Rights Reserved.</p>
-            <div>
-                Designed by <a href="https://www.instagram.com/jaani_927/" target="_blank" class="developer-signature">ISHTIYAQ GULZAR</a>
+    <!-- ========================================================
+         PREMIUM UPGRADED FOOTER & COPYRIGHT SECTION
+         ======================================================== -->
+    <footer class="paul-footer">
+        <div class="footer-main-grid">
+            
+            <!-- Col 1: Brand Info -->
+            <div class="footer-brand-col">
+                <a href="index.html" class="footer-logo-title">
+                    <div class="logo-disc">
+                        <img src="ishu.jpg" alt="Paul Interior">
+                    </div>
+                    <h3>Paul Interior <span>IMAMSAHIB SHOPIAN</span></h3>
+                </a>
+                <p>Kashmir's trusted interior fabrication studio specializing in modern architectural aluminium sliding windows, designer PVC panelling, stainless steel safety railings, and custom commercial glass facades.</p>
+                <div class="footer-social-circles">
+                    <a href="https://www.instagram.com/paul__interior621?stkn=MTh0OThka3N1YjcyZA==" target="_blank" class="footer-circle-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/share/1CrgrPyoQa/" target="_blank" class="footer-circle-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://youtube.com/@paulinterior621?si=WiEgBMiJcTYjl-eZ" target="_blank" class="footer-circle-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://wa.me/917889898026" target="_blank" class="footer-circle-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
             </div>
-            <div class="footer-social-links">
-                <a href="https://www.instagram.com/jaani_927/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="https://www.facebook.com/bhat.ishtiyaq.737" target="_blank" title="Facebook"><i class="fab fa-facebook"></i> Facebook</a>
-                <a href="https://wa.me/919149604818" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+
+            <!-- Col 2: Quick Links -->
+            <div>
+                <h4 class="footer-col-title">Navigation</h4>
+                <ul class="footer-links-list">
+                    <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home Overview</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> All Services</a></li>
+                    <li><a href="portfolio.html"><i class="fa-solid fa-chevron-right"></i> Project Gallery</a></li>
+                    <li><a href="rate-list.html"><i class="fa-solid fa-chevron-right"></i> Transparent Rate List</a></li>
+                    <li><a href="products.html"><i class="fa-solid fa-chevron-right"></i> Materials & Hardware</a></li>
+                    <li><a href="testimonials.html"><i class="fa-solid fa-chevron-right"></i> Client Reviews</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Specialized Works -->
+            <div>
+                <h4 class="footer-col-title">Specialization</h4>
+                <ul class="footer-links-list">
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Aluminium Sliding Windows</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> PVC Wall & Ceiling Panel</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Glass Staircase Railing</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Stainless Steel Gates</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Luxury Wardrobe & TV Units</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-chevron-right"></i> Office Glass Cabins</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Interactive Contact Cards -->
+            <div>
+                <h4 class="footer-col-title">Direct Connect</h4>
+                <div class="footer-contact-cards">
+                    <a href="https://maps.google.com/?q=Imamsahib+Shopian" target="_blank" class="contact-pill-card">
+                        <div class="contact-pill-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div class="contact-pill-info">
+                            <h4>Workshop Location</h4>
+                            <span>Imamsahib, Shopian (J&K)</span>
+                        </div>
+                    </a>
+                    <a href="tel:+917889898026" class="contact-pill-card">
+                        <div class="contact-pill-icon"><i class="fa-solid fa-phone"></i></div>
+                        <div class="contact-pill-info">
+                            <h4>Direct Call & Estimate</h4>
+                            <span>+91 78898 98026 / 6005345718</span>
+                        </div>
+                    </a>
+                    <a href="https://wa.me/917889898026?text=Hello%20Paul%20Interior,%20I%20want%20a%20quotation" target="_blank" class="contact-pill-card">
+                        <div class="contact-pill-icon" style="color:#22c55e; background:rgba(34,197,94,0.15); border-color:rgba(34,197,94,0.3);"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div class="contact-pill-info">
+                            <h4>Live Chat on WhatsApp</h4>
+                            <span>Instant Reply & Design Help</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Copyright Row with Impressive Developer Card -->
+        <div class="footer-bottom-bar">
+            <div class="copyright-text">
+                &copy; 2026 <b>Paul Interior Imamsahib</b>. All architectural rights reserved.
+            </div>
+
+            <!-- Neo-Brutalist Developer Signature Badge -->
+            <a href="https://www.instagram.com/jaani_927/" target="_blank" class="developer-neo-badge" title="Connect with Developer">
+                <span class="developer-label">Engineered by</span>
+                <span class="developer-name"><i class="fa-solid fa-circle"></i> ISHTIYAQ GULZAR</span>
+            </a>
+
+            <div class="footer-social-circles">
+                <a href="https://www.instagram.com/jaani_927/" target="_blank" class="footer-circle-btn" title="Dev Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/bhat.ishtiyaq.737" target="_blank" class="footer-circle-btn" title="Dev Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://wa.me/919149604818" target="_blank" class="footer-circle-btn" title="Dev WhatsApp"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
     </footer>
